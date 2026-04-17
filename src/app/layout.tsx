@@ -1,32 +1,31 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const geist = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
-  axes: ["opsz"],
 });
 
-const interTight = Inter_Tight({
-  variable: "--font-inter-tight",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
   display: "swap",
-  weight: ["400", "500"],
 });
 
 const SITE = "https://kollaborate.ca";
-const TITLE = "Kollaborate · Done-for-you growth for local service businesses";
+const TITLE = "Kollaborate · We run the five things that grow your business.";
 const DESC =
-  "One team handles everything between your phone ringing and your calendar filling. Voice, reviews, website, content, follow-up. Starting at $750/mo.";
+  "One team handles call answering, reviews, website, content, and lead follow-up for local service businesses. Replace a $60k front-desk seat for $750/mo.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -55,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${interTight.variable} ${jetbrainsMono.variable}`}
+      className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <body className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
         {children}
