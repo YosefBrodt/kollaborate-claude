@@ -133,6 +133,29 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Soft body fade-in on initial load */
+@keyframes body-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+body {
+  animation: body-enter 500ms ease-out both;
+}
+
+/* Ambient drift on hero glow */
+@keyframes ambient-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.08; }
+  50%      { transform: translate3d(-20px, -10px, 0) scale(1.06); opacity: 0.11; }
+}
+.ambient-drift {
+  animation: ambient-drift 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+  .ambient-drift { animation: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
