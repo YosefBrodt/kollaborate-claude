@@ -49,21 +49,8 @@ function Hero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-32 pb-20 sm:pt-36 sm:pb-28">
-        {/* status strip */}
-        <FadeUp onView={false} duration={0.6}>
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-[var(--border-on-dark)] bg-white/[0.03] px-3 py-1.5">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent-bright)] opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent-bright)]" />
-            </span>
-            <span className="font-mono text-[11px] tracking-[0.12em] text-[var(--text-inverse)]/80">
-              TAKING 3 NEW CLIENTS · MAY 2026
-            </span>
-          </div>
-        </FadeUp>
-
-        <FadeUp onView={false} delay={0.08} duration={0.7}>
-          <h1 className="mt-8 font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[84px] max-w-[1100px]">
+        <FadeUp onView={false} duration={0.7}>
+          <h1 className="font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[84px] max-w-[1100px]">
             We run the five things that grow your business.{" "}
             <span className="font-serif italic font-normal text-[var(--accent-bright)] tracking-[-0.01em]">
               You focus on the work.
