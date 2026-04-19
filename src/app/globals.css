@@ -2,12 +2,12 @@
 
 :root {
   /* surfaces */
-  --bg: #F7F3E8;
-  --bg-cream: #EFE8D5;
+  --bg: #F3ECD5;
+  --bg-cream: #EADFBF;
   --bg-dark: #0C1F1A;
   --bg-dark-2: #0F2620;
-  --card: #FBF8EF;
-  --card-pricing: #F4EDDB;
+  --card: #F8F1DB;
+  --card-pricing: #EEE1C2;
 
   /* text */
   --text: #0F0F0F;
@@ -16,8 +16,8 @@
   --text-muted-dark: #9BB0A3;
 
   /* lines */
-  --border: #E1DCCD;
-  --border-strong: #C9C1AD;
+  --border: #DDD0B1;
+  --border-strong: #BFB092;
   --border-on-dark: rgba(244, 241, 232, 0.11);
 
   /* accent */
