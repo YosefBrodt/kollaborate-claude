@@ -2,12 +2,12 @@
 
 :root {
   /* surfaces */
-  --bg: #FAF8F2;
-  --bg-cream: #F2ECDE;
+  --bg: #F7F3E8;
+  --bg-cream: #EFE8D5;
   --bg-dark: #0C1F1A;
   --bg-dark-2: #0F2620;
-  --card: #FFFFFF;
-  --card-pricing: #FAF6EC;
+  --card: #FBF8EF;
+  --card-pricing: #F4EDDB;
 
   /* text */
   --text: #0F0F0F;

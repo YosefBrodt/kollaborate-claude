@@ -53,7 +53,7 @@ export function CallVisual() {
 
 export function ReviewVisual() {
   return (
-    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-white p-6 overflow-hidden">
+    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 overflow-hidden">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[11px] tracking-wider text-[var(--muted)]">
           GOOGLE REVIEWS · LAST 30D
@@ -111,7 +111,7 @@ export function ReviewVisual() {
 export function SiteVisual() {
   return (
     <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--bg-cream)] p-5 overflow-hidden">
-      <div className="rounded-xl bg-white shadow-[0_1px_0_var(--border)] border border-[var(--border)] overflow-hidden">
+      <div className="rounded-xl bg-[var(--card)] shadow-[0_1px_0_var(--border)] border border-[var(--border)] overflow-hidden">
         <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[var(--border)] bg-[var(--bg)]">
           <span className="h-2.5 w-2.5 rounded-full bg-[#E8B04B]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#D4D0C5]" />
@@ -148,7 +148,7 @@ export function ContentVisual() {
     { day: "FRI", title: "Client win: 2-week turnaround" },
   ];
   return (
-    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-white p-5 overflow-hidden">
+    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 overflow-hidden">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[11px] tracking-wider text-[var(--muted)]">
           CONTENT CALENDAR · WEEK 14
