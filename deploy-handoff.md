@@ -62,7 +62,7 @@ Save. Propagation: usually 5–30 minutes at GoDaddy, up to a few hours worst ca
 - Color tokens baked into `src/app/globals.css` as CSS variables + Tailwind v4 `@theme inline` mapping
 - OG image + favicon + apple-icon generated at build time via `next/og` file conventions (`src/app/opengraph-image.tsx`, `icon.tsx`, `apple-icon.tsx`)
 - `prefers-reduced-motion` gated at two layers: `FadeUp` component short-circuits to plain div, and `globals.css` disables all animations + smooth scroll
-- All CTAs go to `mailto:yosef@kollaborate.ca?subject=Kollaborate%20demo%20request`
+- All CTAs go to `mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request`
 - Grep-verified: zero em dashes (U+2014) or en dashes (U+2013) in `src/`
 
 ---

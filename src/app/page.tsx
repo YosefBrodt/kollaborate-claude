@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Header } from "@/components/site/header";
 import { FadeUp } from "@/components/site/fade-up";
 import { FAQ } from "@/components/site/faq";
+import { CallDemo } from "@/components/site/call-demo";
 import {
   CallVisual,
   ReviewVisual,
@@ -11,7 +12,7 @@ import {
 } from "@/components/site/visuals";
 
 const MAILTO =
-  "mailto:yosef@kollaborate.ca?subject=Kollaborate%20demo%20request";
+  "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <FinalCTA />
         <Footer />
       </main>
+      <CallDemo />
     </>
   );
 }
@@ -51,7 +53,7 @@ function Hero() {
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-36 pb-20 sm:pt-40 sm:pb-28">
         <FadeUp onView={false} duration={0.6}>
           <p className="font-serif italic text-[18px] sm:text-[22px] text-[var(--accent-bright)] tracking-[-0.005em]">
-            Every missed call goes to your competitor.
+            Local jobs go to whoever shows up first.
           </p>
         </FadeUp>
 
@@ -65,9 +67,28 @@ function Hero() {
         </FadeUp>
 
         <FadeUp onView={false} delay={0.14} duration={0.6}>
-          <p className="mt-10 max-w-[700px] text-[19px] sm:text-[22px] leading-[1.55] text-[var(--text-inverse)]/80">
-            We pick up your phones, chase your reviews, build your site, run
-            your content, and reply to every lead.{" "}
+          <p className="mt-10 max-w-[760px] text-[19px] sm:text-[22px] leading-[1.55] text-[var(--text-inverse)]/80">
+            We pick up your{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">
+              phones
+            </span>
+            , chase your{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">
+              reviews
+            </span>
+            , build your{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">
+              site
+            </span>
+            , run your{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">
+              Google profile
+            </span>
+            , and reply to all your{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">
+              leads
+            </span>
+            .{" "}
             <span className="text-[var(--text-inverse)]">
               One team. One invoice. Starting at $750 a month.
             </span>
@@ -76,18 +97,18 @@ function Hero() {
 
         <FadeUp onView={false} delay={0.22} duration={0.6}>
           <div className="mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-            <a
-              href={MAILTO}
+            <Link
+              href="#services"
               className="group inline-flex h-16 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-9 text-[17px] font-semibold text-[var(--bg-dark)] shadow-[0_10px_40px_-12px_rgba(168,213,187,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_14px_44px_-10px_rgba(255,255,255,0.35)]"
             >
-              Book a 15-minute call
+              See the five services
               <span
                 aria-hidden
-                className="inline-block transition-transform duration-200 group-hover:translate-x-1"
+                className="inline-block transition-transform duration-200 group-hover:translate-y-0.5"
               >
-                →
+                ↓
               </span>
-            </a>
+            </Link>
             <Link
               href="#savings"
               className="group inline-flex h-16 items-center justify-center gap-2 rounded-full border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] px-8 text-[17px] font-semibold text-[var(--text-inverse)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent-bright)] hover:bg-white/[0.08]"
@@ -345,15 +366,16 @@ const SERVICES_MAIN = [
 const SERVICES_SIDE = [
   {
     n: "04",
-    eyebrow: "CONTENT & SOCIAL",
-    title: "Three posts a week, written for your business.",
-    body: "We write, design, and schedule. You approve in a Slack thread once a week, in under 5 minutes.",
+    eyebrow: "GOOGLE BUSINESS PROFILE",
+    title: "Your Google profile, actively run.",
+    body: "The place 80% of your customers find you, treated like a living page. Fresh posts every week, optimized categories, photos that actually look like your business.",
     bullets: [
-      "3 posts a week on Instagram, Facebook, and Google",
-      "Monthly plan tied to your busy times of year",
-      "Nothing goes live without your approval",
+      "3 Google Business posts a week with real photos",
+      "Profile categories, services, and hours kept tight for local search",
+      "Every review gets a drafted reply in your voice within 24 hours",
+      "Monthly report on views, calls, and direction requests from Google",
     ],
-    result: "4.2× more engagement than before.",
+    result: "Average 42% lift in profile views inside 60 days.",
     Visual: ContentVisual,
   },
   {
@@ -591,10 +613,10 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "The content calendar alone is worth it. I used to forget to post for weeks. Now it's three posts a week without me thinking about it.",
+      "My Google Business profile was basically dead. Three posts a week, real photos, and every review replied to. Profile views doubled in six weeks.",
     name: "HVAC Co-owner",
     city: "Laval",
-    metric: "4.2× engagement",
+    metric: "2× profile views",
   },
   {
     quote:
@@ -809,7 +831,7 @@ function Pricing() {
               <ul className="mt-8 space-y-3.5 flex-1">
                 <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
                   <Check />
-                  <span>Pick any one service: calls, reviews, site, content, or leads</span>
+                  <span>Pick any one service: calls, reviews, site, Google profile, or leads</span>
                 </li>
                 <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
                   <Check />
@@ -863,7 +885,7 @@ function Pricing() {
                     "Call handling 24/7 with calendar + text confirms",
                     "Review automation with smart routing",
                     "Website rebuild or monthly updates",
-                    "3 posts/week across IG, FB, Google Business",
+                    "3 Google Business posts/week with photos + weekly profile tune-up",
                     "Lead follow-up in 60 seconds, all channels",
                     "Monthly strategy call with Yosef",
                     "Priority Slack support, same-day replies",
@@ -1111,7 +1133,7 @@ function Footer() {
                   href="#services"
                   className="hover:text-[var(--accent-bright)] transition"
                 >
-                  Content
+                  Google profile
                 </Link>
               </li>
               <li>
@@ -1159,7 +1181,7 @@ function Footer() {
                   href={MAILTO}
                   className="hover:text-[var(--accent-bright)] transition"
                 >
-                  yosef@kollaborate.ca
+                  joseph@kollaborate.ca
                 </a>
               </li>
               <li>Montreal, QC</li>

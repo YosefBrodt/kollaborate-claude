@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const MAILTO =
-  "mailto:yosef@kollaborate.ca?subject=Kollaborate%20demo%20request";
+  "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
