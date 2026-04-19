@@ -58,7 +58,7 @@ function Hero() {
         <FadeUp onView={false} delay={0.06} duration={0.7}>
           <h1 className="mt-5 sm:mt-6 font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[84px] max-w-[1100px]">
             We run the five things that grow your business.
-            <span className="block mt-2 sm:mt-3 font-serif italic font-normal text-[var(--accent-bright)] tracking-[-0.01em]">
+            <span className="block mt-2 sm:mt-3 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
               You focus on the work.
             </span>
           </h1>
@@ -186,7 +186,7 @@ function Savings() {
           <SectionLabel>The math</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
             The math nobody shows you.
-            <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
+            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               What each of these is costing you right now.
             </span>
           </h2>
@@ -382,7 +382,7 @@ function Services() {
           <SectionLabel>What we run</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
             Five services.
-            <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
+            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               One team running them.
             </span>
           </h2>
@@ -497,7 +497,7 @@ function CaseStudy() {
           <SectionLabel>Case study</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[960px]">
             Somewhere Dine &amp; Bar.
-            <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
+            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               From 4.3★ to 4.9★ in 47 days.
             </span>
           </h2>
@@ -621,7 +621,7 @@ function Proof() {
           <SectionLabel onDark>Clients</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
             Local businesses that stopped losing money to admin.
-            <span className="block mt-2 font-serif italic font-normal text-[var(--accent-bright)]">
+            <span className="block mt-2 font-serif italic font-medium text-[var(--accent-bright)]">
               Their words, their numbers.
             </span>
           </h2>
@@ -730,7 +730,7 @@ function Process() {
           <SectionLabel>How we work</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[900px]">
             From hello to live on your phones.
-            <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
+            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               Ten days or less.
             </span>
           </h2>
@@ -776,7 +776,7 @@ function Pricing() {
           <SectionLabel>Pricing</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[900px]">
             One flat rate.
-            <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
+            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               No hidden fees. No per-call overages.
             </span>
           </h2>
@@ -945,7 +945,7 @@ function About() {
           <SectionLabel>Who runs this</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px]">
             Built in Montreal.
-            <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
+            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               Run by people, not a platform.
             </span>
           </h2>
@@ -1034,7 +1034,7 @@ function FinalCTA() {
           </span>
           <h2 className="mt-7 font-display font-semibold leading-[1] tracking-[-0.04em] text-[44px] sm:text-[64px] lg:text-[84px]">
             Stop losing money
-            <span className="block mt-2 font-serif italic font-normal text-[var(--accent-bright)] tracking-[-0.01em]">
+            <span className="block mt-2 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
               to missed calls.
             </span>
           </h2>
