@@ -183,7 +183,7 @@ function Savings() {
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel>01 · The math</SectionLabel>
+          <SectionLabel>The math</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
             The math nobody shows you.
             <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
@@ -379,7 +379,7 @@ function Services() {
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel>02 · The stack</SectionLabel>
+          <SectionLabel>What we run</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
             Five services.
             <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
@@ -405,7 +405,7 @@ function Services() {
                 <div className="lg:col-span-7">
                   <div className="flex items-baseline gap-4 mb-5">
                     <span className="font-mono text-[14px] tracking-[0.14em] text-[var(--accent)] font-semibold">
-                      {s.n} · {s.eyebrow}
+                      {s.eyebrow}
                     </span>
                   </div>
                   <h3 className="font-display font-semibold tracking-[-0.025em] leading-[1.08] text-[30px] sm:text-[36px] lg:text-[42px] max-w-[580px]">
@@ -450,7 +450,7 @@ function Services() {
                 <s.Visual />
                 <div className="mt-7">
                   <span className="font-mono text-[14px] tracking-[0.14em] text-[var(--accent)] font-semibold">
-                    {s.n} · {s.eyebrow}
+                    {s.eyebrow}
                   </span>
                   <h3 className="mt-4 font-display font-semibold tracking-[-0.02em] leading-[1.1] text-[24px] sm:text-[28px]">
                     {s.title}
@@ -494,7 +494,7 @@ function CaseStudy() {
     <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel>03 · Case study</SectionLabel>
+          <SectionLabel>Case study</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[960px]">
             Somewhere Dine &amp; Bar.
             <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
@@ -618,7 +618,7 @@ function Proof() {
       <div className="absolute inset-0 grain-dark pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel onDark>04 · Clients</SectionLabel>
+          <SectionLabel onDark>Clients</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
             Local businesses that stopped losing money to admin.
             <span className="block mt-2 font-serif italic font-normal text-[var(--accent-bright)]">
@@ -727,7 +727,7 @@ function Process() {
     <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel>05 · How we work</SectionLabel>
+          <SectionLabel>How we work</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[900px]">
             From hello to live on your phones.
             <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
@@ -773,7 +773,7 @@ function Pricing() {
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel>06 · Pricing</SectionLabel>
+          <SectionLabel>Pricing</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[900px]">
             One flat rate.
             <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
@@ -942,7 +942,7 @@ function About() {
     <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
         <FadeUp className="lg:col-span-5">
-          <SectionLabel>07 · Who runs this</SectionLabel>
+          <SectionLabel>Who runs this</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px]">
             Built in Montreal.
             <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
@@ -1000,7 +1000,7 @@ function FAQSection() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <div className="max-w-3xl mx-auto text-center mb-14">
-            <SectionLabel>08 · Questions</SectionLabel>
+            <SectionLabel>Questions</SectionLabel>
             <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px]">
               Before you book the call.
             </h2>
