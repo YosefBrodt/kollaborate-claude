@@ -221,17 +221,17 @@ function Savings() {
                 </h3>
 
                 {/* Two-number compare */}
-                <div className="mt-8 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+                <div className="mt-8 grid grid-cols-[1fr_auto_1fr] items-start gap-3">
                   <div className="text-center">
                     <div className="font-display text-[32px] sm:text-[36px] font-semibold tracking-[-0.03em] line-through decoration-[var(--danger)]/65 decoration-[2px] text-[var(--text)]/70">
                       {row.current}
                     </div>
-                    <div className="mt-1 text-[13px] text-[var(--muted)]">
-                      today
+                    <div className="mt-2 text-[14px] text-[var(--muted)]">
+                      what you pay
                     </div>
                   </div>
                   <div
-                    className="font-display text-[22px] text-[var(--muted)]/60"
+                    className="font-display text-[22px] text-[var(--muted)]/60 pt-3"
                     aria-hidden
                   >
                     →
@@ -240,18 +240,18 @@ function Savings() {
                     <div className="font-display text-[32px] sm:text-[36px] font-semibold tracking-[-0.03em] text-[var(--accent)]">
                       {row.ours}
                     </div>
-                    <div className="mt-1 text-[13px] text-[var(--accent)]/80">
+                    <div className="mt-2 text-[14px] text-[var(--accent)]/85 font-medium">
                       with us
                     </div>
                   </div>
                 </div>
 
                 {/* Hero savings block */}
-                <div className="mt-8 rounded-xl bg-[var(--accent-tint)] border border-[var(--accent)]/25 px-5 py-6 text-center flex-1 flex flex-col justify-center">
-                  <div className="font-display text-[42px] sm:text-[48px] font-semibold tracking-[-0.03em] leading-none text-[var(--accent)]">
+                <div className="mt-9 rounded-xl bg-[var(--accent-tint)] border border-[var(--accent)]/25 px-5 py-7 text-center flex-1 flex flex-col justify-center">
+                  <div className="font-display text-[46px] sm:text-[54px] font-semibold tracking-[-0.035em] leading-[0.95] text-[var(--accent)]">
                     {row.save}
                   </div>
-                  <div className="mt-2 font-serif italic text-[18px] text-[var(--accent)]/90">
+                  <div className="mt-3 font-serif italic text-[22px] sm:text-[24px] text-[var(--accent)]">
                     {row.saveLabel}
                   </div>
                 </div>
