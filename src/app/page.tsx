@@ -192,88 +192,73 @@ function Savings() {
             {
               role: "Front-desk / receptionist",
               current: "$60,400",
-              currentLabel: "/yr loaded cost",
-              breakdown:
-                "Salary $48k · benefits $7.2k · training + turnover $5.2k",
-              ours: "$750",
-              oursLabel: "/mo · $9,000/yr",
+              ours: "$9,000",
               save: "$51,400",
-              saveLabel: "saved per year",
+              saveLabel: "saved every year",
+              footnote: "Salary + benefits + training + turnover combined",
             },
             {
               role: "Reviews + reputation",
               current: "$18,600",
-              currentLabel: "/yr lost revenue",
-              breakdown:
-                "Avg 1.2★ lower rating = 14% fewer new customers per month",
-              ours: "$100",
-              oursLabel: "/mo · $1,200/yr",
+              ours: "$1,200",
               save: "$17,400",
-              saveLabel: "recovered per year",
+              saveLabel: "recovered every year",
+              footnote: "Based on 14% fewer customers from a 1.2★ lower rating",
             },
             {
               role: "Website + lead response",
               current: "$32,000",
-              currentLabel: "/yr on a marketing agency",
-              breakdown: "Plus a dev retainer and a VA for inbox triage",
-              ours: "$650",
-              oursLabel: "/mo bundled · $7,800/yr",
+              ours: "$7,800",
               save: "$24,200",
-              saveLabel: "freed up per year",
+              saveLabel: "freed up every year",
+              footnote: "Marketing agency + dev retainer + inbox VA combined",
             },
           ].map((row, i) => (
             <FadeUp key={i} delay={i * 0.08}>
-              <div className="card-base h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 sm:p-9">
-                <span className="font-display text-[18px] sm:text-[20px] font-semibold tracking-[-0.015em] text-[var(--text)]">
+              <div className="card-base h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 sm:p-9 flex flex-col">
+                <h3 className="font-display text-[20px] sm:text-[22px] font-semibold tracking-[-0.015em] text-[var(--text)]">
                   {row.role}
-                </span>
+                </h3>
 
-                <div className="mt-7">
-                  <span className="font-mono text-[13px] tracking-[0.12em] text-[var(--danger)] font-semibold">
-                    YOUR COST TODAY
-                  </span>
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <span className="font-display text-[36px] sm:text-[42px] font-semibold tracking-[-0.03em] line-through decoration-[var(--danger)]/60 decoration-[2px] text-[var(--text)]">
+                {/* Two-number compare */}
+                <div className="mt-8 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+                  <div className="text-center">
+                    <div className="font-display text-[32px] sm:text-[36px] font-semibold tracking-[-0.03em] line-through decoration-[var(--danger)]/65 decoration-[2px] text-[var(--text)]/70">
                       {row.current}
-                    </span>
-                    <span className="text-[15px] text-[var(--muted)]">
-                      {row.currentLabel}
-                    </span>
+                    </div>
+                    <div className="mt-1 text-[13px] text-[var(--muted)]">
+                      today
+                    </div>
                   </div>
-                  <p className="mt-2 text-[14px] text-[var(--muted)] leading-snug">
-                    {row.breakdown}
-                  </p>
-                </div>
-
-                <div className="my-6 hairline" />
-
-                <div>
-                  <span className="font-mono text-[13px] tracking-[0.12em] text-[var(--accent)] font-semibold">
-                    WITH KOLLABORATE
-                  </span>
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <span className="font-display text-[36px] sm:text-[42px] font-semibold tracking-[-0.03em] text-[var(--accent)]">
+                  <div
+                    className="font-display text-[22px] text-[var(--muted)]/60"
+                    aria-hidden
+                  >
+                    →
+                  </div>
+                  <div className="text-center">
+                    <div className="font-display text-[32px] sm:text-[36px] font-semibold tracking-[-0.03em] text-[var(--accent)]">
                       {row.ours}
-                    </span>
-                    <span className="text-[15px] text-[var(--muted)]">
-                      {row.oursLabel}
-                    </span>
+                    </div>
+                    <div className="mt-1 text-[13px] text-[var(--accent)]/80">
+                      with us
+                    </div>
                   </div>
                 </div>
 
-                <div className="mt-7 rounded-xl bg-[var(--accent-tint)] border border-[var(--accent)]/25 p-5">
-                  <span className="font-mono text-[13px] tracking-[0.12em] text-[var(--accent)] font-semibold">
-                    YOU SAVE
-                  </span>
-                  <div className="mt-1.5">
-                    <span className="font-display text-[34px] sm:text-[38px] font-semibold tracking-[-0.02em] text-[var(--accent)]">
-                      {row.save}
-                    </span>
-                    <span className="block mt-1 font-serif italic font-normal text-[18px] text-[var(--accent)]/90">
-                      {row.saveLabel}
-                    </span>
+                {/* Hero savings block */}
+                <div className="mt-8 rounded-xl bg-[var(--accent-tint)] border border-[var(--accent)]/25 px-5 py-6 text-center flex-1 flex flex-col justify-center">
+                  <div className="font-display text-[42px] sm:text-[48px] font-semibold tracking-[-0.03em] leading-none text-[var(--accent)]">
+                    {row.save}
+                  </div>
+                  <div className="mt-2 font-serif italic text-[18px] text-[var(--accent)]/90">
+                    {row.saveLabel}
                   </div>
                 </div>
+
+                <p className="mt-5 text-[12.5px] text-[var(--muted)]/85 font-mono leading-[1.5] text-center">
+                  {row.footnote}
+                </p>
               </div>
             </FadeUp>
           ))}
