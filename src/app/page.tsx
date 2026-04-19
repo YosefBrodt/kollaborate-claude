@@ -49,8 +49,14 @@ function Hero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-36 pb-20 sm:pt-40 sm:pb-28">
-        <FadeUp onView={false} duration={0.7}>
-          <h1 className="font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[84px] max-w-[1100px]">
+        <FadeUp onView={false} duration={0.6}>
+          <p className="font-serif italic text-[18px] sm:text-[22px] text-[var(--accent-bright)] tracking-[-0.005em]">
+            Every missed call goes to your competitor.
+          </p>
+        </FadeUp>
+
+        <FadeUp onView={false} delay={0.06} duration={0.7}>
+          <h1 className="mt-5 sm:mt-6 font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[84px] max-w-[1100px]">
             We run the five things that grow your business.
             <span className="block mt-2 sm:mt-3 font-serif italic font-normal text-[var(--accent-bright)] tracking-[-0.01em]">
               You focus on the work.
@@ -60,11 +66,10 @@ function Hero() {
 
         <FadeUp onView={false} delay={0.14} duration={0.6}>
           <p className="mt-10 max-w-[700px] text-[19px] sm:text-[22px] leading-[1.55] text-[var(--text-inverse)]/80">
-            Kollaborate is a done-for-you ops stack for local service
-            businesses. We answer your phones, chase your reviews, build your
-            site, run your content, and follow up on every lead.{" "}
+            We pick up your phones, chase your reviews, build your site, run
+            your content, and reply to every lead.{" "}
             <span className="text-[var(--text-inverse)]">
-              One team. One invoice. Starting at $750/month.
+              One team. One invoice. Starting at $750 a month.
             </span>
           </p>
         </FadeUp>
@@ -180,9 +185,9 @@ function Savings() {
         <FadeUp>
           <SectionLabel>01 · The math</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
-            The part nobody puts on their website.
+            The math nobody shows you.
             <span className="block mt-2 font-serif italic font-normal text-[var(--accent)]">
-              Here&apos;s what you&apos;re paying for what we replace.
+              What each of these is costing you right now.
             </span>
           </h2>
         </FadeUp>
@@ -195,7 +200,7 @@ function Savings() {
               ours: "$9,000",
               save: "$51,400",
               saveLabel: "saved every year",
-              footnote: "Salary + benefits + training + turnover combined",
+              footnote: "Salary, benefits, training, and turnover combined",
             },
             {
               role: "Reviews + reputation",
@@ -203,7 +208,7 @@ function Savings() {
               ours: "$1,200",
               save: "$17,400",
               saveLabel: "recovered every year",
-              footnote: "Based on 14% fewer customers from a 1.2★ lower rating",
+              footnote: "A 1.2-star lower rating means 14% fewer new customers",
             },
             {
               role: "Website + lead response",
@@ -211,7 +216,7 @@ function Savings() {
               ours: "$7,800",
               save: "$24,200",
               saveLabel: "freed up every year",
-              footnote: "Marketing agency + dev retainer + inbox VA combined",
+              footnote: "Marketing agency, website dev, and an inbox assistant combined",
             },
           ].map((row, i) => (
             <FadeUp key={i} delay={i * 0.08}>
@@ -267,15 +272,15 @@ function Savings() {
         <FadeUp>
           <div className="mt-14 rounded-2xl bg-[var(--bg-cream)] border border-[var(--border)] p-8 sm:p-10 text-center max-w-[840px] mx-auto">
             <p className="text-[18px] sm:text-[20px] leading-[1.55] text-[var(--text)]">
-              All three together: total ops cost around{" "}
+              All three together: about{" "}
               <span className="font-display font-semibold text-[22px] sm:text-[24px]">
-                $111,000/yr
-              </span>{" "}
-              replaced for{" "}
+                $111,000 a year
+              </span>
+              . Our full stack replaces it for{" "}
               <span className="font-display font-semibold text-[22px] sm:text-[24px] text-[var(--accent)]">
-                $18,000/yr
-              </span>{" "}
-              on our full stack.
+                $18,000
+              </span>
+              .
             </p>
             <Link
               href="#pricing"
@@ -297,42 +302,42 @@ const SERVICES_MAIN = [
     n: "01",
     eyebrow: "CALL HANDLING",
     title: "Your phone, answered every time.",
-    body: "A custom voice agent trained on your intake questions, pricing, and booking rules. Answers in under 2 rings, 24/7. Books directly into your calendar. Routes emergencies to your cell.",
+    body: "A voice agent that learns your intake questions, pricing, and booking rules. Picks up in under 2 rings, day or night. Books straight into your calendar. Sends emergencies to your cell.",
     bullets: [
-      "Answers in your business voice (EN or FR)",
-      "Books into Cal.com, Square, or your existing calendar",
+      "Answers in your business voice (English or French)",
+      "Books into Google Calendar, Cal.com, Square, or whatever you use",
       "Handles FAQs, pricing, and hours without a human",
-      "Escalates complex calls to whoever you designate",
+      "Sends complex calls to whoever you pick",
     ],
-    result: "94% of calls resolved without human intervention.",
+    result: "94% of calls handled without a human.",
     Visual: CallVisual,
   },
   {
     n: "02",
     eyebrow: "REVIEW AUTOMATION",
     title: "Every happy customer becomes a review.",
-    body: "Automated request pipeline fires after every appointment or transaction. Happy customers get asked on their preferred channel. Unhappy ones route to you privately before the star rating goes public.",
+    body: "Every appointment or sale kicks off a review request. Happy customers get asked by text or email. Unhappy ones come to you first, before the star rating goes public.",
     bullets: [
-      "SMS + email, sent at the right moment post-service",
-      "Smart routing: 4-5★ to Google, 1-3★ to your inbox",
-      "Drafts a response for every review in your voice",
-      "Dashboard tracking 30/60/90-day review velocity",
+      "Text and email, sent right after the visit",
+      "4 and 5 star reviews go to Google. Lower ones come to you first.",
+      "Drafts a reply to every review in your voice",
+      "Dashboard showing reviews over the last 30, 60, 90 days",
     ],
-    result: "Clients typically see 3× review volume within 60 days.",
+    result: "Clients see 3× more reviews within 60 days.",
     Visual: ReviewVisual,
   },
   {
     n: "03",
     eyebrow: "WEBSITE",
     title: "A site that actually converts.",
-    body: "Fast, professional, built for the industries you work in. Not a generic template. Ships in 7 to 10 days. Every page scored 90+ on Lighthouse before we hand it over. You own the code.",
+    body: "Fast, professional, built for the industries you work in. Not a generic template. Live in 7 to 10 days. Every page loads in under a second. You own the code and everything on it.",
     bullets: [
-      "Next.js + Vercel, sub-second load times",
-      "Mobile-first, WCAG-compliant, SEO-ready at launch",
-      "Live-booking widget wired to the voice agent",
+      "Sub-second load times on any device",
+      "Works on every phone. Ready to rank on Google from day one.",
+      "Booking widget wired straight to the voice agent",
       "Monthly updates included: copy, pages, seasonal changes",
     ],
-    result: "Lighthouse average: 98 Performance, 100 Accessibility.",
+    result: "Page speed: 98 out of 100. Accessibility: 100.",
     Visual: SiteVisual,
   },
 ];
@@ -342,26 +347,26 @@ const SERVICES_SIDE = [
     n: "04",
     eyebrow: "CONTENT & SOCIAL",
     title: "Three posts a week, written for your business.",
-    body: "We write, design, and schedule. You approve in a weekly Slack thread in under 5 minutes.",
+    body: "We write, design, and schedule. You approve in a Slack thread once a week, in under 5 minutes.",
     bullets: [
-      "3 posts/week across IG, FB, Google Business",
-      "Monthly content plan tied to your seasonal demand",
+      "3 posts a week on Instagram, Facebook, and Google",
+      "Monthly plan tied to your busy times of year",
       "Nothing goes live without your approval",
     ],
-    result: "4.2× engagement lift vs. pre-Kollaborate.",
+    result: "4.2× more engagement than before.",
     Visual: ContentVisual,
   },
   {
     n: "05",
     eyebrow: "LEAD FOLLOW-UP",
     title: "Leads replied to in under a minute.",
-    body: "Every web form, email, and DM gets an automated acknowledgment in 60 seconds, then a real follow-up within 2 hours.",
+    body: "Every web form, email, and DM gets a reply in 60 seconds. A real person follows up within 2 hours.",
     bullets: [
-      "Unified inbox: web, email, Instagram, FB, TikTok",
+      "One inbox for web, email, Instagram, Facebook, TikTok",
       "60-second auto-reply, 2-hour human reply",
-      "30/60/90-day nurture for cold leads",
+      "Old leads get fresh outreach at 30, 60, and 90 days",
     ],
-    result: "78% of leads answered within 60 seconds, 24/7.",
+    result: "78% of leads answered within 60 seconds, day or night.",
     Visual: EmailVisual,
   },
 ];
@@ -382,9 +387,9 @@ function Services() {
             </span>
           </h2>
           <p className="mt-7 max-w-[680px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)]">
-            Each of these is already eating a seat on your team. We take the
-            seat, keep it running 24/7, and charge less than what benefits
-            cost.
+            Each of these is already taking a seat on your team. We take the
+            seat, work it 24/7, and charge less than what benefits alone
+            would cost.
           </p>
         </FadeUp>
 
