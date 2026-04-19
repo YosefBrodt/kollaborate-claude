@@ -53,7 +53,7 @@ export function CallVisual() {
 
 export function ReviewVisual() {
   return (
-    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 overflow-hidden">
+    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 overflow-hidden">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[11px] tracking-wider text-[var(--muted)]">
           GOOGLE REVIEWS · LAST 30D
@@ -62,47 +62,49 @@ export function ReviewVisual() {
           +47
         </span>
       </div>
-      <div className="mt-5 flex items-baseline gap-2">
-        <span className="font-display text-[42px] font-medium tracking-[-0.03em]">
-          4.9
-        </span>
-        <div className="flex gap-0.5">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <svg
-              key={i}
-              viewBox="0 0 20 20"
-              fill="#F5B800"
-              className="h-4 w-4"
-            >
-              <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" />
-            </svg>
-          ))}
+
+      <div className="mt-3.5 rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3">
+        <div className="flex items-center justify-between">
+          <span className="font-mono text-[9px] tracking-wider text-[var(--muted)]">
+            SMS · AUTO-SENT 2H AFTER JOB
+          </span>
+          <span className="font-mono text-[9px] text-[var(--muted)]">
+            14:22
+          </span>
+        </div>
+        <div className="mt-2 inline-block max-w-[92%] rounded-xl rounded-tl-sm bg-[var(--accent)]/10 border border-[var(--accent)]/20 px-3 py-2 text-[11.5px] leading-[1.45] text-[var(--text,#1a1a1a)]">
+          Hi Jamie, it&apos;s Mike from Golden Comfort. Hope the furnace is
+          running smooth. If you&apos;ve got 30 seconds, mind leaving us a
+          quick Google review?{" "}
+          <span className="text-[var(--accent)] underline underline-offset-2">
+            g.page/r/gc
+          </span>
         </div>
       </div>
-      <p className="mt-1 text-[12px] text-[var(--muted)]">
-        Up from 4.3 · 82 reviews total
-      </p>
-      <div className="mt-5 space-y-1.5">
-        {[
-          { label: "5★", w: "92%", count: 43 },
-          { label: "4★", w: "65%", count: 3 },
-          { label: "3★", w: "10%", count: 1 },
-          { label: "2★", w: "4%", count: 0 },
-          { label: "1★", w: "2%", count: 0 },
-        ].map((r) => (
-          <div key={r.label} className="flex items-center gap-2 text-[11px]">
-            <span className="font-mono text-[var(--muted)] w-6">{r.label}</span>
-            <div className="flex-1 h-1.5 rounded-full bg-[var(--border)] overflow-hidden">
-              <div
-                className="h-full bg-[var(--accent)] rounded-full"
-                style={{ width: r.w }}
-              />
-            </div>
-            <span className="font-mono text-[var(--muted)] w-6 text-right">
-              {r.count}
-            </span>
+
+      <div className="mt-3.5 flex items-center justify-between border-t border-[var(--border)] pt-3">
+        <div className="flex items-baseline gap-2">
+          <span className="font-display text-[30px] font-medium tracking-[-0.03em] leading-none">
+            4.9
+          </span>
+          <div className="flex gap-0.5">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <svg
+                key={i}
+                viewBox="0 0 20 20"
+                fill="#F5B800"
+                className="h-3.5 w-3.5"
+              >
+                <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" />
+              </svg>
+            ))}
           </div>
-        ))}
+        </div>
+        <span className="font-mono text-[10px] text-[var(--muted)] text-right leading-tight">
+          up from 4.3
+          <br />
+          82 reviews total
+        </span>
       </div>
     </div>
   );
@@ -110,30 +112,77 @@ export function ReviewVisual() {
 
 export function SiteVisual() {
   return (
-    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--bg-cream)] p-5 overflow-hidden">
+    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--bg-cream)] p-4 overflow-hidden">
       <div className="rounded-xl bg-[var(--card)] shadow-[0_1px_0_var(--border)] border border-[var(--border)] overflow-hidden">
+        {/* Browser chrome */}
         <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[var(--border)] bg-[var(--bg)]">
           <span className="h-2.5 w-2.5 rounded-full bg-[#E8B04B]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#D4D0C5]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#D4D0C5]" />
-          <span className="ml-3 font-mono text-[10px] text-[var(--muted)]">
-            clientsite.ca
+          <span className="ml-2 flex-1 rounded-md bg-[var(--card)] px-2 py-0.5 font-mono text-[9px] text-[var(--muted)] border border-[var(--border)]">
+            goldencomforthvac.ca
           </span>
         </div>
-        <div className="p-5">
-          <div className="font-display text-[17px] font-semibold tracking-[-0.02em] leading-tight">
-            Ottawa&apos;s most booked HVAC team.
+
+        {/* Site nav */}
+        <div className="flex items-center justify-between px-3.5 py-1.5 border-b border-[var(--border)]">
+          <span className="font-display text-[10.5px] font-semibold tracking-[-0.01em]">
+            Golden Comfort
+          </span>
+          <div className="hidden sm:flex gap-3 font-mono text-[8px] tracking-wider text-[var(--muted)]">
+            <span>SERVICES</span>
+            <span>AREAS</span>
+            <span>ABOUT</span>
           </div>
-          <div className="mt-1.5 text-[11px] text-[var(--muted)] leading-relaxed">
-            24/7 service across the National Capital Region.
+          <span className="inline-flex h-[18px] items-center rounded bg-[var(--accent)] px-1.5 text-[8px] font-medium text-white">
+            BOOK
+          </span>
+        </div>
+
+        {/* Hero */}
+        <div className="px-3.5 py-3.5">
+          <div className="font-mono text-[8px] tracking-wider text-[var(--accent)]">
+            HVAC · OTTAWA
           </div>
-          <div className="mt-3 inline-flex h-7 items-center rounded-md bg-[var(--accent)] px-3 text-[11px] font-medium text-white">
-            Book a tech
+          <div className="mt-1 font-display text-[15.5px] font-semibold tracking-[-0.02em] leading-[1.15]">
+            Ottawa&apos;s most booked
+            <br />
+            HVAC team.
           </div>
-          <div className="mt-4 flex items-center gap-3 text-[10px] font-mono text-[var(--muted)]">
-            <span>● 98 PERF</span>
-            <span>● 100 A11Y</span>
-            <span>● 100 SEO</span>
+          <div className="mt-1.5 text-[10px] text-[var(--muted)] leading-relaxed">
+            Furnace, AC, and emergency service across the National Capital
+            Region. Licensed, insured, 24/7.
+          </div>
+          <div className="mt-2.5 flex items-center gap-1.5">
+            <span className="inline-flex h-6 items-center rounded-md bg-[var(--accent)] px-2 text-[9.5px] font-medium text-white">
+              Book a tech
+            </span>
+            <span className="inline-flex h-6 items-center rounded-md border border-[var(--border)] px-2 text-[9.5px] font-medium">
+              Get a quote
+            </span>
+          </div>
+
+          {/* Trust strip */}
+          <div className="mt-3 flex items-center gap-2 pt-2 border-t border-[var(--border)]">
+            <div className="flex gap-0.5">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <svg
+                  key={i}
+                  viewBox="0 0 20 20"
+                  fill="#F5B800"
+                  className="h-2.5 w-2.5"
+                >
+                  <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" />
+                </svg>
+              ))}
+            </div>
+            <span className="font-mono text-[8.5px] text-[var(--muted)]">
+              4.9 · 482 reviews
+            </span>
+            <span className="ml-auto flex items-center gap-1.5 font-mono text-[8px] text-[var(--muted)]">
+              <span>● 98 PERF</span>
+              <span>● 100 A11Y</span>
+            </span>
           </div>
         </div>
       </div>
@@ -143,15 +192,15 @@ export function SiteVisual() {
 
 export function ContentVisual() {
   const posts = [
-    { day: "MON", title: "Spring tune-up checklist" },
-    { day: "WED", title: "Before/after: Plateau restoration" },
-    { day: "FRI", title: "Client win: 2-week turnaround" },
+    { day: "MON", title: "Spring tune-up: what to check", tag: "OFFER" },
+    { day: "WED", title: "Before/after: Plateau furnace swap", tag: "UPDATE" },
+    { day: "FRI", title: "Now booking summer AC installs", tag: "EVENT" },
   ];
   return (
     <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 overflow-hidden">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[11px] tracking-wider text-[var(--muted)]">
-          CONTENT CALENDAR · WEEK 14
+          GOOGLE BUSINESS · WEEK 14
         </span>
         <span className="font-mono text-[11px] text-[var(--accent)]">
           3 scheduled
@@ -166,21 +215,26 @@ export function ContentVisual() {
             <span className="font-mono text-[10px] font-medium tracking-wider text-[var(--accent)] pt-0.5">
               {p.day}
             </span>
-            <div className="flex-1">
-              <div className="text-[13px] font-medium leading-tight">
+            <div className="flex-1 min-w-0">
+              <div className="text-[13px] font-medium leading-tight truncate">
                 {p.title}
               </div>
-              <div className="mt-1 flex gap-1.5">
-                <span className="inline-block h-1.5 w-6 rounded-full bg-[var(--accent)]/30" />
-                <span className="inline-block h-1.5 w-4 rounded-full bg-[var(--accent)]/30" />
-                <span className="inline-block h-1.5 w-5 rounded-full bg-[var(--accent)]/30" />
+              <div className="mt-1 flex items-center gap-1.5">
+                <span className="inline-block h-4 w-5 rounded-sm bg-[var(--accent)]/25 border border-[var(--accent)]/20" />
+                <span className="font-mono text-[9px] text-[var(--muted)]">
+                  photo · 60 words
+                </span>
               </div>
             </div>
-            <span className="text-[10px] font-mono text-[var(--muted)]">
-              IG · FB · GMB
+            <span className="shrink-0 rounded-sm bg-[var(--accent)]/10 px-1.5 py-0.5 text-[9px] font-mono font-medium tracking-wider text-[var(--accent)]">
+              {p.tag}
             </span>
           </div>
         ))}
+      </div>
+      <div className="mt-3 pt-3 border-t border-[var(--border)] flex items-center justify-between font-mono text-[10px] text-[var(--muted)]">
+        <span>Profile views</span>
+        <span className="text-[var(--accent)] font-medium">+42% vs last mo</span>
       </div>
     </div>
   );
