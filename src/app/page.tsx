@@ -3,6 +3,7 @@ import { Header } from "@/components/site/header";
 import { FadeUp } from "@/components/site/fade-up";
 import { FAQ } from "@/components/site/faq";
 import { CallDemo } from "@/components/site/call-demo";
+import { PricingBuilder } from "@/components/site/pricing-builder";
 import {
   CallVisual,
   ReviewVisual,
@@ -761,161 +762,46 @@ function Pricing() {
         <FadeUp>
           <SectionLabel>Pricing</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[900px]">
-            One flat rate.
+            Pick what you need.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              No hidden fees. No per-call overages.
+              Pay for that. Nothing else.
             </span>
           </h2>
           <p className="mt-7 max-w-[640px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)]">
-            Start with any single service for $750/month, or bundle the full
-            stack for $1,500/month. Month to month. Cancel any time.
+            Every service priced by what it actually costs to run. Tick the
+            ones you want, watch the total add up. All five together bundle
+            for $1,500/mo, which is $245/mo less than piecing them à la
+            carte. Month to month. Cancel any time.
           </p>
         </FadeUp>
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Starter */}
-          <FadeUp>
-            <div className="card-base h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 flex flex-col">
-              <div>
-                <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--muted)] font-semibold">
-                  STARTER · SINGLE SERVICE
-                </span>
-                <div className="mt-6 flex items-baseline gap-1.5">
-                  <span className="font-display text-[48px] sm:text-[52px] font-semibold tracking-[-0.04em] leading-none">
-                    $750
-                  </span>
-                  <span className="font-display text-[22px] text-[var(--muted)]">
-                    /mo
-                  </span>
-                </div>
-                <p className="mt-3 text-[15px] text-[var(--muted)]">
-                  Plus one-time setup from $500.
-                </p>
-              </div>
-              <ul className="mt-8 space-y-3.5 flex-1">
-                <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
-                  <Check />
-                  <span>Pick any one service: calls, reviews, site, Google profile, or leads</span>
-                </li>
-                <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
-                  <Check />
-                  <span>Full setup, training, and live-call tuning included</span>
-                </li>
-                <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
-                  <Check />
-                  <span>Friday performance report in your inbox</span>
-                </li>
-                <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
-                  <Check />
-                  <span>Add more services à la carte anytime</span>
-                </li>
-              </ul>
-              <a
-                href={MAILTO}
-                className="mt-9 inline-flex h-14 items-center justify-center rounded-full border-2 border-[var(--text)] bg-transparent px-7 text-[16px] font-semibold text-[var(--text)] transition-all hover:-translate-y-px hover:bg-[var(--text)] hover:text-[var(--text-inverse)]"
-              >
-                Start with one service
-              </a>
-            </div>
-          </FadeUp>
+        <FadeUp delay={0.1}>
+          <div className="mt-14">
+            <PricingBuilder />
+          </div>
+        </FadeUp>
 
-          {/* Full Stack, featured */}
-          <FadeUp delay={0.08}>
-            <div className="relative h-full rounded-2xl bg-[var(--bg-dark)] text-[var(--text-inverse)] p-8 flex flex-col overflow-hidden border border-[var(--accent-bright)]/40 shadow-[0_12px_44px_-10px_rgba(12,31,26,0.45)]">
-              <div className="absolute inset-0 grain-dark pointer-events-none" />
-              <div className="absolute -top-px left-1/2 -translate-x-1/2 bg-[var(--accent-bright)] text-[var(--bg-dark)] px-5 py-1.5 rounded-b-lg font-mono text-[11px] tracking-[0.14em] font-semibold">
-                RECOMMENDED
-              </div>
-              <div className="relative z-10">
-                <div>
-                  <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--accent-bright)] font-semibold">
-                    FULL OPS STACK · ALL FIVE
-                  </span>
-                  <div className="mt-6 flex items-baseline gap-1.5">
-                    <span className="font-display text-[56px] sm:text-[68px] font-semibold tracking-[-0.04em] leading-none text-[var(--text-inverse)]">
-                      $1,500
-                    </span>
-                    <span className="font-display text-[24px] text-[var(--text-inverse)]/60">
-                      /mo
-                    </span>
-                  </div>
-                  <p className="mt-3 text-[15px] text-[var(--text-inverse)]/70">
-                    One-time setup from $2,500. Usually breaks even in month 2.
-                  </p>
-                </div>
-                <ul className="mt-8 space-y-3.5">
-                  {[
-                    "Everything in Starter, times five",
-                    "Call handling 24/7 with calendar + text confirms",
-                    "Review automation with smart routing",
-                    "Website rebuild or monthly updates",
-                    "3 Google Business posts/week with photos + weekly profile tune-up",
-                    "Lead follow-up in 60 seconds, all channels",
-                    "Monthly strategy call with Yosef",
-                    "Priority Slack support, same-day replies",
-                  ].map((b) => (
-                    <li
-                      key={b}
-                      className="flex items-start gap-3 text-[16px] leading-[1.5] text-[var(--text-inverse)]/95"
-                    >
-                      <CheckBright />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={MAILTO}
-                  className="mt-9 inline-flex h-14 w-full items-center justify-center rounded-full bg-[var(--accent-bright)] px-7 text-[16px] font-semibold text-[var(--bg-dark)] transition-all hover:-translate-y-px hover:bg-white"
-                >
-                  Book a demo →
-                </a>
-              </div>
-            </div>
-          </FadeUp>
-
-          {/* Custom */}
-          <FadeUp delay={0.16}>
-            <div className="card-base h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 flex flex-col">
-              <div>
-                <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--muted)] font-semibold">
-                  CUSTOM · BUILT FOR YOU
-                </span>
-                <div className="mt-6 flex items-baseline gap-1.5">
-                  <span className="font-display text-[40px] sm:text-[44px] font-semibold tracking-[-0.03em] leading-none">
-                    Let&apos;s talk
-                  </span>
-                </div>
-                <p className="mt-3 text-[15px] text-[var(--muted)]">
-                  Multi-location, custom integrations, or unusual volume.
-                </p>
-              </div>
-              <ul className="mt-8 space-y-3.5 flex-1">
-                <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
-                  <Check />
-                  <span>Multi-location rollouts (2+ sites or numbers)</span>
-                </li>
-                <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
-                  <Check />
-                  <span>Custom CRM, EMR, or booking integrations</span>
-                </li>
-                <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
-                  <Check />
-                  <span>Bilingual voice agents (EN/FR, EN/ES)</span>
-                </li>
-                <li className="flex items-start gap-3 text-[16px] leading-[1.5]">
-                  <Check />
-                  <span>White-glove onboarding + monthly ops review</span>
-                </li>
-              </ul>
-              <a
-                href={MAILTO}
-                className="mt-9 inline-flex h-14 items-center justify-center rounded-full border-2 border-[var(--text)] bg-transparent px-7 text-[16px] font-semibold text-[var(--text)] transition-all hover:-translate-y-px hover:bg-[var(--text)] hover:text-[var(--text-inverse)]"
-              >
-                Get a custom quote
-              </a>
-            </div>
-          </FadeUp>
-        </div>
+        <FadeUp delay={0.15}>
+          <div className="mt-16 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 sm:p-8 max-w-[840px]">
+            <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--muted)] font-semibold">
+              MULTI-LOCATION · CUSTOM INTEGRATIONS · BILINGUAL
+            </span>
+            <h3 className="mt-4 font-display text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-[var(--text)]">
+              Need something the builder doesn&apos;t cover?
+            </h3>
+            <p className="mt-3 text-[15px] sm:text-[16px] leading-[1.6] text-[var(--muted)] max-w-[620px]">
+              Two-plus locations, a CRM or EMR we have to integrate with, or
+              bilingual voice agents (EN/FR, EN/ES). Tell us what you&apos;re
+              running and we&apos;ll quote it flat.
+            </p>
+            <a
+              href={`${MAILTO.replace("Kollaborate%20demo%20request", "Kollaborate%3A%20custom%20quote%20request")}`}
+              className="mt-6 inline-flex h-12 items-center gap-2 rounded-full border-2 border-[var(--text)] px-6 text-[15px] font-semibold text-[var(--text)] transition-all hover:-translate-y-px hover:bg-[var(--text)] hover:text-[var(--text-inverse)]"
+            >
+              Get a custom quote →
+            </a>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
@@ -1210,19 +1096,3 @@ function Check() {
   );
 }
 
-function CheckBright() {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      aria-hidden
-      className="mt-[6px] h-[16px] w-[16px] shrink-0 text-[var(--accent-bright)]"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.25"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 8.5l3.25 3.25L13 5" />
-    </svg>
-  );
-}
