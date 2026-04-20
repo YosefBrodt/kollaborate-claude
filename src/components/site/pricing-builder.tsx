@@ -209,7 +209,10 @@ export function PricingBuilder() {
                           <>
                             FIRST 3 MO · THEN ${fmt(s.monthly)}/MO
                             <span className="ml-2 text-[var(--accent)] font-semibold">
-                              · SETUP WAIVED
+                              · SETUP{" "}
+                              {s.setupHigh
+                                ? `$${fmt(Math.round(s.setupLow / 2))}–$${fmt(Math.round(s.setupHigh / 2))}`
+                                : `$${fmt(Math.round(s.setupLow / 2))}`}
                             </span>
                           </>
                         ) : (
@@ -247,7 +250,7 @@ export function PricingBuilder() {
                   FOUNDING-CLIENT OFFER
                 </div>
                 <div className="text-[13px] text-[var(--text-inverse)]/75 mt-0.5 leading-[1.4]">
-                  Setup waived. First 3 months at 50%. Then standard rate.
+                  Setup 50% off. First 3 months at 50%. Then standard rate.
                 </div>
               </div>
               <span
@@ -320,7 +323,10 @@ export function PricingBuilder() {
                   {founder && totals.pickedCount > 0 ? (
                     <>
                       <div className="font-display text-[22px] font-semibold text-[var(--accent-bright)] tracking-[-0.02em]">
-                        WAIVED
+                        ${fmt(Math.round(totals.setupLow / 2))}
+                        {totals.setupHigh !== totals.setupLow
+                          ? `–$${fmt(Math.round(totals.setupHigh / 2))}`
+                          : ""}
                       </div>
                       <div className="font-display text-[13px] line-through decoration-[var(--text-inverse)]/40 text-[var(--text-inverse)]/45">
                         ${fmt(totals.setupLow)}

@@ -181,7 +181,7 @@ function Hero() {
               </span>
             </span>
             <span className="font-serif italic text-[17px] sm:text-[18px] text-[var(--text-inverse)]/75 tracking-[-0.005em]">
-              Five spots. Setup waived + first 3 months half off for everyone who signs before the roster fills.
+              Five spots. Setup + first 3 months half off for everyone who signs before the roster fills.
             </span>
           </div>
         </FadeUp>
@@ -658,7 +658,7 @@ function Proof() {
                 </li>
                 <li className="flex gap-3">
                   <span className="font-display text-[var(--accent-bright)] font-semibold">02</span>
-                  <span>Setup fee waived entirely. No build cost, no commitment.</span>
+                  <span>Setup fee cut in half.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="font-display text-[var(--accent-bright)] font-semibold">03</span>
