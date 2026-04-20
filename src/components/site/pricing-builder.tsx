@@ -205,14 +205,20 @@ export function PricingBuilder() {
                         {s.tagline}
                       </p>
                       <p className="mt-3 font-mono text-[12px] tracking-wide text-[var(--muted)]/80">
-                        SETUP:{" "}
-                        {s.setupHigh
-                          ? `$${fmt(s.setupLow)}–$${fmt(s.setupHigh)}`
-                          : `$${fmt(s.setupLow)}`}
-                        {founder && (
-                          <span className="ml-2 text-[var(--accent)] font-semibold">
-                            · WAIVED FOR FOUNDING CLIENTS
-                          </span>
+                        {founder ? (
+                          <>
+                            FIRST 3 MO · THEN ${fmt(s.monthly)}/MO
+                            <span className="ml-2 text-[var(--accent)] font-semibold">
+                              · SETUP WAIVED
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            SETUP:{" "}
+                            {s.setupHigh
+                              ? `$${fmt(s.setupLow)}–$${fmt(s.setupHigh)}`
+                              : `$${fmt(s.setupLow)}`}
+                          </>
                         )}
                       </p>
                     </div>
@@ -234,14 +240,14 @@ export function PricingBuilder() {
               type="button"
               onClick={() => setFounder((v) => !v)}
               aria-pressed={founder}
-              className="w-full flex items-center justify-between gap-4 rounded-xl border border-[var(--accent-bright)]/30 bg-[var(--accent-bright)]/10 px-4 py-3 transition-colors hover:bg-[var(--accent-bright)]/15 cursor-pointer"
+              className="w-full flex items-center justify-between gap-4 rounded-xl border border-[var(--accent-bright)]/30 bg-[var(--accent-bright)]/10 px-4 py-3 transition-colors hover:bg-[var(--accent-bright)]/15 cursor-pointer text-left"
             >
-              <div className="text-left">
+              <div className="min-w-0">
                 <div className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
-                  FOUNDING-CLIENT RATE
+                  FOUNDING-CLIENT OFFER
                 </div>
-                <div className="text-[13px] text-[var(--text-inverse)]/75 mt-0.5">
-                  50% off for life. Five spots.
+                <div className="text-[13px] text-[var(--text-inverse)]/75 mt-0.5 leading-[1.4]">
+                  Setup waived. First 3 months at 50%. Then standard rate.
                 </div>
               </div>
               <span
@@ -262,7 +268,9 @@ export function PricingBuilder() {
 
             <div className="mt-7">
               <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-semibold">
-                YOUR MONTHLY
+                {founder && totals.pickedCount > 0
+                  ? "FIRST 3 MONTHS"
+                  : "YOUR MONTHLY"}
               </span>
               <div className="mt-3 flex items-baseline gap-2">
                 {totals.pickedCount === 0 ? (
@@ -285,6 +293,13 @@ export function PricingBuilder() {
                   </>
                 )}
               </div>
+
+              {founder && totals.pickedCount > 0 && (
+                <p className="mt-3 text-[13px] text-[var(--text-inverse)]/65 leading-[1.5]">
+                  Then ${fmt(totals.monthly)}/mo from month 4 onward.
+                  Month-to-month, cancel anytime.
+                </p>
+              )}
 
               {allSelected && (
                 <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--accent-bright)]/40 bg-[var(--accent-bright)]/10 px-3 py-1">
@@ -325,6 +340,11 @@ export function PricingBuilder() {
                   )}
                 </div>
               </div>
+              {founder && totals.pickedCount > 0 && (
+                <p className="mt-3 text-[12px] text-[var(--text-inverse)]/55 leading-[1.55]">
+                  In return: a written case study at day 60 we can publish with your name.
+                </p>
+              )}
             </div>
 
             {/* CTA */}

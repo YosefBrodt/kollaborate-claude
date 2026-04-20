@@ -181,7 +181,7 @@ function Hero() {
               </span>
             </span>
             <span className="font-serif italic text-[17px] sm:text-[18px] text-[var(--text-inverse)]/75 tracking-[-0.005em]">
-              Five spots. Half price for life on everyone who signs before the roster fills.
+              Five spots. Setup waived + first 3 months half off for everyone who signs before the roster fills.
             </span>
           </div>
         </FadeUp>
@@ -654,11 +654,11 @@ function Proof() {
               <ul className="mt-6 space-y-5 text-[15px] leading-[1.55] text-[var(--text-inverse)]/90">
                 <li className="flex gap-3">
                   <span className="font-display text-[var(--accent-bright)] font-semibold">01</span>
-                  <span>50% off every monthly retainer, kept for as long as you stay.</span>
+                  <span>First 3 months at 50% off. Standard rate after that.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="font-display text-[var(--accent-bright)] font-semibold">02</span>
-                  <span>Setup fee waived. No build cost, no commitment.</span>
+                  <span>Setup fee waived entirely. No build cost, no commitment.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="font-display text-[var(--accent-bright)] font-semibold">03</span>
@@ -666,7 +666,7 @@ function Proof() {
                 </li>
                 <li className="flex gap-3">
                   <span className="font-display text-[var(--accent-bright)] font-semibold">04</span>
-                  <span>A written case study at 60 days — the numbers are yours whether you stay or leave.</span>
+                  <span>At day 60 we write up a case study with your real numbers. Yours to keep whether you stay or leave.</span>
                 </li>
               </ul>
               <div className="mt-7 pt-6 border-t border-[var(--border-on-dark)] text-[13px] text-[var(--text-inverse)]/60 font-mono tracking-wide">
