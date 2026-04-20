@@ -140,10 +140,10 @@ function Hero() {
               note: "holidays, 2am, nights, weekends",
             },
             {
-              big: "3.1×",
+              big: "100%",
               unit: "",
-              label: "more Google reviews captured",
-              note: "vs asking manually at checkout",
+              label: "of paid tickets auto-ask for a review",
+              note: "no more forgetting at checkout",
             },
           ].map((s, i) => (
             <FadeUp key={i} onView={false} delay={0.35 + i * 0.1} duration={0.7} travel={24}>
@@ -167,26 +167,21 @@ function Hero() {
           ))}
         </div>
 
-        {/* Client strip */}
+        {/* Founding client strip */}
         <FadeUp delay={0.1}>
-          <div className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-5">
-            <span className="font-mono text-[13px] tracking-[0.16em] text-[var(--text-inverse)]/60">
-              TRUSTED BY
-            </span>
-            {[
-              "Somewhere Dine & Bar",
-              "You Feed Them",
-              "Cote-Neige Dental",
-              "Plateau Auto",
-              "North Shore HVAC",
-            ].map((name) => (
-              <span
-                key={name}
-                className="font-display text-[18px] sm:text-[19px] font-medium text-[var(--text-inverse)]/75 tracking-[-0.01em]"
-              >
-                {name}
+          <div className="mt-16 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-bright)]/40 bg-[var(--accent-bright)]/10 px-4 py-1.5">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent-bright)] opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent-bright)]" />
               </span>
-            ))}
+              <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+                NOW BOOKING FOUNDING CLIENTS
+              </span>
+            </span>
+            <span className="font-serif italic text-[17px] sm:text-[18px] text-[var(--text-inverse)]/75 tracking-[-0.005em]">
+              Five spots. Half price for life on everyone who signs before the roster fills.
+            </span>
           </div>
         </FadeUp>
       </div>
@@ -330,7 +325,7 @@ const SERVICES_MAIN = [
       "Handles FAQs, pricing, and hours without a human",
       "Sends complex calls to whoever you pick",
     ],
-    result: "94% of calls handled without a human.",
+    result: "Designed to handle 9 out of 10 calls without a human.",
     Visual: CallVisual,
   },
   {
@@ -344,7 +339,7 @@ const SERVICES_MAIN = [
       "Drafts a reply to every review in your voice",
       "Dashboard showing reviews over the last 30, 60, 90 days",
     ],
-    result: "Clients see 3× more reviews within 60 days.",
+    result: "Every paid ticket triggers a review ask, automatically.",
     Visual: ReviewVisual,
   },
   {
@@ -358,7 +353,7 @@ const SERVICES_MAIN = [
       "Booking widget wired straight to the voice agent",
       "Monthly updates included: copy, pages, seasonal changes",
     ],
-    result: "Page speed: 98 out of 100. Accessibility: 100.",
+    result: "Target: 95+ Lighthouse on every build, every device.",
     Visual: SiteVisual,
   },
 ];
@@ -375,7 +370,7 @@ const SERVICES_SIDE = [
       "Every review gets a drafted reply in your voice within 24 hours",
       "Monthly report on views, calls, and direction requests from Google",
     ],
-    result: "Average 42% lift in profile views inside 60 days.",
+    result: "The page 80% of local customers see first, kept alive weekly.",
     Visual: ContentVisual,
   },
   {
@@ -388,7 +383,7 @@ const SERVICES_SIDE = [
       "60-second auto-reply, 2-hour human reply",
       "Old leads get fresh outreach at 30, 60, and 90 days",
     ],
-    result: "78% of leads answered within 60 seconds, day or night.",
+    result: "Auto-reply fires in under 60 seconds on every channel.",
     Visual: EmailVisual,
   },
 ];
@@ -516,38 +511,44 @@ function CaseStudy() {
     <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel>Case study</SectionLabel>
+          <SectionLabel>The math on a real account</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[960px]">
-            Somewhere Dine &amp; Bar.
+            What a typical month looks like.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              From 4.3★ to 4.9★ in 47 days.
+              Worked on an 80-seat restaurant profile.
             </span>
           </h2>
+          <p className="mt-6 max-w-[680px] text-[16px] text-[var(--muted)] leading-[1.6]">
+            Illustrative walkthrough using typical Montreal-restaurant traffic, not a current client result. The mechanics are the same in any local-service vertical. The numbers at the bottom are the ones you can recreate by plugging your own intake volume into the same pipeline.
+          </p>
         </FadeUp>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
           <FadeUp className="lg:col-span-7">
             <div className="max-w-[640px]">
               <p className="text-[18px] sm:text-[19px] leading-[1.65] text-[var(--text)]">
-                Montreal restaurant, 80 covers, 11-person team. Great food,
-                inconsistent reviews. The staff would mean to ask for reviews,
-                but between service and close it never happened. One bad
-                review a month was quietly dragging the rating down.
+                Picture an 80-cover spot with a modern POS. Rating hovers
+                around 4.3. Staff mean to ask for Google reviews on the way
+                out, but between service and close it never happens.
+                One 1-star review a month quietly drags the rating down.
               </p>
               <p className="mt-6 text-[18px] sm:text-[19px] leading-[1.65] text-[var(--muted)]">
-                We hooked the POS into an SMS + email sequence. Happy tables
-                got a review request 2 hours after they paid. Unhappy tables
-                went to the owner first. 47 days after launch, the rating had
-                lifted from 4.3 to 4.9 on 39 new reviews.
+                The pipeline we ship on a profile like this: every paid check
+                triggers an SMS + email two hours later. Guests rating 4 or 5
+                land on a Google review link. Anyone rating lower lands on a
+                private form that pings ownership first. Multiply that by
+                ~2,500 covers a month at a 22% response rate and you get
+                ~40 fresh reviews a month instead of 2.
               </p>
               <figure className="mt-10 border-l-2 border-[var(--accent)] pl-7">
-                <blockquote className="font-serif italic text-[24px] sm:text-[28px] leading-[1.35] text-[var(--text)]">
-                  &quot;We used to get one review every two weeks. Now we get
-                  three a week and nobody on staff lifts a finger. Our Friday
-                  nights are booked solid for the first time in two years.&quot;
+                <blockquote className="font-serif italic text-[22px] sm:text-[26px] leading-[1.4] text-[var(--text)]">
+                  &quot;Rebuilding the review rate is the cheapest
+                  rating-lift any restaurant can buy. The star count in
+                  local search is the single biggest lever on walk-ins, and
+                  nobody uses it on purpose.&quot;
                 </blockquote>
                 <figcaption className="mt-5 text-[14px] text-[var(--muted)]">
-                  Ownership, Somewhere Dine &amp; Bar · Montreal
+                  Joseph Brodt, founder · Kollaborate
                 </figcaption>
               </figure>
             </div>
@@ -556,17 +557,17 @@ function CaseStudy() {
           <FadeUp className="lg:col-span-5" delay={0.1}>
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8">
               <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--muted)] font-semibold">
-                47-DAY RESULTS
+                ILLUSTRATIVE · 80-COVER RESTAURANT
               </span>
               <div className="mt-7 space-y-6">
-                <Stat k="Google rating" v="4.3 → 4.9" delta="+0.6★" />
-                <Stat k="Reviews captured" v="39" delta="+3.1×" />
-                <Stat k="Weekly Google traffic" v="+68%" delta="" />
-                <Stat k="Friday reservations" v="+42%" delta="" />
-                <Stat k="Staff hours spent" v="0" delta="was ~4/wk" />
+                <Stat k="Covers served / mo" v="~2,500" delta="" />
+                <Stat k="Review-request SMS sent" v="~2,500" delta="auto" />
+                <Stat k="Expected replies at 22%" v="~550" delta="" />
+                <Stat k="Net new Google reviews" v="~40 / mo" delta="vs ~2" />
+                <Stat k="Staff hours spent" v="0" delta="vs ~4/wk" />
               </div>
-              <div className="mt-8 border-t border-[var(--border)] pt-5 text-[14px] text-[var(--muted)] leading-relaxed">
-                Live since March 2026. Running on the $100/mo reviews retainer.
+              <div className="mt-8 border-t border-[var(--border)] pt-5 text-[13px] text-[var(--muted)] leading-relaxed font-mono tracking-wide">
+                EXAMPLE MATH · NOT A PAST-CLIENT OUTCOME · WE&apos;LL RUN YOUR ACTUAL NUMBERS LIVE ON THE CALL
               </div>
             </div>
           </FadeUp>
@@ -596,119 +597,82 @@ function Stat({ k, v, delta }: { k: string; v: string; delta: string }) {
 
 /* ---------- PROOF ---------- */
 
-const TESTIMONIALS = [
-  {
-    quote:
-      "The voice agent books more appointments on a Sunday night than my team does on a Monday morning. It just works.",
-    name: "HVAC Services Owner",
-    city: "Plateau, Montreal",
-    metric: "93% of calls resolved",
-  },
-  {
-    quote:
-      "We canceled the receptionist job posting two days after going live. Calls are being answered better than when a human was doing it.",
-    name: "Dental Practice Manager",
-    city: "Cote-des-Neiges, Montreal",
-    metric: "$54k/yr saved",
-  },
-  {
-    quote:
-      "My Google Business profile was basically dead. Three posts a week, real photos, and every review replied to. Profile views doubled in six weeks.",
-    name: "HVAC Co-owner",
-    city: "Laval",
-    metric: "2× profile views",
-  },
-  {
-    quote:
-      "Most agencies sell you a dashboard. These guys sell you the outcome. I don't log into anything. The numbers show up in my inbox on Friday.",
-    name: "Nonprofit Director",
-    city: "Osgoode, ON",
-    metric: "Site shipped in 8 days",
-  },
-  {
-    quote:
-      "I was paying an agency $3,400/month for marketing and a receptionist $48k/year. Kollaborate replaced both for $1,500/month total.",
-    name: "Auto Shop Owner",
-    city: "Plateau, Montreal",
-    metric: "$52k/yr freed up",
-  },
-];
-
 function Proof() {
   return (
     <section className="relative bg-[var(--bg-dark)] text-[var(--text-inverse)] py-24 sm:py-32 overflow-hidden">
       <div className="absolute inset-0 grain-dark pointer-events-none" />
+      <div
+        className="absolute inset-0 pointer-events-none ambient-drift"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 85% 15%, rgba(168,213,187,0.35) 0%, transparent 45%)",
+        }}
+      />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel onDark>Clients</SectionLabel>
+          <SectionLabel onDark>Straight talk</SectionLabel>
           <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
-            Local businesses that stopped losing money to admin.
+            We&apos;re new. We&apos;re looking for five founding clients.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent-bright)]">
-              Their words, their numbers.
+              Be the case study we point everyone at.
             </span>
           </h2>
         </FadeUp>
 
-        {/* aggregate stats row */}
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-[var(--border-on-dark)] rounded-2xl overflow-hidden border border-[var(--border-on-dark)]">
-          {[
-            { v: "8,400+", l: "calls answered" },
-            { v: "1,270", l: "reviews captured" },
-            { v: "$710k", l: "saved for clients" },
-            { v: "47s", l: "avg lead response" },
-          ].map((s) => (
-            <div
-              key={s.l}
-              className="bg-[var(--bg-dark-2)] p-6 sm:p-8 text-center"
-            >
-              <div className="font-display text-[32px] sm:text-[44px] font-semibold tracking-[-0.03em] text-[var(--accent-bright)]">
-                {s.v}
-              </div>
-              <div className="mt-2 text-[13px] sm:text-[14px] font-mono tracking-wider text-[var(--text-inverse)]/70 uppercase">
-                {s.l}
+        <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+          <FadeUp className="lg:col-span-7">
+            <div className="space-y-6 text-[18px] sm:text-[19px] leading-[1.65] text-[var(--text-inverse)]/90 max-w-[640px]">
+              <p>
+                I&apos;m Joseph. I run Kollaborate out of Montreal. The pages above show what the stack does and what it costs. The part I won&apos;t fake is the testimonials.
+              </p>
+              <p className="text-[var(--text-inverse)]/75">
+                Every agency site I&apos;ve ever scrolled has the same five logos, the same &quot;4.3 to 4.9 in 47 days&quot; case study, and the same five anonymous reviewers who all left exactly five stars. Mine won&apos;t, until it&apos;s real.
+              </p>
+              <p className="text-[var(--text-inverse)]/75">
+                What I can show you is the work itself: a voice agent that answers live on our call, a review pipeline wired into your actual POS or PMS, a site shipped in ten days you can inspect line-by-line. If the output is good, you become client number one, two, three, four, or five, and I publish the real numbers with your name on them.
+              </p>
+            </div>
+            <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <a
+                href={MAILTO}
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-8 text-[16px] font-semibold text-[var(--bg-dark)] transition-all hover:-translate-y-0.5 hover:bg-white"
+              >
+                Be a founding client →
+              </a>
+              <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/55 font-medium">
+                LOCKED-IN FOUNDER RATE · KEPT FOR LIFE
+              </span>
+            </div>
+          </FadeUp>
+
+          <FadeUp className="lg:col-span-5" delay={0.1}>
+            <div className="rounded-2xl border border-[var(--accent-bright)]/30 bg-white/[0.03] p-8 backdrop-blur-sm">
+              <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+                FOUNDING-CLIENT OFFER
+              </span>
+              <ul className="mt-6 space-y-5 text-[15px] leading-[1.55] text-[var(--text-inverse)]/90">
+                <li className="flex gap-3">
+                  <span className="font-display text-[var(--accent-bright)] font-semibold">01</span>
+                  <span>50% off every monthly retainer, kept for as long as you stay.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-display text-[var(--accent-bright)] font-semibold">02</span>
+                  <span>Setup fee waived. No build cost, no commitment.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-display text-[var(--accent-bright)] font-semibold">03</span>
+                  <span>Direct line to me. Slack, text, phone. No intake queue.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-display text-[var(--accent-bright)] font-semibold">04</span>
+                  <span>A written case study at 60 days — the numbers are yours whether you stay or leave.</span>
+                </li>
+              </ul>
+              <div className="mt-7 pt-6 border-t border-[var(--border-on-dark)] text-[13px] text-[var(--text-inverse)]/60 font-mono tracking-wide">
+                FIVE SPOTS TOTAL · FIRST COME FIRST SERVED
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t, i) => (
-            <FadeUp key={i} delay={i * 0.06}>
-              <figure
-                className={`h-full rounded-2xl border border-[var(--border-on-dark)] bg-white/[0.03] p-8 ${
-                  i === 0 ? "md:col-span-2" : ""
-                }`}
-              >
-                <div className="flex gap-0.5">
-                  {[1, 2, 3, 4, 5].map((k) => (
-                    <svg
-                      key={k}
-                      viewBox="0 0 20 20"
-                      className="h-4 w-4 fill-[var(--accent-bright)]"
-                    >
-                      <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" />
-                    </svg>
-                  ))}
-                </div>
-                <blockquote className="mt-6 text-[18px] sm:text-[19px] leading-[1.55] text-[var(--text-inverse)]/95 font-serif">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-7 flex items-center justify-between gap-4">
-                  <div>
-                    <div className="text-[15px] font-semibold text-[var(--text-inverse)]">
-                      {t.name}
-                    </div>
-                    <div className="text-[13px] text-[var(--text-inverse)]/55 mt-0.5">
-                      {t.city}
-                    </div>
-                  </div>
-                  <span className="font-mono text-[12px] text-[var(--accent-bright)] whitespace-nowrap font-semibold">
-                    {t.metric}
-                  </span>
-                </figcaption>
-              </figure>
-            </FadeUp>
-          ))}
+          </FadeUp>
         </div>
       </div>
     </section>
@@ -976,29 +940,29 @@ function About() {
           <div className="space-y-6 max-w-[640px]">
             <p className="text-[18px] sm:text-[19px] leading-[1.65] text-[var(--text)]">
               Kollaborate is a small agency out of Côte-Saint-Luc, founded in
-              2026. We started with one restaurant and a review automation
-              script. Eleven months later, we run five-service ops stacks for
-              local businesses across Montreal, Ottawa, and Eastern Ontario.
+              2026. The stack we sell is the stack we built for ourselves and
+              for the first few local businesses we volunteered to prototype
+              on. We&apos;re now opening the doors to five founding clients.
             </p>
             <p className="text-[18px] sm:text-[19px] leading-[1.65] text-[var(--muted)]">
-              We keep the client roster small on purpose. Three new clients
-              per month, no more. Every account has a direct line to the
-              person doing the work. No account executives, no offshore
-              support, no ticketing maze. When something breaks, you text us.
-              It gets fixed.
+              The roster stays small on purpose. Three new clients per month,
+              no more. Every account has a direct line to the person doing
+              the work, which on day one is me. No account executives, no
+              offshore support, no ticketing maze. When something breaks,
+              you text me. It gets fixed.
             </p>
             <div className="pt-5 flex flex-wrap gap-8 text-[15px] font-mono tracking-wide text-[var(--muted)]">
               <div>
                 <span className="text-[var(--text)] font-semibold text-[17px]">
-                  11+
+                  2026
                 </span>{" "}
-                active clients
+                founded
               </div>
               <div>
                 <span className="text-[var(--text)] font-semibold text-[17px]">
-                  98%
+                  5
                 </span>{" "}
-                retention
+                founding-client spots
               </div>
               <div>
                 <span className="text-[var(--text)] font-semibold text-[17px]">

@@ -162,3 +162,19 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* Accordion (Radix) spring reveal */
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to   { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to   { height: 0; opacity: 0; }
+}
+.animate-accordion-down {
+  animation: accordion-down 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.animate-accordion-up {
+  animation: accordion-up 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
