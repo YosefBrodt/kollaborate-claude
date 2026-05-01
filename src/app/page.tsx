@@ -5,13 +5,8 @@ import { FAQ } from "@/components/site/faq";
 import { CallDemo } from "@/components/site/call-demo";
 import { PricingBuilder } from "@/components/site/pricing-builder";
 import { Booking } from "@/components/site/booking";
-import {
-  CallVisual,
-  ReviewVisual,
-  SiteVisual,
-  ContentVisual,
-  EmailVisual,
-} from "@/components/site/visuals";
+import { Services } from "@/components/site/services";
+import { Process } from "@/components/site/process";
 
 const MAILTO =
   "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
@@ -22,12 +17,11 @@ export default function Home() {
       <Header />
       <main id="top">
         <Hero />
-        <Savings />
         <Services />
-        <CaseStudy />
-        <Proof />
-        <Process />
+        <Savings />
         <Pricing />
+        <Process />
+        <CaseStudy />
         <About />
         <FAQSection />
         <Booking />
@@ -204,39 +198,36 @@ function Hero() {
 
         {/* Industries strip */}
         <FadeUp delay={0.18}>
-          <div className="mt-12 pt-10 border-t border-[var(--border-on-dark)]">
-            <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--text-inverse)]/55 font-semibold">
+          <div className="mt-16 pt-12 border-t border-[var(--border-on-dark)]">
+            <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
               BUILT FOR
             </span>
-            <div className="mt-5 flex flex-wrap gap-x-2.5 gap-y-2.5">
+            <div className="mt-7 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {[
-                "HVAC",
-                "Plumbing",
-                "Electrical",
-                "Roofing",
-                "Landscaping",
-                "Locksmiths",
-                "Cleaning crews",
-                "Restaurants",
-                "Salons + spas",
-                "Dental clinics",
-                "Med-spas",
-                "Auto shops",
-                "Movers",
-                "Pet care",
-                "Trades + contractors",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center rounded-full border border-[var(--accent-bright)]/25 bg-white/[0.03] px-3.5 py-1.5 text-[13px] font-medium text-[var(--text-inverse)]/85"
+                { name: "Trades", sub: "HVAC, plumbing, electrical, roofing" },
+                { name: "Restaurants", sub: "Front-of-house and reservations" },
+                { name: "Auto + repair", sub: "Body shops, mechanics, detailing" },
+                { name: "Wellness", sub: "Salons, spas, med-spas, dental" },
+                { name: "Home services", sub: "Cleaning, movers, landscaping" },
+                { name: "Pro services", sub: "Clinics, vets, studios, training" },
+              ].map((tile) => (
+                <div
+                  key={tile.name}
+                  className="rounded-xl border border-[var(--accent-bright)]/30 bg-white/[0.04] px-4 py-4 backdrop-blur-sm"
                 >
-                  {tag}
-                </span>
+                  <div className="font-display text-[18px] sm:text-[19px] font-semibold tracking-[-0.01em] text-[var(--text-inverse)]">
+                    {tile.name}
+                  </div>
+                  <div className="mt-1.5 text-[13px] leading-[1.45] text-[var(--text-inverse)]/65">
+                    {tile.sub}
+                  </div>
+                </div>
               ))}
             </div>
-            <p className="mt-5 max-w-[640px] text-[14px] leading-[1.55] text-[var(--text-inverse)]/55">
+            <p className="mt-7 max-w-[680px] text-[16px] sm:text-[17px] leading-[1.6] text-[var(--text-inverse)]/70">
               If your business runs on phone calls, walk-ins, bookings, or
-              Google reviews, the stack works. Not for pure e-com or SaaS.
+              Google reviews, the stack works. Not built for pure e-commerce or
+              software companies.
             </p>
           </div>
         </FadeUp>
@@ -256,7 +247,7 @@ function Savings() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <SectionLabel>The math</SectionLabel>
-          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
             The math nobody shows you.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               What each of these is costing you right now.
@@ -293,47 +284,47 @@ function Savings() {
           ].map((row, i) => (
             <FadeUp key={i} delay={i * 0.08}>
               <div className="card-base h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 sm:p-9 flex flex-col">
-                <h3 className="font-display text-[20px] sm:text-[22px] font-semibold tracking-[-0.015em] text-[var(--text)]">
+                <h3 className="font-display text-[22px] sm:text-[26px] font-semibold tracking-[-0.015em] text-[var(--text)]">
                   {row.role}
                 </h3>
 
                 {/* Two-number compare */}
                 <div className="mt-8 grid grid-cols-[1fr_auto_1fr] items-start gap-3">
                   <div className="text-center">
-                    <div className="font-display text-[32px] sm:text-[36px] font-semibold tracking-[-0.03em] line-through decoration-[var(--danger)]/65 decoration-[2px] text-[var(--text)]/70">
+                    <div className="font-display text-[34px] sm:text-[40px] font-semibold tracking-[-0.03em] line-through decoration-[var(--danger)]/65 decoration-[2px] text-[var(--text)]/70">
                       {row.current}
                     </div>
-                    <div className="mt-2 text-[14px] text-[var(--muted)]">
+                    <div className="mt-2 text-[15px] text-[var(--muted)]">
                       what you pay
                     </div>
                   </div>
                   <div
-                    className="font-display text-[22px] text-[var(--muted)]/60 pt-3"
+                    className="font-display text-[24px] text-[var(--muted)]/60 pt-3"
                     aria-hidden
                   >
                     →
                   </div>
                   <div className="text-center">
-                    <div className="font-display text-[32px] sm:text-[36px] font-semibold tracking-[-0.03em] text-[var(--accent)]">
+                    <div className="font-display text-[34px] sm:text-[40px] font-semibold tracking-[-0.03em] text-[var(--accent)]">
                       {row.ours}
                     </div>
-                    <div className="mt-2 text-[14px] text-[var(--accent)]/85 font-medium">
+                    <div className="mt-2 text-[15px] text-[var(--accent)]/85 font-semibold">
                       with us
                     </div>
                   </div>
                 </div>
 
-                {/* Hero savings block */}
-                <div className="mt-9 rounded-xl bg-[var(--accent-tint)] border border-[var(--accent)]/25 px-5 py-7 text-center flex-1 flex flex-col justify-center">
-                  <div className="font-display text-[46px] sm:text-[54px] font-semibold tracking-[-0.035em] leading-[0.95] text-[var(--accent)]">
+                {/* Hero savings block, mint not forest */}
+                <div className="mt-9 rounded-xl bg-[var(--accent-bright)]/35 border border-[var(--accent-bright)]/70 px-5 py-8 text-center flex-1 flex flex-col justify-center">
+                  <div className="font-display text-[48px] sm:text-[56px] font-semibold tracking-[-0.035em] leading-[0.95] text-[var(--accent)]">
                     {row.save}
                   </div>
-                  <div className="mt-3 font-serif italic text-[22px] sm:text-[24px] text-[var(--accent)]">
+                  <div className="mt-3 font-serif italic text-[22px] sm:text-[26px] text-[var(--accent)]">
                     {row.saveLabel}
                   </div>
                 </div>
 
-                <p className="mt-5 text-[12.5px] text-[var(--muted)]/85 font-mono leading-[1.5] text-center">
+                <p className="mt-6 text-[14px] sm:text-[15px] text-[var(--muted)] leading-[1.55] text-center">
                   {row.footnote}
                 </p>
               </div>
@@ -342,219 +333,26 @@ function Savings() {
         </div>
 
         <FadeUp>
-          <div className="mt-14 rounded-2xl bg-[var(--bg-cream)] border border-[var(--border)] p-8 sm:p-10 text-center max-w-[840px] mx-auto">
-            <p className="text-[18px] sm:text-[20px] leading-[1.55] text-[var(--text)]">
+          <div className="mt-14 rounded-2xl bg-[var(--bg-cream)] border border-[var(--border)] p-9 sm:p-12 text-center max-w-[880px] mx-auto">
+            <p className="text-[20px] sm:text-[24px] leading-[1.5] text-[var(--text)]">
               All three together: about{" "}
-              <span className="font-display font-semibold text-[22px] sm:text-[24px]">
+              <span className="font-display font-semibold text-[26px] sm:text-[30px]">
                 $111,000 a year
               </span>
               . Our full stack replaces it for{" "}
-              <span className="font-display font-semibold text-[22px] sm:text-[24px] text-[var(--accent)]">
+              <span className="font-display font-semibold text-[26px] sm:text-[30px] text-[var(--accent)]">
                 $18,000
               </span>
               .
             </p>
             <Link
               href="#pricing"
-              className="mt-5 inline-flex items-center gap-2 text-[16px] font-semibold text-[var(--accent)] underline-offset-4 underline decoration-2 hover:text-[var(--accent-hover)]"
+              className="mt-7 inline-flex items-center gap-2 text-[17px] font-semibold text-[var(--accent)] underline-offset-4 underline decoration-2 hover:text-[var(--accent-hover)]"
             >
               See pricing →
             </Link>
           </div>
         </FadeUp>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- SERVICES ---------- */
-
-const SERVICES_MAIN = [
-  {
-    n: "01",
-    eyebrow: "CALL HANDLING",
-    title: "Your phone, answered every time.",
-    body: "A voice agent that learns your intake questions, pricing, and booking rules. Picks up in under 2 rings, day or night. Books straight into your calendar. Sends emergencies to your cell.",
-    bullets: [
-      "Answers in your business voice (English or French)",
-      "Books into Google Calendar, Cal.com, Square, or whatever you use",
-      "Handles FAQs, pricing, and hours without a human",
-      "Sends complex calls to whoever you pick",
-    ],
-    result: "Designed to handle 9 out of 10 calls without a human.",
-    Visual: CallVisual,
-  },
-  {
-    n: "02",
-    eyebrow: "REVIEW AUTOMATION",
-    title: "Every happy customer becomes a review.",
-    body: "Every appointment or sale kicks off a review request. Happy customers get asked by text or email. Unhappy ones come to you first, before the star rating goes public.",
-    bullets: [
-      "Text and email, sent right after the visit",
-      "4 and 5 star reviews go to Google. Lower ones come to you first.",
-      "Drafts a reply to every review in your voice",
-      "Dashboard showing reviews over the last 30, 60, 90 days",
-    ],
-    result: "Every paid ticket triggers a review ask, automatically.",
-    Visual: ReviewVisual,
-  },
-  {
-    n: "03",
-    eyebrow: "WEBSITE",
-    title: "A site that actually converts.",
-    body: "Fast, professional, built for the industries you work in. Not a generic template. Live in 7 to 10 days. Every page loads in under a second. You own the code and everything on it.",
-    bullets: [
-      "Sub-second load times on any device",
-      "Works on every phone. Ready to rank on Google from day one.",
-      "Booking widget wired straight to the voice agent",
-      "Monthly updates included: copy, pages, seasonal changes",
-    ],
-    result: "Target: 95+ Lighthouse on every build, every device.",
-    Visual: SiteVisual,
-  },
-];
-
-const SERVICES_SIDE = [
-  {
-    n: "04",
-    eyebrow: "GOOGLE BUSINESS PROFILE",
-    title: "Your Google profile, actively run.",
-    body: "The place 80% of your customers find you, treated like a living page. Fresh posts every week, optimized categories, photos that actually look like your business.",
-    bullets: [
-      "3 Google Business posts a week with real photos",
-      "Profile categories, services, and hours kept tight for local search",
-      "Every review gets a drafted reply in your voice within 24 hours",
-      "Monthly report on views, calls, and direction requests from Google",
-    ],
-    result: "The page 80% of local customers see first, kept alive weekly.",
-    Visual: ContentVisual,
-  },
-  {
-    n: "05",
-    eyebrow: "LEAD FOLLOW-UP",
-    title: "Leads replied to in under a minute.",
-    body: "Every web form, email, and DM gets a reply in 60 seconds. A real person follows up within 2 hours.",
-    bullets: [
-      "One inbox for web, email, Instagram, Facebook, TikTok",
-      "60-second auto-reply, 2-hour human reply",
-      "Old leads get fresh outreach at 30, 60, and 90 days",
-    ],
-    result: "Auto-reply fires in under 60 seconds on every channel.",
-    Visual: EmailVisual,
-  },
-];
-
-function Services() {
-  return (
-    <section
-      id="services"
-      className="relative bg-[var(--bg-cream)] py-24 sm:py-32 border-b border-[var(--border)]"
-    >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <FadeUp>
-          <SectionLabel>What we run</SectionLabel>
-          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
-            Five services.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              One team running them.
-            </span>
-          </h2>
-          <p className="mt-7 max-w-[680px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)]">
-            Each of these is already taking a seat on your team. We take the
-            seat, work it 24/7, and charge less than what benefits alone
-            would cost.
-          </p>
-        </FadeUp>
-
-        {/* Services 01-03: full width alternating */}
-        <div className="mt-16 sm:mt-24 space-y-16 sm:space-y-24">
-          {SERVICES_MAIN.map((s, i) => (
-            <FadeUp key={s.n} delay={0}>
-              <article
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center ${
-                  i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
-                }`}
-              >
-                <div className="lg:col-span-7">
-                  <div className="flex items-baseline gap-4 mb-5">
-                    <span className="font-mono text-[14px] tracking-[0.14em] text-[var(--accent)] font-semibold">
-                      {s.eyebrow}
-                    </span>
-                  </div>
-                  <h3 className="font-display font-semibold tracking-[-0.025em] leading-[1.08] text-[30px] sm:text-[36px] lg:text-[42px] max-w-[580px]">
-                    {s.title}
-                  </h3>
-                  <p className="mt-6 max-w-[580px] text-[17px] sm:text-[18px] leading-[1.6] text-[var(--muted)]">
-                    {s.body}
-                  </p>
-                  <ul className="mt-8 space-y-3.5 max-w-[580px]">
-                    {s.bullets.map((b) => (
-                      <li
-                        key={b}
-                        className="flex items-start gap-3.5 text-[16px] sm:text-[17px] leading-[1.55] text-[var(--text)]"
-                      >
-                        <Check />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-[var(--accent)]/30 bg-[var(--accent-tint)] px-5 py-2.5">
-                    <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--accent)] font-semibold">
-                      RESULT
-                    </span>
-                    <span className="text-[15px] sm:text-[16px] text-[var(--text)] font-medium">
-                      {s.result}
-                    </span>
-                  </div>
-                </div>
-                <div className="lg:col-span-5">
-                  <s.Visual />
-                </div>
-              </article>
-            </FadeUp>
-          ))}
-        </div>
-
-        {/* Services 04-05: 2-column grid, condensed */}
-        <div className="mt-16 sm:mt-24 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {SERVICES_SIDE.map((s) => (
-            <FadeUp key={s.n}>
-              <article className="card-base h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 sm:p-8 flex flex-col">
-                <s.Visual />
-                <div className="mt-7">
-                  <span className="font-mono text-[14px] tracking-[0.14em] text-[var(--accent)] font-semibold">
-                    {s.eyebrow}
-                  </span>
-                  <h3 className="mt-4 font-display font-semibold tracking-[-0.02em] leading-[1.1] text-[24px] sm:text-[28px]">
-                    {s.title}
-                  </h3>
-                  <p className="mt-4 text-[16px] sm:text-[17px] leading-[1.6] text-[var(--muted)]">
-                    {s.body}
-                  </p>
-                  <ul className="mt-5 space-y-2.5">
-                    {s.bullets.map((b) => (
-                      <li
-                        key={b}
-                        className="flex items-start gap-3 text-[15px] sm:text-[16px] leading-[1.55] text-[var(--text)]"
-                      >
-                        <Check />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-[var(--accent)]/30 bg-[var(--accent-tint)] px-4 py-2">
-                    <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--accent)] font-semibold">
-                      RESULT
-                    </span>
-                    <span className="text-[14px] sm:text-[15px] text-[var(--text)] font-medium">
-                      {s.result}
-                    </span>
-                  </div>
-                </div>
-              </article>
-            </FadeUp>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -567,63 +365,85 @@ function CaseStudy() {
     <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel>The math on a real account</SectionLabel>
-          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[960px]">
+          <SectionLabel>How the math plays out</SectionLabel>
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
             What a typical month looks like.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              Worked on an 80-seat restaurant profile.
+              Walked through a busy local-service profile.
             </span>
           </h2>
-          <p className="mt-6 max-w-[680px] text-[16px] text-[var(--muted)] leading-[1.6]">
-            Illustrative walkthrough using typical Montreal-restaurant traffic, not a current client result. The mechanics are the same in any local-service vertical. The numbers at the bottom are the ones you can recreate by plugging your own intake volume into the same pipeline.
+          <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
+            Illustrative walkthrough using realistic local-service traffic. The
+            mechanics are the same whether you run a busy restaurant, an HVAC
+            crew, a salon, or a clinic. The numbers below are what you can
+            recreate by plugging your own intake volume into the same pipeline.
           </p>
         </FadeUp>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
           <FadeUp className="lg:col-span-7">
-            <div className="max-w-[640px]">
-              <p className="text-[18px] sm:text-[19px] leading-[1.65] text-[var(--text)]">
-                Picture an 80-cover spot with a modern POS. Rating hovers
-                around 4.3. Staff mean to ask for Google reviews on the way
-                out, but between service and close it never happens.
-                One 1-star review a month quietly drags the rating down.
+            <div className="max-w-[640px] space-y-6">
+              <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--text)] font-medium">
+                Take a busy local-service business. Maybe an 80-cover restaurant,
+                a 12-truck HVAC crew, a four-chair salon. Rating hovers around
+                4.3 on Google. Staff mean to ask for reviews. Between work and
+                close, it never happens.
               </p>
-              <p className="mt-6 text-[18px] sm:text-[19px] leading-[1.65] text-[var(--muted)]">
-                The pipeline we ship on a profile like this: every paid check
-                triggers an SMS + email two hours later. Guests rating 4 or 5
-                land on a Google review link. Anyone rating lower lands on a
-                private form that pings ownership first. Multiply that by
-                ~2,500 covers a month at a 22% response rate and you get
-                ~40 fresh reviews a month instead of 2.
+              <ul className="space-y-3.5">
+                {[
+                  "Every paid ticket triggers an SMS and email 2 hours later",
+                  "Happy customers (4 or 5 star) land on a Google review link",
+                  "Anyone lower lands on a private form that pings ownership first",
+                  "About 22% of customers actually leave a public review",
+                ].map((b) => (
+                  <li
+                    key={b}
+                    className="flex items-start gap-3.5 text-[17px] sm:text-[18px] leading-[1.5] text-[var(--text)] font-semibold"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-[3px] grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-[var(--accent-bright)]/40"
+                    >
+                      <svg
+                        viewBox="0 0 16 16"
+                        className="h-[12px] w-[12px] text-[var(--accent)]"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M3 8.5l3.25 3.25L13 5" />
+                      </svg>
+                    </span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-[18px] sm:text-[19px] leading-[1.65] text-[var(--muted)]">
+                Multiply that by 2,500 paid tickets a month at a 22% response
+                rate and you collect roughly 40 fresh Google reviews a month
+                instead of 2. Same setup runs identically for an HVAC profile
+                doing 200 service calls a month.
               </p>
-              <figure className="mt-10 border-l-2 border-[var(--accent)] pl-7">
-                <blockquote className="font-serif italic text-[22px] sm:text-[26px] leading-[1.4] text-[var(--text)]">
-                  &quot;Rebuilding the review rate is the cheapest
-                  rating-lift any restaurant can buy. The star count in
-                  local search is the single biggest lever on walk-ins, and
-                  nobody uses it on purpose.&quot;
-                </blockquote>
-                <figcaption className="mt-5 text-[14px] text-[var(--muted)]">
-                  Joseph Brodt, founder · Kollaborate
-                </figcaption>
-              </figure>
             </div>
           </FadeUp>
 
           <FadeUp className="lg:col-span-5" delay={0.1}>
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8">
-              <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--muted)] font-semibold">
-                ILLUSTRATIVE · ANY LOCAL-SERVICE BUSINESS
+            <div className="rounded-2xl border border-[var(--accent-bright)]/60 bg-[var(--card)] p-8 sm:p-9 shadow-[0_18px_50px_-24px_rgba(34,69,56,0.25)]">
+              <span className="font-mono text-[14px] tracking-[0.16em] text-[var(--accent)] font-semibold">
+                EXAMPLE · 2,500 TICKETS / MO
               </span>
-              <div className="mt-7 space-y-6">
-                <Stat k="Covers served / mo" v="~2,500" delta="" />
-                <Stat k="Review-request SMS sent" v="~2,500" delta="auto" />
+              <div className="mt-8 space-y-6">
+                <Stat k="Tickets served / mo" v="~2,500" delta="" />
+                <Stat k="Review requests sent" v="~2,500" delta="auto" />
                 <Stat k="Expected replies at 22%" v="~550" delta="" />
                 <Stat k="Net new Google reviews" v="~40 / mo" delta="vs ~2" />
                 <Stat k="Staff hours spent" v="0" delta="vs ~4/wk" />
               </div>
-              <div className="mt-8 border-t border-[var(--border)] pt-5 text-[13px] text-[var(--muted)] leading-relaxed font-mono tracking-wide">
-                EXAMPLE MATH · NOT A PAST-CLIENT OUTCOME · WE&apos;LL RUN YOUR ACTUAL NUMBERS LIVE ON THE CALL
+              <div className="mt-9 border-t border-[var(--border)] pt-6 text-[13px] sm:text-[14px] text-[var(--muted)] leading-relaxed">
+                Example math, not a past-client outcome. We run your actual
+                numbers live on the call.
               </div>
             </div>
           </FadeUp>
@@ -637,171 +457,17 @@ function Stat({ k, v, delta }: { k: string; v: string; delta: string }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-[14px] text-[var(--muted)]">{k}</span>
+        <span className="text-[15px] sm:text-[16px] text-[var(--muted)]">{k}</span>
         {delta && (
-          <span className="font-mono text-[12px] text-[var(--accent)] font-semibold">
+          <span className="font-mono text-[13px] text-[var(--accent)] font-semibold">
             {delta}
           </span>
         )}
       </div>
-      <div className="mt-1 font-display text-[26px] sm:text-[28px] font-semibold tracking-[-0.02em] text-[var(--text)]">
+      <div className="mt-1.5 font-display text-[28px] sm:text-[32px] font-semibold tracking-[-0.02em] text-[var(--text)]">
         {v}
       </div>
     </div>
-  );
-}
-
-/* ---------- PROOF ---------- */
-
-function Proof() {
-  return (
-    <section className="relative bg-[var(--bg-dark)] text-[var(--text-inverse)] py-24 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0 grain-dark pointer-events-none" />
-      <div
-        className="absolute inset-0 pointer-events-none ambient-drift"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 85% 15%, rgba(168,213,187,0.35) 0%, transparent 45%)",
-        }}
-      />
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <FadeUp>
-          <SectionLabel onDark>Straight talk</SectionLabel>
-          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[960px]">
-            We&apos;re new. We&apos;re looking for five founding clients.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent-bright)]">
-              Be the case study we point everyone at.
-            </span>
-          </h2>
-        </FadeUp>
-
-        <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-          <FadeUp className="lg:col-span-7">
-            <div className="space-y-6 text-[18px] sm:text-[19px] leading-[1.65] text-[var(--text-inverse)]/90 max-w-[640px]">
-              <p>
-                I&apos;m Joseph. I run Kollaborate out of Montreal. The pages above show what the stack does and what it costs. The part I won&apos;t fake is the testimonials.
-              </p>
-              <p className="text-[var(--text-inverse)]/75">
-                Every agency site I&apos;ve ever scrolled has the same five logos, the same &quot;4.3 to 4.9 in 47 days&quot; case study, and the same five anonymous reviewers who all left exactly five stars. Mine won&apos;t, until it&apos;s real.
-              </p>
-              <p className="text-[var(--text-inverse)]/75">
-                What I can show you is the work itself: a voice agent that answers live on our call, a review pipeline wired into your actual POS or PMS, a site shipped in ten days you can inspect line-by-line. If the output is good, you become client number one, two, three, four, or five, and I publish the real numbers with your name on them.
-              </p>
-            </div>
-            <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <Link
-                href="#book"
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-8 text-[16px] font-semibold text-[var(--bg-dark)] transition-all hover:-translate-y-0.5 hover:bg-white"
-              >
-                Be a founding client →
-              </Link>
-              <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/55 font-medium">
-                LOCKED-IN FOUNDER RATE · KEPT FOR LIFE
-              </span>
-            </div>
-          </FadeUp>
-
-          <FadeUp className="lg:col-span-5" delay={0.1}>
-            <div className="rounded-2xl border border-[var(--accent-bright)]/30 bg-white/[0.03] p-8 backdrop-blur-sm">
-              <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
-                FOUNDING-CLIENT OFFER
-              </span>
-              <ul className="mt-6 space-y-5 text-[15px] leading-[1.55] text-[var(--text-inverse)]/90">
-                <li className="flex gap-3">
-                  <span className="font-display text-[var(--accent-bright)] font-semibold">01</span>
-                  <span>First 3 months at 50% off. Standard rate after that.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="font-display text-[var(--accent-bright)] font-semibold">02</span>
-                  <span>Setup fee cut in half.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="font-display text-[var(--accent-bright)] font-semibold">03</span>
-                  <span>Direct line to me. Slack, text, phone. No intake queue.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="font-display text-[var(--accent-bright)] font-semibold">04</span>
-                  <span>At day 60 we write up a case study with your real numbers. Yours to keep whether you stay or leave.</span>
-                </li>
-              </ul>
-              <div className="mt-7 pt-6 border-t border-[var(--border-on-dark)] text-[13px] text-[var(--text-inverse)]/60 font-mono tracking-wide">
-                FIVE SPOTS TOTAL · FIRST COME FIRST SERVED
-              </div>
-            </div>
-          </FadeUp>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- PROCESS ---------- */
-
-function Process() {
-  const steps = [
-    {
-      n: "01",
-      title: "15-minute discovery call",
-      body: "We listen, you ask. We run our voice agent live against your actual intake questions. If it's not the right fit, you walk. No pressure.",
-      time: "Day 0",
-    },
-    {
-      n: "02",
-      title: "Kickoff + build",
-      body: "Setup paid, we start building. Scripts written, workflows configured, calendar connected, review pipeline wired up. You review each piece as it ships.",
-      time: "Days 1 to 7",
-    },
-    {
-      n: "03",
-      title: "Soft launch + tuning",
-      body: "Two-day live test. You listen in, flag anything weird, we tune on the fly. Then we port your main line.",
-      time: "Days 8 to 10",
-    },
-    {
-      n: "04",
-      title: "We run it.",
-      body: "Monthly Friday report with calls, reviews, leads, conversions. Slack stays open. We proactively tune scripts, respond to reviews, update content.",
-      time: "Ongoing",
-    },
-  ];
-
-  return (
-    <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <FadeUp>
-          <SectionLabel>How we work</SectionLabel>
-          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[900px]">
-            From hello to live on your phones.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              Ten days or less.
-            </span>
-          </h2>
-        </FadeUp>
-
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((s, i) => (
-            <FadeUp key={s.n} delay={i * 0.07}>
-              <div className="card-base h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 sm:p-8">
-                <div className="flex items-baseline justify-between">
-                  <span className="font-display text-[52px] sm:text-[56px] font-semibold tracking-[-0.04em] text-[var(--accent)]/30 leading-none">
-                    {s.n}
-                  </span>
-                  <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--muted)] font-semibold">
-                    {s.time}
-                  </span>
-                </div>
-                <h3 className="mt-7 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.02em] leading-[1.2]">
-                  {s.title}
-                </h3>
-                <p className="mt-4 text-[15px] sm:text-[16px] leading-[1.6] text-[var(--muted)]">
-                  {s.body}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -816,17 +482,17 @@ function Pricing() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <SectionLabel>Pricing</SectionLabel>
-          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[900px]">
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[900px]">
             Pick what you need.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               Pay for that. Nothing else.
             </span>
           </h2>
-          <p className="mt-7 max-w-[640px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)]">
-            Every service priced by what it actually costs to run. Tick the
-            ones you want, watch the total add up. All five together bundle
-            for $1,500/mo, which is $245/mo less than piecing them à la
-            carte. Month to month. Cancel any time.
+          <p className="mt-7 max-w-[680px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
+            Each service is priced by what it actually costs to run. Tick the
+            ones you want and watch the total add up. The full stack bundles
+            for $1,500 a month, which saves $245 a month versus picking them
+            individually. Month to month. Cancel any time.
           </p>
         </FadeUp>
 
@@ -837,7 +503,7 @@ function Pricing() {
         </FadeUp>
 
         <FadeUp delay={0.15}>
-          <div className="mt-16 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 sm:p-8 max-w-[840px]">
+          <div className="mt-16 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 sm:p-8 max-w-[840px] mx-auto text-center">
             <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--muted)] font-semibold">
               MULTI-LOCATION · CUSTOM INTEGRATIONS · BILINGUAL
             </span>
@@ -870,7 +536,7 @@ function About() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
         <FadeUp className="lg:col-span-5">
           <SectionLabel>Who runs this</SectionLabel>
-          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px]">
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[48px] lg:text-[52px]">
             Built in Montreal.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               Run by people, not a platform.
@@ -879,34 +545,35 @@ function About() {
         </FadeUp>
         <FadeUp className="lg:col-span-7" delay={0.1}>
           <div className="space-y-6 max-w-[640px]">
-            <p className="text-[18px] sm:text-[19px] leading-[1.65] text-[var(--text)]">
-              Kollaborate is a small agency out of Côte-Saint-Luc, founded in
-              2026. The stack we sell is the stack we built for ourselves and
-              for the first few local businesses we volunteered to prototype
-              on. We&apos;re now opening the doors to five founding clients.
+            <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--text)]">
+              Kollaborate is a small agency out of Côte-Saint-Luc. The stack
+              we sell is the stack we built and run ourselves: voice agents
+              answering live, review pipelines wired into POS systems, sites
+              that load in under a second, Google profiles kept alive week to
+              week.
             </p>
-            <p className="text-[18px] sm:text-[19px] leading-[1.65] text-[var(--muted)]">
+            <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--muted)]">
               The roster stays small on purpose. Three new clients per month,
               no more. Every account has a direct line to the person doing
-              the work, which on day one is me. No account executives, no
-              offshore support, no ticketing maze. When something breaks,
-              you text me. It gets fixed.
+              the work. No account executives, no offshore support, no
+              ticketing maze. When something breaks, you text me. It gets
+              fixed.
             </p>
-            <div className="pt-5 flex flex-wrap gap-8 text-[15px] font-mono tracking-wide text-[var(--muted)]">
+            <div className="pt-5 flex flex-wrap gap-8 text-[16px] font-mono tracking-wide text-[var(--muted)]">
               <div>
-                <span className="text-[var(--text)] font-semibold text-[17px]">
-                  2026
+                <span className="text-[var(--text)] font-semibold text-[18px]">
+                  3 / mo
                 </span>{" "}
-                founded
+                new client cap
               </div>
               <div>
-                <span className="text-[var(--text)] font-semibold text-[17px]">
-                  5
+                <span className="text-[var(--text)] font-semibold text-[18px]">
+                  10 days
                 </span>{" "}
-                founding-client spots
+                hello to live
               </div>
               <div>
-                <span className="text-[var(--text)] font-semibold text-[17px]">
+                <span className="text-[var(--text)] font-semibold text-[18px]">
                   MTL
                 </span>{" "}
                 · OTT · Eastern ON
@@ -927,8 +594,10 @@ function FAQSection() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <div className="max-w-3xl mx-auto text-center mb-14">
-            <SectionLabel>Questions</SectionLabel>
-            <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px]">
+            <div className="inline-flex">
+              <SectionLabel>Questions</SectionLabel>
+            </div>
+            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[56px]">
               Before you book the call.
             </h2>
           </div>
@@ -1133,35 +802,18 @@ function SectionLabel({
   return (
     <div className="flex items-center gap-3">
       <span
-        className={`h-px w-10 ${
+        className={`h-px w-12 ${
           onDark ? "bg-[var(--accent-bright)]" : "bg-[var(--accent)]"
         }`}
       />
       <span
-        className={`font-mono text-[13px] tracking-[0.18em] font-semibold ${
+        className={`font-mono text-[15px] tracking-[0.2em] font-semibold ${
           onDark ? "text-[var(--accent-bright)]" : "text-[var(--accent)]"
         }`}
       >
         {children}
       </span>
     </div>
-  );
-}
-
-function Check() {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      aria-hidden
-      className="mt-[6px] h-[16px] w-[16px] shrink-0 text-[var(--accent)]"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.25"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 8.5l3.25 3.25L13 5" />
-    </svg>
   );
 }
 
