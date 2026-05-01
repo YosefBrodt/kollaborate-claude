@@ -4,6 +4,7 @@ import { FadeUp } from "@/components/site/fade-up";
 import { FAQ } from "@/components/site/faq";
 import { CallDemo } from "@/components/site/call-demo";
 import { PricingBuilder } from "@/components/site/pricing-builder";
+import { Booking } from "@/components/site/booking";
 import {
   CallVisual,
   ReviewVisual,
@@ -29,6 +30,7 @@ export default function Home() {
         <Pricing />
         <About />
         <FAQSection />
+        <Booking />
         <FinalCTA />
         <Footer />
       </main>
@@ -99,22 +101,22 @@ function Hero() {
         <FadeUp onView={false} delay={0.22} duration={0.6}>
           <div className="mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <Link
-              href="#services"
+              href="#book"
               className="group inline-flex h-16 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-9 text-[17px] font-semibold text-[var(--bg-dark)] shadow-[0_10px_40px_-12px_rgba(168,213,187,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_14px_44px_-10px_rgba(255,255,255,0.35)]"
             >
-              See the five services
+              Book a 15-minute call
               <span
                 aria-hidden
-                className="inline-block transition-transform duration-200 group-hover:translate-y-0.5"
+                className="inline-block transition-transform duration-200 group-hover:translate-x-0.5"
               >
-                ↓
+                →
               </span>
             </Link>
             <Link
-              href="#savings"
+              href="#services"
               className="group inline-flex h-16 items-center justify-center gap-2 rounded-full border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] px-8 text-[17px] font-semibold text-[var(--text-inverse)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent-bright)] hover:bg-white/[0.08]"
             >
-              See the math
+              See the five services
               <span
                 aria-hidden
                 className="inline-block transition-transform duration-200 group-hover:translate-y-0.5"
@@ -183,6 +185,45 @@ function Hero() {
             <span className="font-serif italic text-[17px] sm:text-[18px] text-[var(--text-inverse)]/75 tracking-[-0.005em]">
               Five spots. Setup + first 3 months half off for everyone who signs before the roster fills.
             </span>
+          </div>
+        </FadeUp>
+
+        {/* Industries strip */}
+        <FadeUp delay={0.18}>
+          <div className="mt-12 pt-10 border-t border-[var(--border-on-dark)]">
+            <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--text-inverse)]/55 font-semibold">
+              BUILT FOR
+            </span>
+            <div className="mt-5 flex flex-wrap gap-x-2.5 gap-y-2.5">
+              {[
+                "HVAC",
+                "Plumbing",
+                "Electrical",
+                "Roofing",
+                "Landscaping",
+                "Locksmiths",
+                "Cleaning crews",
+                "Restaurants",
+                "Salons + spas",
+                "Dental clinics",
+                "Med-spas",
+                "Auto shops",
+                "Movers",
+                "Pet care",
+                "Trades + contractors",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center rounded-full border border-[var(--accent-bright)]/25 bg-white/[0.03] px-3.5 py-1.5 text-[13px] font-medium text-[var(--text-inverse)]/85"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <p className="mt-5 max-w-[640px] text-[14px] leading-[1.55] text-[var(--text-inverse)]/55">
+              If your business runs on phone calls, walk-ins, bookings, or
+              Google reviews, the stack works. Not for pure e-com or SaaS.
+            </p>
           </div>
         </FadeUp>
       </div>
@@ -558,7 +599,7 @@ function CaseStudy() {
           <FadeUp className="lg:col-span-5" delay={0.1}>
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8">
               <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--muted)] font-semibold">
-                ILLUSTRATIVE · 80-COVER RESTAURANT
+                ILLUSTRATIVE · ANY LOCAL-SERVICE BUSINESS
               </span>
               <div className="mt-7 space-y-6">
                 <Stat k="Covers served / mo" v="~2,500" delta="" />
@@ -634,12 +675,12 @@ function Proof() {
               </p>
             </div>
             <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <a
-                href={MAILTO}
+              <Link
+                href="#book"
                 className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-8 text-[16px] font-semibold text-[var(--bg-dark)] transition-all hover:-translate-y-0.5 hover:bg-white"
               >
                 Be a founding client →
-              </a>
+              </Link>
               <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/55 font-medium">
                 LOCKED-IN FOUNDER RATE · KEPT FOR LIFE
               </span>
@@ -915,11 +956,17 @@ function FinalCTA() {
             your actual intake questions live so you can judge it yourself.
           </p>
           <div className="mt-11 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
-            <a
-              href={MAILTO}
+            <Link
+              href="#book"
               className="inline-flex h-16 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-10 text-[18px] font-semibold text-[var(--bg-dark)] shadow-[0_12px_44px_-12px_rgba(168,213,187,0.55)] transition-all hover:-translate-y-0.5 hover:bg-white"
             >
-              Book a 15-minute call →
+              Pick a time →
+            </Link>
+            <a
+              href={MAILTO}
+              className="inline-flex h-16 items-center justify-center gap-2 rounded-full border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] px-9 text-[17px] font-semibold text-[var(--text-inverse)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-bright)] hover:bg-white/[0.08]"
+            >
+              Or email me
             </a>
           </div>
           <p className="mt-9 font-mono text-[13px] tracking-wider text-[var(--text-inverse)]/50 font-medium">
@@ -1016,6 +1063,14 @@ function Footer() {
                   className="hover:text-[var(--accent-bright)] transition"
                 >
                   Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#book"
+                  className="hover:text-[var(--accent-bright)] transition"
+                >
+                  Book a call
                 </Link>
               </li>
             </ul>

@@ -211,7 +211,7 @@ export function PricingBuilder() {
                             <span className="ml-2 text-[var(--accent)] font-semibold">
                               · SETUP{" "}
                               {s.setupHigh
-                                ? `$${fmt(Math.round(s.setupLow / 2))}–$${fmt(Math.round(s.setupHigh / 2))}`
+                                ? `$${fmt(Math.round(s.setupLow / 2))} to $${fmt(Math.round(s.setupHigh / 2))}`
                                 : `$${fmt(Math.round(s.setupLow / 2))}`}
                             </span>
                           </>
@@ -219,7 +219,7 @@ export function PricingBuilder() {
                           <>
                             SETUP:{" "}
                             {s.setupHigh
-                              ? `$${fmt(s.setupLow)}–$${fmt(s.setupHigh)}`
+                              ? `$${fmt(s.setupLow)} to $${fmt(s.setupHigh)}`
                               : `$${fmt(s.setupLow)}`}
                           </>
                         )}
@@ -325,13 +325,13 @@ export function PricingBuilder() {
                       <div className="font-display text-[22px] font-semibold text-[var(--accent-bright)] tracking-[-0.02em]">
                         ${fmt(Math.round(totals.setupLow / 2))}
                         {totals.setupHigh !== totals.setupLow
-                          ? `–$${fmt(Math.round(totals.setupHigh / 2))}`
+                          ? ` to $${fmt(Math.round(totals.setupHigh / 2))}`
                           : ""}
                       </div>
                       <div className="font-display text-[13px] line-through decoration-[var(--text-inverse)]/40 text-[var(--text-inverse)]/45">
                         ${fmt(totals.setupLow)}
                         {totals.setupHigh !== totals.setupLow
-                          ? `–$${fmt(totals.setupHigh)}`
+                          ? ` to $${fmt(totals.setupHigh)}`
                           : ""}
                       </div>
                     </>
@@ -340,7 +340,7 @@ export function PricingBuilder() {
                       {totals.pickedCount === 0
                         ? "$0"
                         : totals.setupHigh !== totals.setupLow
-                        ? `$${fmt(totals.setupLow)}–$${fmt(totals.setupHigh)}`
+                        ? `$${fmt(totals.setupLow)} to $${fmt(totals.setupHigh)}`
                         : `$${fmt(totals.setupLow)}`}
                     </div>
                   )}

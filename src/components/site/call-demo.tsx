@@ -5,19 +5,19 @@ import { useEffect, useRef, useState } from "react";
 type Status = "idle" | "connecting" | "active" | "ended" | "unconfigured";
 
 export function CallDemo() {
-  const [status, setStatus] = useState<Status>("idle");
+  const publicKey = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY;
+  const assistantId = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID;
+  const configured = Boolean(publicKey && assistantId);
+
+  const [status, setStatus] = useState<Status>(
+    configured ? "idle" : "unconfigured"
+  );
   const [seconds, setSeconds] = useState(0);
   const vapiRef = useRef<unknown>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const publicKey = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY;
-  const assistantId = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID;
-
   useEffect(() => {
-    if (!publicKey || !assistantId) {
-      setStatus("unconfigured");
-      return;
-    }
+    if (!configured || !publicKey || !assistantId) return;
     let cancelled = false;
     (async () => {
       const { default: Vapi } = await import("@vapi-ai/web");
@@ -48,7 +48,7 @@ export function CallDemo() {
       const v = vapiRef.current as { stop?: () => void } | null;
       v?.stop?.();
     };
-  }, [publicKey, assistantId]);
+  }, [configured, publicKey, assistantId]);
 
   const start = async () => {
     const v = vapiRef.current as { start?: (id: string) => Promise<void> } | null;

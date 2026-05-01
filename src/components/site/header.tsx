@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const MAILTO =
-  "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
-
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -69,8 +66,8 @@ export function Header() {
           >
             Pricing
           </Link>
-          <a
-            href={MAILTO}
+          <Link
+            href="#book"
             className={`inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-semibold transition-all duration-150 hover:-translate-y-px ${
               scrolled
                 ? "bg-[var(--accent)] text-[var(--text-inverse)] hover:bg-[var(--accent-hover)]"
@@ -78,7 +75,7 @@ export function Header() {
             }`}
           >
             Book a call →
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

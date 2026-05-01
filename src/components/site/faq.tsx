@@ -38,7 +38,7 @@ const ITEMS = [
   },
   {
     q: "Who actually runs this? Is it really one team?",
-    a: "Yes. Kollaborate is run out of Montreal by Yosef Brodt, with a small technical bench. You get one point of contact, one invoice, one Slack channel. No agency-of-agencies maze. We keep the roster small on purpose: three new clients per month, max.",
+    a: "Yes. Kollaborate is run out of Montreal by Joseph Brodt, with a small technical bench. You get one point of contact, one invoice, one Slack channel. No agency-of-agencies maze. We keep the roster small on purpose: three new clients per month, max.",
   },
 ];
 
