@@ -13,7 +13,6 @@ import {
 
 type Service = {
   id: string;
-  n: string;
   eyebrow: string;
   title: string;
   bullets: string[];
@@ -25,7 +24,6 @@ type Service = {
 const SERVICES: Service[] = [
   {
     id: "calls",
-    n: "01",
     eyebrow: "CALL HANDLING",
     title: "Your phone, answered every time.",
     bullets: [
@@ -41,7 +39,6 @@ const SERVICES: Service[] = [
   },
   {
     id: "reviews",
-    n: "02",
     eyebrow: "REVIEW AUTOMATION",
     title: "Every happy customer becomes a review.",
     bullets: [
@@ -57,7 +54,6 @@ const SERVICES: Service[] = [
   },
   {
     id: "site",
-    n: "03",
     eyebrow: "WEBSITE",
     title: "A site that actually converts.",
     bullets: [
@@ -73,7 +69,6 @@ const SERVICES: Service[] = [
   },
   {
     id: "gbp",
-    n: "04",
     eyebrow: "GOOGLE BUSINESS PROFILE",
     title: "Your Google profile, actively run.",
     bullets: [
@@ -89,7 +84,6 @@ const SERVICES: Service[] = [
   },
   {
     id: "leads",
-    n: "05",
     eyebrow: "LEAD FOLLOW-UP",
     title: "Leads replied to in under a minute.",
     bullets: [
@@ -125,15 +119,16 @@ export function Services() {
           <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
             Each of these is already taking a seat on your team. We take the
             seat, work it 24/7, and charge less than the benefits alone would
-            cost. Click any card for the full breakdown.
+            cost. Click any service for the full breakdown.
           </p>
         </FadeUp>
 
-        <div className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-7">
-          {SERVICES.map((s) => (
-            <ServiceCard
+        <div className="mt-20 sm:mt-28 space-y-24 sm:space-y-32">
+          {SERVICES.map((s, i) => (
+            <ServiceRow
               key={s.id}
               service={s}
+              isReverse={i % 2 === 1}
               open={openId === s.id}
               onToggle={() =>
                 setOpenId((prev) => (prev === s.id ? null : s.id))
@@ -146,121 +141,100 @@ export function Services() {
   );
 }
 
-function ServiceCard({
+function ServiceRow({
   service,
+  isReverse,
   open,
   onToggle,
 }: {
   service: Service;
+  isReverse: boolean;
   open: boolean;
   onToggle: () => void;
 }) {
   const { eyebrow, title, bullets, detail, result, Visual } = service;
   return (
-    <motion.article
-      layout
-      onClick={onToggle}
-      className={`card-base group relative cursor-pointer overflow-hidden rounded-2xl border bg-[var(--card)] p-7 sm:p-9 transition-shadow duration-200 ${
-        open
-          ? "border-[var(--accent)] shadow-[0_18px_60px_-24px_rgba(34,69,56,0.35)]"
-          : "border-[var(--border)] hover:border-[var(--accent)]/40 hover:shadow-[0_12px_40px_-22px_rgba(34,69,56,0.25)]"
-      }`}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onToggle();
-        }
-      }}
-      aria-expanded={open}
-    >
-      <motion.div layout="position">
-        <div className="flex items-start justify-between gap-4">
-          <span className="font-mono text-[15px] tracking-[0.16em] text-[var(--accent)] font-semibold">
+    <FadeUp>
+      <motion.article
+        layout
+        className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center"
+      >
+        <motion.div
+          layout="position"
+          className={`lg:col-span-7 ${isReverse ? "lg:order-2" : ""}`}
+        >
+          <span className="font-mono text-[15px] tracking-[0.18em] text-[var(--accent)] font-semibold">
             {eyebrow}
           </span>
-          <span
-            aria-hidden
-            className={`grid h-9 w-9 place-items-center rounded-full border transition-all ${
-              open
-                ? "border-[var(--accent)] bg-[var(--accent)] text-[var(--text-inverse)]"
-                : "border-[var(--border-strong)] bg-transparent text-[var(--muted)] group-hover:border-[var(--accent)] group-hover:text-[var(--accent)]"
-            }`}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className={`h-4 w-4 transition-transform duration-200 ${
-                open ? "rotate-45" : ""
-              }`}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-          </span>
-        </div>
+          <h3 className="mt-5 font-display font-semibold tracking-[-0.025em] leading-[1.08] text-[30px] sm:text-[40px] lg:text-[46px] max-w-[620px] text-[var(--text)]">
+            {title}
+          </h3>
 
-        <h3 className="mt-5 font-display font-semibold tracking-[-0.02em] leading-[1.1] text-[26px] sm:text-[30px] text-[var(--text)]">
-          {title}
-        </h3>
+          <ul className="mt-9 space-y-4 max-w-[620px]">
+            {bullets.map((b) => (
+              <li
+                key={b}
+                className="flex items-start gap-3.5 text-[17px] sm:text-[19px] leading-[1.55] text-[var(--text)]"
+              >
+                <CheckGreen />
+                <span className="font-semibold">{b}</span>
+              </li>
+            ))}
+          </ul>
 
-        <ul className="mt-7 space-y-3.5">
-          {bullets.map((b) => (
-            <li
-              key={b}
-              className="flex items-start gap-3.5 text-[17px] sm:text-[18px] leading-[1.5] text-[var(--text)] font-semibold"
-            >
-              <CheckGreen />
-              <span className="font-normal">
-                <strong className="font-semibold">{b}</strong>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </motion.div>
-
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="detail"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="mt-8 pt-8 border-t border-[var(--border)] grid grid-cols-1 sm:grid-cols-5 gap-7">
-              <div className="sm:col-span-3">
-                <p className="text-[16px] sm:text-[17px] leading-[1.65] text-[var(--muted)]">
-                  {detail}
-                </p>
-                <div className="mt-7 inline-flex items-center gap-3 rounded-full border border-[var(--accent-bright)]/50 bg-[var(--accent-bright)]/25 px-5 py-2.5">
-                  <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--accent)] font-semibold">
-                    RESULT
-                  </span>
-                  <span className="text-[15px] sm:text-[16px] text-[var(--text)] font-semibold">
-                    {result}
-                  </span>
+          <AnimatePresence initial={false}>
+            {open && (
+              <motion.div
+                key="detail"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.32, ease: [0.32, 0.72, 0, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="mt-10 max-w-[620px] pt-8 border-t border-[var(--border)]">
+                  <p className="text-[17px] sm:text-[18px] leading-[1.65] text-[var(--muted)]">
+                    {detail}
+                  </p>
+                  <div className="mt-7 inline-flex items-center gap-3 rounded-full border border-[var(--accent-bright)]/60 bg-[var(--accent-bright)]/25 px-5 py-2.5">
+                    <span className="font-mono text-[13px] tracking-[0.16em] text-[var(--accent)] font-semibold">
+                      RESULT
+                    </span>
+                    <span className="text-[15px] sm:text-[16px] text-[var(--text)] font-semibold">
+                      {result}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="sm:col-span-2 self-center">
-                <Visual />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-      {!open && (
-        <p className="mt-7 text-[14px] font-mono tracking-[0.14em] text-[var(--muted)]/80 font-semibold">
-          CLICK FOR DETAIL →
-        </p>
-      )}
-    </motion.article>
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-expanded={open}
+            className="mt-9 group inline-flex items-center gap-2.5 font-mono text-[14px] tracking-[0.14em] text-[var(--accent)] hover:text-[var(--accent-hover)] font-semibold cursor-pointer"
+          >
+            {open ? "SHOW LESS" : "READ MORE"}
+            <span
+              aria-hidden
+              className={`transition-transform duration-200 ${
+                open ? "rotate-180" : "group-hover:translate-y-0.5"
+              }`}
+            >
+              ↓
+            </span>
+          </button>
+        </motion.div>
+
+        <motion.div
+          layout="position"
+          className={`lg:col-span-5 ${isReverse ? "lg:order-1" : ""}`}
+        >
+          <Visual />
+        </motion.div>
+      </motion.article>
+    </FadeUp>
   );
 }
 
@@ -279,11 +253,11 @@ function CheckGreen() {
   return (
     <span
       aria-hidden
-      className="mt-[3px] grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-[var(--accent-bright)]/40"
+      className="mt-[3px] grid h-[24px] w-[24px] shrink-0 place-items-center rounded-full bg-[var(--accent-bright)]/40"
     >
       <svg
         viewBox="0 0 16 16"
-        className="h-[12px] w-[12px] text-[var(--accent)]"
+        className="h-[13px] w-[13px] text-[var(--accent)]"
         fill="none"
         stroke="currentColor"
         strokeWidth="2.5"
