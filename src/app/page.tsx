@@ -44,14 +44,46 @@ export default function Home() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-[var(--bg-dark)] text-[var(--text-inverse)]">
+      {/* Video + poster background */}
+      <div className="absolute inset-0 -z-10">
+        <video
+          aria-hidden
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video/hero-poster.jpg"
+          className="hero-video absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/video/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Poster fallback shown when video element is hidden by reduced-motion */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/video/hero-poster.jpg')" }}
+        />
+        {/* Dark gradient overlay for text legibility + brand tint */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(12,31,26,0.78) 0%, rgba(12,31,26,0.55) 38%, rgba(12,31,26,0.85) 100%)",
+          }}
+        />
+        {/* Subtle mint glow accent, keeps brand without competing with footage */}
+        <div
+          aria-hidden
+          className="absolute inset-0 mix-blend-overlay opacity-40"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 20% 12%, rgba(168,213,187,0.55) 0%, transparent 42%)",
+          }}
+        />
+      </div>
       <div className="absolute inset-0 grain-dark pointer-events-none" />
-      <div
-        className="absolute inset-0 pointer-events-none ambient-drift"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 10%, rgba(168,213,187,0.6) 0%, transparent 40%), radial-gradient(circle at 80% 90%, rgba(168,213,187,0.4) 0%, transparent 45%)",
-        }}
-      />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-36 pb-20 sm:pt-40 sm:pb-28">
         <FadeUp onView={false} duration={0.6}>
@@ -169,24 +201,6 @@ function Hero() {
             </FadeUp>
           ))}
         </div>
-
-        {/* Founding client strip */}
-        <FadeUp delay={0.1}>
-          <div className="mt-16 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-bright)]/40 bg-[var(--accent-bright)]/10 px-4 py-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent-bright)] opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent-bright)]" />
-              </span>
-              <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
-                NOW BOOKING FOUNDING CLIENTS
-              </span>
-            </span>
-            <span className="font-serif italic text-[17px] sm:text-[18px] text-[var(--text-inverse)]/75 tracking-[-0.005em]">
-              Five spots. Setup + first 3 months half off for everyone who signs before the roster fills.
-            </span>
-          </div>
-        </FadeUp>
 
         {/* Industries strip */}
         <FadeUp delay={0.18}>
