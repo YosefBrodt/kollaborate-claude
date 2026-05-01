@@ -9,6 +9,10 @@ import {
 
 const ITEMS = [
   {
+    q: "I already have a receptionist (or a host, or a front-desk team). Why would I need this?",
+    a: "Because they can't be in two places. The AI is built to run as a co-receptionist: it picks up after the third ring, takes the call when your team is on the other line, covers the lunch hour, and handles after-hours. Nobody on your staff loses their job. You just stop losing the calls they can't catch. If you don't have a receptionist, the AI is the seat. Same product, same price, the framing changes by what you've got.",
+  },
+  {
     q: "What does the $1,500/mo actually include?",
     a: "All five services, managed end to end: your voice agent handling calls 24/7, the review pipeline collecting Google reviews automatically, your website, your weekly content calendar, and automated follow-up on every new lead. One team runs the whole stack. Setup fee depends on which pieces you start with and how much custom work your vertical needs. We walk you through it on the call.",
   },

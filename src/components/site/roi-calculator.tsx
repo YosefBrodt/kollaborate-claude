@@ -10,6 +10,7 @@ type Inputs = {
   missedPct: number;
   monthlyTickets: number;
   currentReviewsPerMonth: number;
+  hasReceptionist: boolean;
 };
 
 const DEFAULTS: Inputs = {
@@ -18,6 +19,7 @@ const DEFAULTS: Inputs = {
   missedPct: 30,
   monthlyTickets: 220,
   currentReviewsPerMonth: 3,
+  hasReceptionist: false,
 };
 
 function fmt(n: number) {
@@ -47,7 +49,8 @@ export function RoiCalculator() {
 
     // Front-desk replacement (typical loaded cost minus our Full Stack)
     // Conservative: $52,000/yr loaded - $18,000/yr (us) = $34k savings
-    const frontDeskSavings = 34000;
+    // If they already have staff, we don't claim this; overflow / co-receptionist mode.
+    const frontDeskSavings = inputs.hasReceptionist ? 0 : 34000;
 
     const totalGain = recoveredRevenue + frontDeskSavings;
     // Compare to Full Stack annual cost ($1,499 * 12 = $17,988)
@@ -69,7 +72,7 @@ export function RoiCalculator() {
     };
   }, [inputs]);
 
-  function update<K extends keyof Inputs>(key: K, value: number) {
+  function update<K extends keyof Inputs>(key: K, value: Inputs[K]) {
     setInputs((prev) => ({ ...prev, [key]: value }));
   }
 
@@ -103,6 +106,10 @@ export function RoiCalculator() {
                   YOUR BUSINESS
                 </span>
                 <div className="mt-7 space-y-7">
+                  <ReceptionistToggle
+                    value={inputs.hasReceptionist}
+                    onChange={(v) => update("hasReceptionist", v)}
+                  />
                   <Slider
                     label="Calls received per week"
                     value={inputs.callsPerWeek}
@@ -186,11 +193,19 @@ export function RoiCalculator() {
                       value={fmt(out.recoveredJobs) + " jobs/yr"}
                       sub={fmtMoney(out.recoveredRevenue) + " in revenue"}
                     />
-                    <Stat
-                      label="Front-desk replaced"
-                      value={fmtMoney(out.frontDeskSavings)}
-                      sub="vs hiring loaded"
-                    />
+                    {inputs.hasReceptionist ? (
+                      <Stat
+                        label="Co-receptionist mode"
+                        value="Overflow + after-hours"
+                        sub="Augments your existing staff"
+                      />
+                    ) : (
+                      <Stat
+                        label="Front-desk replaced"
+                        value={fmtMoney(out.frontDeskSavings)}
+                        sub="vs hiring a loaded seat"
+                      />
+                    )}
                     <Stat
                       label="New Google reviews"
                       value={"+" + fmt(out.reviewLift) + "/yr"}
@@ -302,6 +317,59 @@ function Slider({
           {helper}
         </p>
       )}
+    </div>
+  );
+}
+
+function ReceptionistToggle({
+  value,
+  onChange,
+}: {
+  value: boolean;
+  onChange: (v: boolean) => void;
+}) {
+  return (
+    <div className="rounded-xl border border-[var(--accent-bright)]/50 bg-[var(--accent-bright)]/15 p-4">
+      <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent)] font-semibold">
+        DO YOU HAVE A RECEPTIONIST TODAY?
+      </span>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        {[
+          { v: false, label: "No", sub: "AI is my receptionist" },
+          { v: true, label: "Yes", sub: "AI as overflow / backup" },
+        ].map((opt) => {
+          const selected = value === opt.v;
+          return (
+            <button
+              key={String(opt.v)}
+              type="button"
+              onClick={() => onChange(opt.v)}
+              aria-pressed={selected}
+              className={`text-left rounded-lg px-4 py-3 transition-all cursor-pointer ${
+                selected
+                  ? "bg-[var(--accent)] text-[var(--text-inverse)] shadow-[0_4px_14px_-4px_rgba(34,69,56,0.35)]"
+                  : "bg-[var(--card)] text-[var(--text)] hover:bg-white"
+              }`}
+            >
+              <div className="font-display text-[18px] font-semibold tracking-[-0.01em]">
+                {opt.label}
+              </div>
+              <div
+                className={`mt-0.5 text-[12px] leading-[1.35] ${
+                  selected ? "text-[var(--text-inverse)]/75" : "text-[var(--muted)]"
+                }`}
+              >
+                {opt.sub}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+      <p className="mt-3 text-[12px] text-[var(--muted)] leading-[1.5]">
+        {value
+          ? "Math drops the front-desk replacement line. We pitch you missed-call recovery + reviews, not staff cuts."
+          : "Math includes a $34k/yr front-desk replacement vs hiring loaded."}
+      </p>
     </div>
   );
 }

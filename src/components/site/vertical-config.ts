@@ -77,33 +77,33 @@ export const HVAC: VerticalConfig = {
 export const RESTAURANTS: VerticalConfig = {
   slug: "restaurants",
   industry: "Restaurants",
-  metaTitle: "Kollaborate for Restaurants · Reviews, reservations, and the host stand replaced.",
+  metaTitle: "Kollaborate for Restaurants · The reservations your host can't pick up at 7pm.",
   metaDescription:
-    "Done-for-you ops for restaurants. AI host that takes reservations 24/7, review pipeline that turns paid checks into Google reviews, Google profile actively run. Built for independents, fast-casual, and multi-location groups.",
+    "Done-for-you ops for restaurants. AI co-host that backs up your front-of-house team, taking reservations after hours and during the dinner rush. Review pipeline that turns paid checks into Google reviews. Google profile actively run. Nobody on your staff gets fired.",
 
   heroEyebrow: "FOR RESTAURANTS",
-  heroH1Top: "Your rating slips one star,",
-  heroH1Italic: "you lose 14% of new covers.",
+  heroH1Top: "Your host can't answer the phone",
+  heroH1Italic: "while she's seating a six-top.",
   heroSubhead:
-    "AI host taking reservations day and night. Review pipeline asking every paid check at the right moment. Google profile actively run with fresh photos and posts every week. The full front-of-house ops stack.",
+    "AI co-host that takes reservations when your front-of-house is slammed. Picks up after 3 rings, takes after-hours bookings, handles the calls during peak service. Review pipeline asks every paid check. Google profile run weekly. Your team stays. The phone stops ringing twelve times.",
 
   pain: {
     eyebrow: "WHAT WE FIX",
-    headline: "What a busy restaurant is leaving behind every service.",
+    headline: "What's slipping past your host stand every service.",
     subhead:
-      "The host stand is too busy at 7pm to answer the phone. Servers mean to ask for a Google review, then forget at checkout. The Google profile hasn't been touched in 14 months.",
+      "Your front-of-house is good. Nobody's getting fired. But at 7pm on a Friday the phone rings twelve times and the host is mid-seating. After hours, the reservation line just goes to voicemail. We close those gaps.",
     bullets: [
       "Reservation calls during peak hours hitting voicemail",
+      "Sunday-night and after-hours booking inquiries lost",
       "4 review asks a month from a 2,500-cover restaurant",
       "Star rating drifting down 0.1 every quarter from one bad review",
-      "Last Google post 8 months ago",
       "Out-of-date hours costing you walk-ins on holiday weeks",
     ],
   },
 
   scenario: {
     title: "An 80-cover restaurant, typical month.",
-    body: "2,500 covers a month at a $58 average check. Auto review request after every paid table. 22% response rate puts 40 fresh Google reviews on your profile every month, up from 2. Within 60 days the rating climbs from 4.3 to 4.6 and the local-pack search position lifts 6 spots. That's 14% more new covers per month, conservatively.",
+    body: "2,500 covers a month at a $58 average check. Front-of-house is fully staffed. AI co-host picks up after 3 rings during service, takes the reservations your team can't get to, and runs the line all night. Every paid check kicks off a review request. 22% response rate puts 40 fresh Google reviews on your profile, up from 2. Star rating climbs from 4.3 to 4.6 in 60 days. That's a 14% lift in new covers per month, conservatively. Your hosts and servers stay exactly where they are.",
     metricLabel: "Net new Google reviews / mo",
     metricValue: "~40",
     metricSub: "vs ~2 today, on 2,500 covers and 22% response",
@@ -111,8 +111,12 @@ export const RESTAURANTS: VerticalConfig = {
 
   faqAddons: [
     {
-      q: "Can the AI take reservations?",
-      a: "Yes. We script your reservation rules on day one (party size limits, blackout dates, deposit policy, cancellation rules) and the agent books straight into Resy, OpenTable, SevenRooms, Tock, or Google Reserve.",
+      q: "I have a host already. Why would I need this?",
+      a: "Because your host can't be in two places. At 7pm they're seating, taking payment, calming a wait. The phone rings ten times. Sunday night nobody's there at all. The AI co-host picks up exactly those calls, books straight into Resy/OpenTable/SevenRooms/Tock, and never replaces a human seat.",
+    },
+    {
+      q: "Can the AI actually take reservations?",
+      a: "Yes. We script your rules on day one (party size limits, blackout dates, deposit policy, cancellation policy) and the agent books straight into Resy, OpenTable, SevenRooms, Tock, or Google Reserve.",
     },
     {
       q: "Will it sound robotic to my regulars?",
@@ -124,63 +128,74 @@ export const RESTAURANTS: VerticalConfig = {
 export const SALONS: VerticalConfig = {
   slug: "salons",
   industry: "Salons + Spas",
-  metaTitle: "Kollaborate for Salons + Spas · Bookings answered, reviews collected, profile loved.",
+  metaTitle: "Kollaborate for Salons + Spas · Bookings 24/7, reviews collected, profile loved.",
   metaDescription:
-    "Done-for-you ops for salons, spas, and med-spas. AI receptionist booking color, lash, and facial appointments 24/7. Review pipeline. Google Business profile actively run. Replace the front-desk seat for $1,499/mo.",
+    "Done-for-you ops for salons, spas, and med-spas. AI co-receptionist that books color, lash, and facial appointments after-hours and during peak. Pairs with your existing front desk. Review pipeline. Google Business profile actively run.",
 
   heroEyebrow: "FOR SALONS + SPAS",
-  heroH1Top: "Your front desk is a $52,000 line item.",
-  heroH1Italic: "We replace it for $1,499.",
+  heroH1Top: "9pm Sunday booking inquiry.",
+  heroH1Italic: "Nobody's at the desk. Now somebody is.",
   heroSubhead:
-    "AI receptionist booking appointments 24/7 across your stylists, your services, and your booking rules. Review pipeline asking every paid client at the right time. The whole front-of-house, run for less than the salary alone.",
+    "AI co-receptionist that takes booking inquiries when your front desk is closed, off the clock, or already on the phone. Pairs with your existing team or runs solo if you don't have one. Review pipeline asking every paid client at the right time.",
 
   pain: {
     eyebrow: "WHAT WE FIX",
-    headline: "What salons keep paying for that doesn't pay back.",
+    headline: "Where salons quietly lose bookings every week.",
     subhead:
-      "A $52,000 front-desk seat that calls in sick, takes vacation, and turns over every 14 months. Books that lock at the chair. New clients who can't book a balayage at 9pm Sunday because the receptionist is asleep.",
+      "Your front desk is great when they're there. After 6pm Sunday, before 10am Tuesday, at the chair when 4 chairs are running color, the calls go to voicemail. Bookings walk to the spa next door. No staff change required.",
     bullets: [
       "After-hours and Sunday-night booking inquiries lost to DM black holes",
+      "Front desk on the phone with one client, three more calls in queue",
       "No-show rate creeping up because nobody texts the morning-of reminder",
       "Review velocity 5x slower than the spa next door",
-      "Receptionist turnover and re-training every year",
       "Google profile photos two stylists out of date",
     ],
   },
 
   scenario: {
     title: "A 4-chair salon, typical month.",
-    body: "300 paid services a month at an $85 avg ticket. AI receptionist handles 80% of inbound booking traffic without a human. Review pipeline asks every chair at checkout via SMS. 22% reply rate means 66 net new Google reviews a month. Color clients book 9pm Sunday for the next morning. Front-desk seat eliminated.",
-    metricLabel: "Front-desk seat replaced",
-    metricValue: "$52,000/yr",
-    metricSub: "loaded cost, vs $17,988/yr Full Stack",
+    body: "300 paid services a month at an $85 avg ticket. Existing front desk handles peak in-person traffic. AI co-receptionist takes the 60-80 weekly booking calls that come during off-hours, lunch, or while the desk is heads-down with a client. Review pipeline asks every chair at checkout via SMS. 22% reply rate means 66 net new Google reviews a month. Your team keeps their job, the calendar fills up Sunday nights anyway.",
+    metricLabel: "After-hours bookings recovered",
+    metricValue: "~30 / mo",
+    metricSub: "calls outside front-desk hours, captured by the AI",
   },
+
+  faqAddons: [
+    {
+      q: "I already have a receptionist. Do I really need this?",
+      a: "Yes, but not as a replacement. Think of it as your overflow line and your after-hours line. Your receptionist still owns daytime traffic. The AI picks up Sunday night, the pre-open hours, and the calls that come in while she's running a checkout or handling a credit card decline. No firing involved.",
+    },
+    {
+      q: "Will it integrate with our booking software?",
+      a: "Yes. Vagaro, Boulevard, GlossGenius, Mindbody, Square Appointments, Booksy, Acuity, all integrate via API or shared calendar. The agent books appointments straight into the right stylist's schedule.",
+    },
+  ],
 };
 
 export const DENTAL: VerticalConfig = {
   slug: "dental",
   industry: "Dental + Med Practices",
-  metaTitle: "Kollaborate for Dental + Med Practices · Patient calls answered, reviews collected.",
+  metaTitle: "Kollaborate for Dental + Med Practices · The new-patient calls your front desk can't catch.",
   metaDescription:
-    "Done-for-you ops for dental and medical practices. AI receptionist that answers patient calls, books cleanings and consults, handles cancellations. Review pipeline. Google Business profile actively run. HIPAA-aware setup.",
+    "Done-for-you ops for dental and medical practices. AI co-receptionist that backs up your front desk during the lunch hour, after hours, and when reception is mid-insurance call. Review pipeline. Google Business profile actively run. HIPAA-aware setup.",
 
   heroEyebrow: "FOR DENTAL + MED PRACTICES",
   heroH1Top: "New patients call once.",
-  heroH1Italic: "If you don't pick up, they don't call back.",
+  heroH1Italic: "Reception is on the other line. Now the AI picks up.",
   heroSubhead:
-    "AI receptionist booking cleanings, consults, and emergencies straight into your practice management system. Review pipeline. Google profile run weekly. Built around your scheduling rules, your insurance check, your no-show policy.",
+    "AI co-receptionist backing up your front desk: lunch hour, after hours, when reception is mid-insurance call, when the new-patient line rings during a checkout. Books cleanings, consults, and emergencies straight into your practice management system. HIPAA-aware setup. Your front-desk team stays.",
 
   pain: {
     eyebrow: "WHAT WE FIX",
-    headline: "What dental and med practices lose without realizing.",
+    headline: "Where practices quietly lose new patients.",
     subhead:
-      "Patient acquisition runs $250-500 per new chair. A missed phone call is that money set on fire. The hygienist's no-show rate quietly grows because nobody confirms 24 hours out.",
+      "Patient acquisition runs $250-500 per new chair. Your front desk is good but they're juggling phones, intake, insurance, and checkout simultaneously. The new-patient line rings during the lunch hour and after 5. Those calls don't call back. Twice.",
     bullets: [
       "New-patient calls during lunch going to voicemail",
+      "After-hours emergency line going to voicemail",
+      "Reception on insurance call, second line goes unanswered",
       "Hygienist's day half-empty because nobody confirmed at T-24",
       "Review profile stuck at 4.2 for two years running",
-      "Front desk juggling phones, intake, insurance, checkout",
-      "Specialty referral leads sitting in a shared inbox for days",
     ],
   },
 

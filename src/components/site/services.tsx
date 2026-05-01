@@ -27,13 +27,14 @@ const SERVICES: Service[] = [
     eyebrow: "CALL HANDLING",
     title: "Your phone, answered every time.",
     bullets: [
+      "Works as your receptionist OR as backup for the team you already have",
       "Answers in your business voice (English or French)",
       "Books straight into Google Calendar, Cal.com, Square, or whatever you use",
       "Handles FAQs, pricing, and hours without a human",
       "Sends emergencies to your cell, with full transcript attached",
     ],
     detail:
-      "A voice agent that learns your intake questions, your pricing, and your booking rules. It picks up in under two rings, day or night, takes the call in your voice, and books the appointment into your calendar before the customer hangs up. You stop losing jobs to whoever picked up first. Designed to handle 9 out of 10 calls without a human ever touching them.",
+      "A voice agent that sits in front of your team if you don't have one, behind your team if you do. Picks up after 3 rings, takes after-hours calls, handles overflow during peak. Learns your intake questions, your pricing, and your booking rules. Books the appointment into your calendar before the customer hangs up. Nobody gets fired. Designed to handle 9 out of 10 calls without a human, whether that's all your calls or just the ones your staff can't catch.",
     result: "9 out of 10 calls handled without a human.",
     Visual: CallVisual,
   },

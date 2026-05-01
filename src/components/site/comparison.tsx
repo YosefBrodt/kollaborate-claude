@@ -57,6 +57,13 @@ const ROWS: Row[] = [
     us: "Included on Multi-Loc",
   },
   {
+    label: "Pairs with existing staff",
+    inHouse: "It IS the staff",
+    diy: "Limited, per tool",
+    us: "Yes, runs as overflow / after-hours",
+    highlight: true,
+  },
+  {
     label: "Hidden costs",
     inHouse: "Benefits, training, churn",
     diy: "Per-tool fees, integration time",
