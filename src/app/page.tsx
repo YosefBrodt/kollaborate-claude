@@ -3,7 +3,7 @@ import { Header } from "@/components/site/header";
 import { FadeUp } from "@/components/site/fade-up";
 import { FAQ } from "@/components/site/faq";
 import { CallDemo } from "@/components/site/call-demo";
-import { PricingBuilder } from "@/components/site/pricing-builder";
+import { PricingTiers } from "@/components/site/pricing-tiers";
 import { Booking } from "@/components/site/booking";
 import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
@@ -40,7 +40,7 @@ export default function Home() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-[var(--bg-dark)] text-[var(--text-inverse)] h-screen min-h-[640px] max-h-[920px]">
-      {/* Background layers — poster sits underneath, video paints on top */}
+      {/* Background layers, poster underneath, video on top */}
       <div className="absolute inset-0 -z-10">
         <div
           aria-hidden
@@ -500,46 +500,27 @@ function Pricing() {
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <SectionLabel>Pricing</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[900px]">
-            Pick what you need.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              Pay for that. Nothing else.
-            </span>
-          </h2>
-          <p className="mt-7 max-w-[680px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
-            Each service is priced by what it actually costs to run. Tick the
-            ones you want and watch the total add up. The full stack bundles
-            for $1,500 a month, which saves $245 a month versus picking them
-            individually. Month to month. Cancel any time.
-          </p>
-        </FadeUp>
-
-        <FadeUp delay={0.1}>
-          <div className="mt-14">
-            <PricingBuilder />
+          <div className="text-center max-w-[900px] mx-auto">
+            <div className="inline-flex">
+              <SectionLabel>Pricing</SectionLabel>
+            </div>
+            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px]">
+              One team, three ways
+              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
+                to take it off your plate.
+              </span>
+            </h2>
+            <p className="mt-7 text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)] max-w-[700px] mx-auto">
+              Pick the level of coverage that matches where your business is.
+              Most clients land on Full Stack because it replaces an entire
+              front-desk seat for less than the salary alone.
+            </p>
           </div>
         </FadeUp>
 
-        <FadeUp delay={0.15}>
-          <div className="mt-16 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 sm:p-8 max-w-[840px] mx-auto text-center">
-            <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--muted)] font-semibold">
-              MULTI-LOCATION · CUSTOM INTEGRATIONS · BILINGUAL
-            </span>
-            <h3 className="mt-4 font-display text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-[var(--text)]">
-              Need something the builder doesn&apos;t cover?
-            </h3>
-            <p className="mt-3 text-[15px] sm:text-[16px] leading-[1.6] text-[var(--muted)] max-w-[620px]">
-              Two-plus locations, a CRM or EMR we have to integrate with, or
-              bilingual voice agents (EN/FR, EN/ES). Tell us what you&apos;re
-              running and we&apos;ll quote it flat.
-            </p>
-            <a
-              href={`${MAILTO.replace("Kollaborate%20demo%20request", "Kollaborate%3A%20custom%20quote%20request")}`}
-              className="mt-6 inline-flex h-12 items-center gap-2 rounded-full border-2 border-[var(--text)] px-6 text-[15px] font-semibold text-[var(--text)] transition-all hover:-translate-y-px hover:bg-[var(--text)] hover:text-[var(--text-inverse)]"
-            >
-              Get a custom quote →
-            </a>
+        <FadeUp delay={0.1}>
+          <div className="mt-16 sm:mt-20">
+            <PricingTiers />
           </div>
         </FadeUp>
       </div>
