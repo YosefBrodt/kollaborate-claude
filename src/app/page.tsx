@@ -7,6 +7,10 @@ import { PricingTiers } from "@/components/site/pricing-tiers";
 import { Booking } from "@/components/site/booking";
 import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
+import { TryDemo } from "@/components/site/try-demo";
+import { RoiCalculator } from "@/components/site/roi-calculator";
+import { Comparison } from "@/components/site/comparison";
+import { GbpAudit } from "@/components/site/gbp-audit";
 
 const MAILTO =
   "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
@@ -20,12 +24,14 @@ export default function Home() {
         <HeroStats />
         <Industries />
         <Services />
-        <Savings />
+        <TryDemo />
+        <RoiCalculator />
         <Pricing />
+        <Comparison />
         <Process />
-        <CaseStudy />
         <About />
         <FAQSection />
+        <GbpAudit />
         <Booking />
         <FinalCTA />
         <Footer />
@@ -203,13 +209,13 @@ function HeroStats() {
 /* ---------- INDUSTRIES (separated) ---------- */
 
 function Industries() {
-  const tiles = [
-    { name: "Trades", sub: "HVAC, plumbing, electrical, roofing" },
-    { name: "Restaurants", sub: "Front-of-house and reservations" },
+  const tiles: { name: string; sub: string; href?: string }[] = [
+    { name: "HVAC + Trades", sub: "HVAC, plumbing, electrical, roofing", href: "/hvac" },
+    { name: "Restaurants", sub: "Front-of-house and reservations", href: "/restaurants" },
     { name: "Auto + repair", sub: "Body shops, mechanics, detailing" },
-    { name: "Wellness", sub: "Salons, spas, med-spas, dental" },
-    { name: "Home services", sub: "Cleaning, movers, landscaping" },
-    { name: "Pro services", sub: "Clinics, vets, studios, training" },
+    { name: "Salons + Spas", sub: "Color, lash, brows, med-spa", href: "/salons" },
+    { name: "Dental + Med", sub: "Clinics, dentists, specialty practices", href: "/dental" },
+    { name: "Pro services", sub: "Vets, studios, training, cleaning, movers" },
   ];
   return (
     <section className="relative bg-[var(--bg-dark-2)] text-[var(--text-inverse)] py-20 sm:py-24 border-b border-[var(--border-on-dark)]">
@@ -230,19 +236,37 @@ function Industries() {
         </FadeUp>
         <FadeUp delay={0.08}>
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {tiles.map((tile) => (
-              <div
-                key={tile.name}
-                className="rounded-xl border border-[var(--accent-bright)]/30 bg-white/[0.04] px-5 py-5 backdrop-blur-sm"
-              >
-                <div className="font-display text-[19px] sm:text-[20px] font-semibold tracking-[-0.01em] text-[var(--text-inverse)]">
-                  {tile.name}
+            {tiles.map((tile) => {
+              const inner = (
+                <>
+                  <div className="font-display text-[19px] sm:text-[20px] font-semibold tracking-[-0.01em] text-[var(--text-inverse)]">
+                    {tile.name}
+                  </div>
+                  <div className="mt-2 text-[14px] leading-[1.5] text-[var(--text-inverse)]/70">
+                    {tile.sub}
+                  </div>
+                  {tile.href && (
+                    <div className="mt-3 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+                      SEE PAGE →
+                    </div>
+                  )}
+                </>
+              );
+              const className =
+                "block h-full rounded-xl border border-[var(--accent-bright)]/30 bg-white/[0.04] px-5 py-5 backdrop-blur-sm transition-all" +
+                (tile.href
+                  ? " hover:bg-white/[0.08] hover:border-[var(--accent-bright)]/60 hover:-translate-y-0.5 cursor-pointer"
+                  : "");
+              return tile.href ? (
+                <Link key={tile.name} href={tile.href} className={className}>
+                  {inner}
+                </Link>
+              ) : (
+                <div key={tile.name} className={className}>
+                  {inner}
                 </div>
-                <div className="mt-2 text-[14px] leading-[1.5] text-[var(--text-inverse)]/70">
-                  {tile.sub}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <p className="mt-9 max-w-[720px] text-[17px] sm:text-[18px] leading-[1.6] text-[var(--text-inverse)]/75">
             If your business runs on phone calls, walk-ins, bookings, or Google
@@ -252,241 +276,6 @@ function Industries() {
         </FadeUp>
       </div>
     </section>
-  );
-}
-
-/* ---------- SAVINGS ---------- */
-
-function Savings() {
-  return (
-    <section
-      id="savings"
-      className="relative bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]"
-    >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <FadeUp>
-          <SectionLabel>The math</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
-            The math nobody shows you.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              What each of these is costing you right now.
-            </span>
-          </h2>
-        </FadeUp>
-
-        <div className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {[
-            {
-              role: "Front-desk / receptionist",
-              current: "$60,400",
-              ours: "$9,000",
-              save: "$51,400",
-              saveLabel: "saved every year",
-              footnote: "Salary, benefits, training, and turnover combined",
-            },
-            {
-              role: "Reviews + reputation",
-              current: "$18,600",
-              ours: "$1,200",
-              save: "$17,400",
-              saveLabel: "recovered every year",
-              footnote: "A 1.2-star lower rating means 14% fewer new customers",
-            },
-            {
-              role: "Website + lead response",
-              current: "$32,000",
-              ours: "$7,800",
-              save: "$24,200",
-              saveLabel: "freed up every year",
-              footnote: "Marketing agency, website dev, and an inbox assistant combined",
-            },
-          ].map((row, i) => (
-            <FadeUp key={i} delay={i * 0.08}>
-              <div className="card-base h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 sm:p-9 flex flex-col">
-                <h3 className="font-display text-[22px] sm:text-[26px] font-semibold tracking-[-0.015em] text-[var(--text)]">
-                  {row.role}
-                </h3>
-
-                {/* Two-number compare */}
-                <div className="mt-8 grid grid-cols-[1fr_auto_1fr] items-start gap-3">
-                  <div className="text-center">
-                    <div className="font-display text-[34px] sm:text-[40px] font-semibold tracking-[-0.03em] line-through decoration-[var(--danger)]/65 decoration-[2px] text-[var(--text)]/70">
-                      {row.current}
-                    </div>
-                    <div className="mt-2 text-[15px] text-[var(--muted)]">
-                      what you pay
-                    </div>
-                  </div>
-                  <div
-                    className="font-display text-[24px] text-[var(--muted)]/60 pt-3"
-                    aria-hidden
-                  >
-                    →
-                  </div>
-                  <div className="text-center">
-                    <div className="font-display text-[34px] sm:text-[40px] font-semibold tracking-[-0.03em] text-[var(--accent)]">
-                      {row.ours}
-                    </div>
-                    <div className="mt-2 text-[15px] text-[var(--accent)]/85 font-semibold">
-                      with us
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hero savings block, mint not forest */}
-                <div className="mt-9 rounded-xl bg-[var(--accent-bright)]/35 border border-[var(--accent-bright)]/70 px-5 py-8 text-center flex-1 flex flex-col justify-center">
-                  <div className="font-display text-[48px] sm:text-[56px] font-semibold tracking-[-0.035em] leading-[0.95] text-[var(--accent)]">
-                    {row.save}
-                  </div>
-                  <div className="mt-3 font-serif italic text-[22px] sm:text-[26px] text-[var(--accent)]">
-                    {row.saveLabel}
-                  </div>
-                </div>
-
-                <p className="mt-6 text-[14px] sm:text-[15px] text-[var(--muted)] leading-[1.55] text-center">
-                  {row.footnote}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-
-        <FadeUp>
-          <div className="mt-14 rounded-2xl bg-[var(--bg-cream)] border border-[var(--border)] p-9 sm:p-12 text-center max-w-[880px] mx-auto">
-            <p className="text-[20px] sm:text-[24px] leading-[1.5] text-[var(--text)]">
-              All three together: about{" "}
-              <span className="font-display font-semibold text-[26px] sm:text-[30px]">
-                $111,000 a year
-              </span>
-              . Our full stack replaces it for{" "}
-              <span className="font-display font-semibold text-[26px] sm:text-[30px] text-[var(--accent)]">
-                $18,000
-              </span>
-              .
-            </p>
-            <Link
-              href="#pricing"
-              className="mt-7 inline-flex items-center gap-2 text-[17px] font-semibold text-[var(--accent)] underline-offset-4 underline decoration-2 hover:text-[var(--accent-hover)]"
-            >
-              See pricing →
-            </Link>
-          </div>
-        </FadeUp>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- CASE STUDY ---------- */
-
-function CaseStudy() {
-  return (
-    <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <FadeUp>
-          <SectionLabel>How the math plays out</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
-            What a typical month looks like.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              Walked through a busy local-service profile.
-            </span>
-          </h2>
-          <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
-            Illustrative walkthrough using realistic local-service traffic. The
-            mechanics are the same whether you run a busy restaurant, an HVAC
-            crew, a salon, or a clinic. The numbers below are what you can
-            recreate by plugging your own intake volume into the same pipeline.
-          </p>
-        </FadeUp>
-
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
-          <FadeUp className="lg:col-span-7">
-            <div className="max-w-[640px] space-y-6">
-              <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--text)] font-medium">
-                Take a busy local-service business. Maybe an 80-cover restaurant,
-                a 12-truck HVAC crew, a four-chair salon. Rating hovers around
-                4.3 on Google. Staff mean to ask for reviews. Between work and
-                close, it never happens.
-              </p>
-              <ul className="space-y-3.5">
-                {[
-                  "Every paid ticket triggers an SMS and email 2 hours later",
-                  "Happy customers (4 or 5 star) land on a Google review link",
-                  "Anyone lower lands on a private form that pings ownership first",
-                  "About 22% of customers actually leave a public review",
-                ].map((b) => (
-                  <li
-                    key={b}
-                    className="flex items-start gap-3.5 text-[17px] sm:text-[18px] leading-[1.5] text-[var(--text)] font-semibold"
-                  >
-                    <span
-                      aria-hidden
-                      className="mt-[3px] grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-[var(--accent-bright)]/40"
-                    >
-                      <svg
-                        viewBox="0 0 16 16"
-                        className="h-[12px] w-[12px] text-[var(--accent)]"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M3 8.5l3.25 3.25L13 5" />
-                      </svg>
-                    </span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-[18px] sm:text-[19px] leading-[1.65] text-[var(--muted)]">
-                Multiply that by 2,500 paid tickets a month at a 22% response
-                rate and you collect roughly 40 fresh Google reviews a month
-                instead of 2. Same setup runs identically for an HVAC profile
-                doing 200 service calls a month.
-              </p>
-            </div>
-          </FadeUp>
-
-          <FadeUp className="lg:col-span-5" delay={0.1}>
-            <div className="rounded-2xl border border-[var(--accent-bright)]/60 bg-[var(--card)] p-8 sm:p-9 shadow-[0_18px_50px_-24px_rgba(34,69,56,0.25)]">
-              <span className="font-mono text-[14px] tracking-[0.16em] text-[var(--accent)] font-semibold">
-                EXAMPLE · 2,500 TICKETS / MO
-              </span>
-              <div className="mt-8 space-y-6">
-                <Stat k="Tickets served / mo" v="~2,500" delta="" />
-                <Stat k="Review requests sent" v="~2,500" delta="auto" />
-                <Stat k="Expected replies at 22%" v="~550" delta="" />
-                <Stat k="Net new Google reviews" v="~40 / mo" delta="vs ~2" />
-                <Stat k="Staff hours spent" v="0" delta="vs ~4/wk" />
-              </div>
-              <div className="mt-9 border-t border-[var(--border)] pt-6 text-[13px] sm:text-[14px] text-[var(--muted)] leading-relaxed">
-                Example math, not a past-client outcome. We run your actual
-                numbers live on the call.
-              </div>
-            </div>
-          </FadeUp>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Stat({ k, v, delta }: { k: string; v: string; delta: string }) {
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-2">
-        <span className="text-[15px] sm:text-[16px] text-[var(--muted)]">{k}</span>
-        {delta && (
-          <span className="font-mono text-[13px] text-[var(--accent)] font-semibold">
-            {delta}
-          </span>
-        )}
-      </div>
-      <div className="mt-1.5 font-display text-[28px] sm:text-[32px] font-semibold tracking-[-0.02em] text-[var(--text)]">
-        {v}
-      </div>
-    </div>
   );
 }
 

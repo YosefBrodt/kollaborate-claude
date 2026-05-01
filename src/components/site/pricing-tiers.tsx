@@ -76,8 +76,9 @@ export function PricingTiers() {
   return (
     <div>
       {/* Trust signals row */}
-      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-12">
+      <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 mb-12">
         {[
+          "30-day money-back guarantee",
           "Month to month, cancel any time",
           "No long contracts",
           "Direct line to the founder",
