@@ -157,22 +157,22 @@ function Hero() {
 function HeroStats() {
   const stats = [
     {
-      big: "$51,240",
+      big: "$140k+",
       unit: "/yr",
-      label: "saved vs hiring a front-desk seat",
-      note: "based on $60k loaded salary",
+      label: "typical recovered upside for a local-service business",
+      note: "missed calls + reviews, run your own numbers below",
     },
     {
-      big: "24/7",
-      unit: "",
-      label: "call coverage, zero sick days",
-      note: "holidays, 2am, nights, weekends",
+      big: "2",
+      unit: "rings",
+      label: "average pickup, day or night",
+      note: "every call answered, no voicemail, no callback chase",
     },
     {
-      big: "100%",
-      unit: "",
-      label: "of paid tickets auto-ask for a review",
-      note: "no more forgetting at checkout",
+      big: "40",
+      unit: "/mo",
+      label: "new Google reviews captured automatically",
+      note: "vs ~2 today on a typical paid-ticket profile",
     },
   ];
   return (
