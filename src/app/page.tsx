@@ -17,6 +17,8 @@ export default function Home() {
       <Header />
       <main id="top">
         <Hero />
+        <HeroStats />
+        <Industries />
         <Services />
         <Savings />
         <Pricing />
@@ -37,37 +39,34 @@ export default function Home() {
 
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-[var(--bg-dark)] text-[var(--text-inverse)]">
-      {/* Video + poster background */}
+    <section className="relative isolate overflow-hidden bg-[var(--bg-dark)] text-[var(--text-inverse)] h-screen min-h-[640px] max-h-[920px]">
+      {/* Background layers — poster sits underneath, video paints on top */}
       <div className="absolute inset-0 -z-10">
+        <div
+          aria-hidden
+          className="hero-poster absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/video/hero-poster.jpg')" }}
+        />
         <video
           aria-hidden
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/video/hero-poster.jpg"
           className="hero-video absolute inset-0 h-full w-full object-cover"
         >
           <source src="/video/hero.mp4" type="video/mp4" />
         </video>
-        {/* Poster fallback shown when video element is hidden by reduced-motion */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/video/hero-poster.jpg')" }}
-        />
-        {/* Dark gradient overlay for text legibility + brand tint */}
         <div
           aria-hidden
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(12,31,26,0.78) 0%, rgba(12,31,26,0.55) 38%, rgba(12,31,26,0.85) 100%)",
+              "linear-gradient(180deg, rgba(12,31,26,0.72) 0%, rgba(12,31,26,0.42) 40%, rgba(12,31,26,0.85) 100%)",
           }}
         />
-        {/* Subtle mint glow accent, keeps brand without competing with footage */}
         <div
           aria-hidden
           className="absolute inset-0 mix-blend-overlay opacity-40"
@@ -79,7 +78,7 @@ function Hero() {
       </div>
       <div className="absolute inset-0 grain-dark pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-36 pb-20 sm:pt-40 sm:pb-28">
+      <div className="relative h-full mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-12 sm:pt-32 sm:pb-16 flex flex-col justify-center">
         <FadeUp onView={false} duration={0.6}>
           <p className="font-serif italic text-[18px] sm:text-[22px] text-[var(--accent-bright)] tracking-[-0.005em]">
             Local jobs go to whoever shows up first.
@@ -87,7 +86,7 @@ function Hero() {
         </FadeUp>
 
         <FadeUp onView={false} delay={0.06} duration={0.7}>
-          <h1 className="mt-5 sm:mt-6 font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[84px] max-w-[1100px]">
+          <h1 className="mt-5 sm:mt-6 font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[80px] max-w-[1100px]">
             We run the five things that grow your business.
             <span className="block mt-2 sm:mt-3 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
               You focus on the work.
@@ -96,27 +95,17 @@ function Hero() {
         </FadeUp>
 
         <FadeUp onView={false} delay={0.14} duration={0.6}>
-          <p className="mt-10 max-w-[760px] text-[19px] sm:text-[22px] leading-[1.55] text-[var(--text-inverse)]/80">
+          <p className="mt-8 sm:mt-10 max-w-[720px] text-[18px] sm:text-[20px] leading-[1.55] text-[var(--text-inverse)]/85">
             We pick up your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">
-              phones
-            </span>
+            <span className="font-semibold text-[var(--accent-bright)]">phones</span>
             , chase your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">
-              reviews
-            </span>
+            <span className="font-semibold text-[var(--accent-bright)]">reviews</span>
             , build your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">
-              site
-            </span>
+            <span className="font-semibold text-[var(--accent-bright)]">site</span>
             , run your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">
-              Google profile
-            </span>
+            <span className="font-semibold text-[var(--accent-bright)]">Google profile</span>
             , and reply to all your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">
-              leads
-            </span>
+            <span className="font-semibold text-[var(--accent-bright)]">leads</span>
             .{" "}
             <span className="text-[var(--text-inverse)]">
               One team. One invoice. Starting at $750 a month.
@@ -125,7 +114,7 @@ function Hero() {
         </FadeUp>
 
         <FadeUp onView={false} delay={0.22} duration={0.6}>
-          <div className="mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <Link
               href="#book"
               className="group inline-flex h-16 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-9 text-[17px] font-semibold text-[var(--bg-dark)] shadow-[0_10px_40px_-12px_rgba(168,213,187,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_14px_44px_-10px_rgba(255,255,255,0.35)]"
@@ -152,84 +141,114 @@ function Hero() {
             </Link>
           </div>
         </FadeUp>
+      </div>
+    </section>
+  );
+}
 
-        {/* Big stats strip */}
-        <div className="mt-20 sm:mt-28 grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--border-on-dark)] rounded-2xl overflow-hidden border border-[var(--border-on-dark)]">
-          {[
-            {
-              big: "$51,240",
-              unit: "/yr",
-              label: "saved vs hiring a front-desk seat",
-              note: "based on $60k loaded salary",
-            },
-            {
-              big: "24/7",
-              unit: "",
-              label: "call coverage, zero sick days",
-              note: "holidays, 2am, nights, weekends",
-            },
-            {
-              big: "100%",
-              unit: "",
-              label: "of paid tickets auto-ask for a review",
-              note: "no more forgetting at checkout",
-            },
-          ].map((s, i) => (
-            <FadeUp key={i} onView={false} delay={0.35 + i * 0.1} duration={0.7} travel={24}>
-              <div className="h-full bg-[var(--bg-dark-2)] p-8 sm:p-9">
+/* ---------- HERO STATS (separated from video hero) ---------- */
+
+function HeroStats() {
+  const stats = [
+    {
+      big: "$51,240",
+      unit: "/yr",
+      label: "saved vs hiring a front-desk seat",
+      note: "based on $60k loaded salary",
+    },
+    {
+      big: "24/7",
+      unit: "",
+      label: "call coverage, zero sick days",
+      note: "holidays, 2am, nights, weekends",
+    },
+    {
+      big: "100%",
+      unit: "",
+      label: "of paid tickets auto-ask for a review",
+      note: "no more forgetting at checkout",
+    },
+  ];
+  return (
+    <section className="relative bg-[var(--bg-dark)] text-[var(--text-inverse)] py-20 sm:py-24 overflow-hidden">
+      <div className="absolute inset-0 grain-dark pointer-events-none" />
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--border-on-dark)] rounded-2xl overflow-hidden border border-[var(--border-on-dark)]">
+          {stats.map((s, i) => (
+            <FadeUp key={s.big} delay={i * 0.08} duration={0.6} travel={24}>
+              <div className="h-full bg-[var(--bg-dark-2)] p-8 sm:p-10">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="font-display text-[52px] sm:text-[60px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)]">
+                  <span className="font-display text-[56px] sm:text-[64px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)]">
                     {s.big}
                   </span>
-                  <span className="font-display text-[26px] sm:text-[30px] text-[var(--text-inverse)]/60">
+                  <span className="font-display text-[28px] sm:text-[32px] text-[var(--text-inverse)]/60">
                     {s.unit}
                   </span>
                 </div>
-                <p className="mt-5 text-[17px] sm:text-[18px] text-[var(--text-inverse)]/95 leading-[1.4] font-medium">
+                <p className="mt-6 text-[18px] sm:text-[20px] text-[var(--text-inverse)]/95 leading-[1.4] font-semibold">
                   {s.label}
                 </p>
-                <p className="mt-2 text-[13px] text-[var(--text-inverse)]/50 font-mono tracking-wide">
+                <p className="mt-3 text-[14px] sm:text-[15px] text-[var(--text-inverse)]/55 font-mono tracking-wide">
                   {s.note}
                 </p>
               </div>
             </FadeUp>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
 
-        {/* Industries strip */}
-        <FadeUp delay={0.18}>
-          <div className="mt-16 pt-12 border-t border-[var(--border-on-dark)]">
+/* ---------- INDUSTRIES (separated) ---------- */
+
+function Industries() {
+  const tiles = [
+    { name: "Trades", sub: "HVAC, plumbing, electrical, roofing" },
+    { name: "Restaurants", sub: "Front-of-house and reservations" },
+    { name: "Auto + repair", sub: "Body shops, mechanics, detailing" },
+    { name: "Wellness", sub: "Salons, spas, med-spas, dental" },
+    { name: "Home services", sub: "Cleaning, movers, landscaping" },
+    { name: "Pro services", sub: "Clinics, vets, studios, training" },
+  ];
+  return (
+    <section className="relative bg-[var(--bg-dark-2)] text-[var(--text-inverse)] py-20 sm:py-24 border-b border-[var(--border-on-dark)]">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <FadeUp>
+          <div className="flex items-center gap-3">
+            <span className="h-px w-12 bg-[var(--accent-bright)]" />
             <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
               BUILT FOR
             </span>
-            <div className="mt-7 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              {[
-                { name: "Trades", sub: "HVAC, plumbing, electrical, roofing" },
-                { name: "Restaurants", sub: "Front-of-house and reservations" },
-                { name: "Auto + repair", sub: "Body shops, mechanics, detailing" },
-                { name: "Wellness", sub: "Salons, spas, med-spas, dental" },
-                { name: "Home services", sub: "Cleaning, movers, landscaping" },
-                { name: "Pro services", sub: "Clinics, vets, studios, training" },
-              ].map((tile) => (
-                <div
-                  key={tile.name}
-                  className="rounded-xl border border-[var(--accent-bright)]/30 bg-white/[0.04] px-4 py-4 backdrop-blur-sm"
-                >
-                  <div className="font-display text-[18px] sm:text-[19px] font-semibold tracking-[-0.01em] text-[var(--text-inverse)]">
-                    {tile.name}
-                  </div>
-                  <div className="mt-1.5 text-[13px] leading-[1.45] text-[var(--text-inverse)]/65">
-                    {tile.sub}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="mt-7 max-w-[680px] text-[16px] sm:text-[17px] leading-[1.6] text-[var(--text-inverse)]/70">
-              If your business runs on phone calls, walk-ins, bookings, or
-              Google reviews, the stack works. Not built for pure e-commerce or
-              software companies.
-            </p>
           </div>
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[820px]">
+            Local service businesses that
+            <span className="block mt-1.5 font-serif italic font-medium text-[var(--accent-bright)]">
+              live or die on the phone.
+            </span>
+          </h2>
+        </FadeUp>
+        <FadeUp delay={0.08}>
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {tiles.map((tile) => (
+              <div
+                key={tile.name}
+                className="rounded-xl border border-[var(--accent-bright)]/30 bg-white/[0.04] px-5 py-5 backdrop-blur-sm"
+              >
+                <div className="font-display text-[19px] sm:text-[20px] font-semibold tracking-[-0.01em] text-[var(--text-inverse)]">
+                  {tile.name}
+                </div>
+                <div className="mt-2 text-[14px] leading-[1.5] text-[var(--text-inverse)]/70">
+                  {tile.sub}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-9 max-w-[720px] text-[17px] sm:text-[18px] leading-[1.6] text-[var(--text-inverse)]/75">
+            If your business runs on phone calls, walk-ins, bookings, or Google
+            reviews, the stack works. Not built for pure e-commerce or software
+            companies.
+          </p>
         </FadeUp>
       </div>
     </section>
