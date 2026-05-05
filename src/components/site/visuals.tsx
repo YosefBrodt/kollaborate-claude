@@ -646,172 +646,279 @@ export function ContentVisual() {
 }
 
 export function EmailVisual() {
-  const leads: {
-    ch: "ig" | "email" | "fb" | "web";
-    name: string;
-    preview: string;
-    time: string;
-    bgColor: string;
-    iconColor: string;
-  }[] = [
-    {
-      ch: "web",
-      name: "Jamie L. · web form",
-      preview: "Looking for emergency service tonight, no heat...",
-      time: "18s",
-      bgColor: "#10b98120",
-      iconColor: "#10b981",
-    },
-    {
-      ch: "fb",
-      name: "Tom Ritchie",
-      preview: "Wondering about furnace tune-up before winter",
-      time: "32s",
-      bgColor: "#1877f220",
-      iconColor: "#1877f2",
-    },
-    {
-      ch: "ig",
-      name: "@maria.h",
-      preview: "Hey, do you do quick installs in Plateau?",
-      time: "47s",
-      bgColor: "#ec489920",
-      iconColor: "#ec4899",
-    },
-    {
-      ch: "email",
-      name: "sarah.m@gmail.com",
-      preview: "Need a quote for a roof inspection before end of month.",
-      time: "1m",
-      bgColor: "#1a73e820",
-      iconColor: "#1a73e8",
-    },
-  ];
+  const [autoReply, setAutoReply] = useState(false);
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden bg-[#0c0c0e] border border-white/10 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.55)]">
-      {/* App chrome */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-[#1a1d1b] border-b border-white/5">
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="grid h-5 w-5 shrink-0 place-items-center rounded bg-[var(--accent-bright)] text-[var(--bg-dark)] text-[11px] font-bold">
-            K
-          </span>
-          <span className="text-[12px] font-semibold text-white truncate">
-            Lead inbox
-          </span>
-          <span className="font-mono text-[10px] text-white/40 truncate">
-            · last 24h
-          </span>
-        </div>
-        <span className="shrink-0 inline-flex items-center gap-1.5 font-mono text-[10px] text-[var(--accent-bright)] font-semibold">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent-bright)] animate-beacon-pulse" />
-          ALL REPLIED &lt; 60s
-        </span>
+    <div className="relative w-full">
+      {/* Toggle */}
+      <div
+        className="mx-auto inline-flex w-full max-w-[360px] items-center rounded-full border border-[var(--border)] bg-[var(--bg)] p-1 mb-4"
+        role="tablist"
+        aria-label="Auto-reply state"
+      >
+        <button
+          type="button"
+          role="tab"
+          aria-selected={!autoReply}
+          onClick={() => setAutoReply(false)}
+          className={`flex-1 rounded-full px-3 py-2 text-[12px] font-semibold tracking-tight transition-all ${
+            !autoReply
+              ? "bg-[var(--text)] text-[var(--text-inverse)] shadow-sm"
+              : "text-[var(--muted)] hover:text-[var(--text)]"
+          }`}
+        >
+          Without auto-reply
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={autoReply}
+          onClick={() => setAutoReply(true)}
+          className={`flex-1 rounded-full px-3 py-2 text-[12px] font-semibold tracking-tight transition-all ${
+            autoReply
+              ? "bg-[var(--accent)] text-white shadow-sm"
+              : "text-[var(--muted)] hover:text-[var(--text)]"
+          }`}
+        >
+          With auto-reply
+        </button>
       </div>
 
-      {/* Channel filter strip */}
-      <div className="px-3 py-2 flex items-center gap-1.5 border-b border-white/5 overflow-x-auto">
-        {[
-          { c: "All", active: true },
-          { c: "Email", active: false },
-          { c: "IG", active: false },
-          { c: "FB", active: false },
-          { c: "Web", active: false },
-          { c: "TikTok", active: false },
-        ].map(({ c, active }) => (
-          <span
-            key={c}
-            className={`shrink-0 inline-flex h-5 items-center rounded-full px-2 text-[10px] font-semibold ${
-              active
-                ? "bg-white/10 text-white border border-white/15"
-                : "text-white/55 border border-white/5"
-            }`}
-          >
-            {c}
-          </span>
-        ))}
-      </div>
-
-      {/* Leads list */}
-      <ul className="divide-y divide-white/5">
-        {leads.map((lead) => (
-          <li
-            key={lead.name}
-            className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-white/[0.02]"
-          >
+      {/* iPhone frame — customer perspective texting the business */}
+      <div className="mx-auto max-w-[300px] sm:max-w-[320px] rounded-[42px] bg-[#0c0c0e] p-[7px] shadow-[0_30px_80px_-30px_rgba(20,40,30,0.45),0_2px_0_rgba(255,255,255,0.04)_inset]">
+        <div className="rounded-[36px] bg-[#fafafa] overflow-hidden">
+          {/* Status bar */}
+          <div className="relative h-9 px-7 flex items-center justify-between text-[12px] font-semibold text-[#0c0c0e] tabular-nums">
+            <span>{autoReply ? "7:42" : "11:14"}</span>
             <span
-              className="grid h-7 w-7 shrink-0 place-items-center rounded-full"
-              style={{ backgroundColor: lead.bgColor }}
               aria-hidden
+              className="absolute left-1/2 top-1.5 -translate-x-1/2 h-6 w-[88px] rounded-full bg-[#0c0c0e]"
+            />
+            <span className="flex items-center gap-1.5">
+              <svg viewBox="0 0 18 11" className="h-2.5 w-3.5" fill="currentColor" aria-hidden>
+                <rect x="0" y="7" width="3" height="4" rx="0.6" />
+                <rect x="5" y="5" width="3" height="6" rx="0.6" />
+                <rect x="10" y="2" width="3" height="9" rx="0.6" />
+                <rect x="15" y="0" width="3" height="11" rx="0.6" />
+              </svg>
+              <svg viewBox="0 0 16 11" className="h-2.5 w-3.5" fill="currentColor" aria-hidden>
+                <path d="M8 11a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8zm0-4.2a3.4 3.4 0 0 1 2.4 1l1-1A4.8 4.8 0 0 0 8 5.4 4.8 4.8 0 0 0 4.6 6.8l1 1A3.4 3.4 0 0 1 8 6.8zm0-3.6a7 7 0 0 1 5 2.1l1-1A8.4 8.4 0 0 0 8 1.6a8.4 8.4 0 0 0-6 2.7l1 1A7 7 0 0 1 8 3.2z" />
+              </svg>
+              <span className="ml-0.5 inline-flex items-center">
+                <span className="relative h-[11px] w-[22px] rounded-[3px] border border-[#0c0c0e]/65">
+                  <span className="absolute inset-y-[1.5px] left-[1.5px] right-[7px] rounded-[1.5px] bg-[#0c0c0e]" />
+                </span>
+                <span className="-ml-[1px] inline-block h-1.5 w-[1.5px] rounded-r-sm bg-[#0c0c0e]/65" />
+              </span>
+            </span>
+          </div>
+
+          {/* Conversation header — the business name from customer perspective */}
+          <div className="relative flex flex-col items-center pt-3 pb-3 border-b border-black/5">
+            <span
+              aria-hidden
+              className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center text-[#007aff]"
             >
-              <ChannelIcon ch={lead.ch} color={lead.iconColor} />
+              <svg viewBox="0 0 12 20" className="h-[18px] w-3" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10 2L2 10l8 8" />
+              </svg>
             </span>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-baseline justify-between gap-2">
-                <span className="text-[12.5px] font-semibold text-white truncate">
-                  {lead.name}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={autoReply ? "h-with" : "h-without"}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.22 }}
+                className="flex flex-col items-center"
+              >
+                <span
+                  aria-hidden
+                  className={`grid h-9 w-9 place-items-center rounded-full text-[12px] font-semibold ${
+                    autoReply
+                      ? "bg-[var(--accent)] text-white"
+                      : "bg-[#9aa0a6] text-white"
+                  }`}
+                >
+                  {autoReply ? "GC" : "?"}
                 </span>
-                <span className="shrink-0 font-mono text-[10px] text-white/40 tabular-nums">
-                  {lead.time}
+                <span className="mt-1.5 text-[11px] font-semibold text-[#0c0c0e] flex items-center gap-1">
+                  {autoReply ? "Golden Comfort HVAC" : "Some HVAC place"}
+                  <svg viewBox="0 0 10 6" className="h-2 w-2 text-[#8a8a8e]" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden>
+                    <path d="M1 1l4 4 4-4" />
+                  </svg>
                 </span>
-              </div>
-              <div className="mt-0.5 text-[11.5px] text-white/65 truncate">
-                {lead.preview}
-              </div>
-            </div>
-            <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[var(--accent-bright)]/15 border border-[var(--accent-bright)]/30 px-2 py-0.5 text-[9px] font-mono font-semibold tracking-wider text-[var(--accent-bright)]">
-              <span className="inline-block h-1 w-1 rounded-full bg-[var(--accent-bright)]" />
-              REPLIED
-            </span>
-          </li>
-        ))}
-      </ul>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-      {/* Footer stats */}
-      <div className="border-t border-white/5 px-4 py-2.5 flex items-center justify-between font-mono text-[10px] tracking-wide text-white/45">
-        <span>4 new · 0 missed</span>
-        <span>AVG 31s</span>
+          {/* Conversation */}
+          <AnimatePresence mode="wait">
+            {autoReply ? (
+              <motion.div
+                key="convo-with"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.28 }}
+                className="px-3.5 pt-3 pb-4 space-y-1.5 bg-[#fafafa] min-h-[330px]"
+              >
+                <div className="text-center text-[10px] text-[#8a8a8e] py-1">
+                  <span className="font-semibold text-[#5a5a60]">Today</span> 7:42 PM
+                </div>
+
+                {/* Customer outgoing */}
+                <div className="flex justify-end">
+                  <div className="max-w-[80%] rounded-[18px] rounded-br-[5px] bg-[#007aff] px-3 py-2 text-[12.5px] leading-[1.35] text-white">
+                    Hey do you do emergency furnace repair? Mine just stopped.
+                  </div>
+                </div>
+
+                {/* Business incoming — auto-reply */}
+                <div className="flex justify-start pt-1">
+                  <div className="max-w-[80%] rounded-[18px] rounded-bl-[5px] bg-[#e9e9eb] px-3 py-2 text-[12.5px] leading-[1.35] text-[#0c0c0e]">
+                    Hi! Yes, 24/7. A tech can be there in 90 min. What&apos;s the
+                    address?
+                  </div>
+                </div>
+                <div className="flex justify-start pl-1">
+                  <span className="text-[9px] text-[#8a8a8e] font-medium">
+                    Auto-replied · 31s
+                  </span>
+                </div>
+
+                {/* Customer outgoing again */}
+                <div className="flex justify-end pt-1">
+                  <div className="max-w-[78%] rounded-[18px] rounded-br-[5px] bg-[#007aff] px-3 py-2 text-[12.5px] leading-[1.35] text-white">
+                    Wow that was fast — 124 Main St, Plateau
+                  </div>
+                </div>
+
+                {/* Business incoming with calendar chip */}
+                <div className="flex justify-start pt-1">
+                  <div className="max-w-[80%] rounded-[18px] rounded-bl-[5px] bg-[#e9e9eb] px-3 py-2 text-[12.5px] leading-[1.35] text-[#0c0c0e]">
+                    Booked. Calendar invite sent, ETA 9:15 PM.
+                    <div className="mt-2 flex items-center gap-2 rounded-md bg-white/80 border border-black/10 px-2 py-1.5">
+                      <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 text-[var(--accent)]" fill="currentColor" aria-hidden>
+                        <path d="M5 1v2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2V1h-1v2H6V1H5zm-2 4h10v2H3V5zm0 3h10v6H3V8z" />
+                      </svg>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[10px] font-semibold text-[#0c0c0e] truncate">
+                          Furnace emergency · Tonight 9:15 PM
+                        </div>
+                        <div className="text-[9px] text-[#5f6368] truncate">
+                          Calendar invite · 124 Main St
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Customer thank-you */}
+                <div className="flex justify-end pt-1.5">
+                  <div className="max-w-[70%] rounded-[18px] rounded-br-[5px] bg-[#007aff] px-3 py-2 text-[12.5px] leading-[1.35] text-white">
+                    🙏 thank you, lifesaver
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="convo-without"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.28 }}
+                className="px-3.5 pt-3 pb-4 space-y-1.5 bg-[#fafafa] min-h-[330px]"
+              >
+                <div className="text-center text-[10px] text-[#8a8a8e] py-1">
+                  <span className="font-semibold text-[#5a5a60]">Yesterday</span> 7:42 PM
+                </div>
+
+                <div className="flex justify-end">
+                  <div className="max-w-[80%] rounded-[18px] rounded-br-[5px] bg-[#007aff] px-3 py-2 text-[12.5px] leading-[1.35] text-white">
+                    Hey do you do emergency furnace repair? Mine just stopped.
+                  </div>
+                </div>
+
+                <div className="text-center text-[10px] text-[#8a8a8e] py-1.5 pt-3">
+                  <span className="font-semibold text-[#5a5a60]">Yesterday</span> 9:30 PM
+                </div>
+
+                <div className="flex justify-end">
+                  <div className="max-w-[40%] rounded-[18px] rounded-br-[5px] bg-[#007aff] px-3 py-2 text-[14px] leading-[1.35] text-white">
+                    ?
+                  </div>
+                </div>
+
+                <div className="text-center text-[10px] text-[#8a8a8e] py-1.5 pt-3">
+                  <span className="font-semibold text-[#5a5a60]">Today</span> 11:14 AM
+                </div>
+
+                <div className="flex justify-end">
+                  <div className="max-w-[80%] rounded-[18px] rounded-br-[5px] bg-[#007aff] px-3 py-2 text-[12.5px] leading-[1.35] text-white">
+                    going with someone else, sorry
+                  </div>
+                </div>
+
+                <div className="flex justify-end pr-1 pt-0.5">
+                  <span className="text-[9px] text-[#8a8a8e] font-medium">
+                    Read 3 days ago
+                  </span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
-    </div>
-  );
-}
 
-function ChannelIcon({
-  ch,
-  color,
-}: {
-  ch: "ig" | "email" | "fb" | "web";
-  color: string;
-}) {
-  const cls = "h-3.5 w-3.5";
-  if (ch === "ig") {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r="0.8" fill={color} />
-      </svg>
-    );
-  }
-  if (ch === "email") {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="5" width="18" height="14" rx="2" />
-        <path d="M3 7l9 6 9-6" />
-      </svg>
-    );
-  }
-  if (ch === "fb") {
-    return (
-      <svg viewBox="0 0 24 24" className={cls} fill={color}>
-        <path d="M22 12a10 10 0 1 0-11.6 9.9V15h-2.5v-3h2.5V9.7c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 3h-2.3v6.9A10 10 0 0 0 22 12z" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 24 24" className={cls} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
-    </svg>
+      {/* Result chip beneath the phone */}
+      <div className="mt-5 mx-auto max-w-[320px] rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 flex items-center justify-between">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={autoReply ? "result-with" : "result-without"}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.22 }}
+            className="flex items-center justify-between w-full"
+          >
+            {autoReply ? (
+              <>
+                <div>
+                  <div className="text-[13px] font-semibold text-[#0c8a4e]">
+                    Lead caught · Job booked
+                  </div>
+                  <div className="mt-0.5 text-[11px] text-[var(--muted)] tabular-nums">
+                    Reply in 31s · same evening service
+                  </div>
+                </div>
+                <span className="font-display text-[24px] font-semibold tracking-[-0.02em] text-[var(--accent)] tabular-nums">
+                  +$420
+                </span>
+              </>
+            ) : (
+              <>
+                <div>
+                  <div className="text-[13px] font-semibold text-[#c5221f]">
+                    Lead lost · went to a competitor
+                  </div>
+                  <div className="mt-0.5 text-[11px] text-[var(--muted)] tabular-nums">
+                    Avg lost lead · across 4 channels per week
+                  </div>
+                </div>
+                <span className="font-display text-[24px] font-semibold tracking-[-0.02em] text-[#c5221f] tabular-nums">
+                  −$420
+                </span>
+              </>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Helper hint */}
+      <p className="mt-3 text-center font-mono text-[10px] tracking-wide text-[var(--muted)]">
+        TAP THE TOGGLE TO SEE BOTH SIDES
+      </p>
+    </div>
   );
 }

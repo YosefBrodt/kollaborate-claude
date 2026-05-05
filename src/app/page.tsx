@@ -7,11 +7,11 @@ import { PricingTiers } from "@/components/site/pricing-tiers";
 import { Booking } from "@/components/site/booking";
 import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
-import { TryDemo } from "@/components/site/try-demo";
 import { RoiCalculator } from "@/components/site/roi-calculator";
 import { Comparison } from "@/components/site/comparison";
 import { GbpAudit } from "@/components/site/gbp-audit";
 import { DemoHero } from "@/components/site/demo-hero";
+import { Testimonials } from "@/components/site/testimonials";
 
 const MAILTO =
   "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
@@ -25,7 +25,7 @@ export default function Home() {
         <DemoHero />
         <Industries />
         <Services />
-        <TryDemo />
+        <Testimonials />
         <RoiCalculator />
         <Pricing />
         <Comparison />

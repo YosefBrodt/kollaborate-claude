@@ -6,7 +6,8 @@ import { FadeUp } from "@/components/site/fade-up";
 import { CallDemo } from "@/components/site/call-demo";
 import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
-import { TryDemo } from "@/components/site/try-demo";
+import { DemoHero } from "@/components/site/demo-hero";
+import { Testimonials } from "@/components/site/testimonials";
 import { RoiCalculator } from "@/components/site/roi-calculator";
 import { Comparison } from "@/components/site/comparison";
 import { GbpAudit } from "@/components/site/gbp-audit";
@@ -20,9 +21,10 @@ export function VerticalLanding({ config }: { config: VerticalConfig }) {
       <Header />
       <main id="top">
         <VerticalHero config={config} />
+        <DemoHero />
         <VerticalPain config={config} />
         <Services />
-        <TryDemo />
+        <Testimonials />
         <VerticalScenario config={config} />
         <RoiCalculator />
         <VerticalPricing />
