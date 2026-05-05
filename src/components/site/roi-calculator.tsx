@@ -13,14 +13,61 @@ type Inputs = {
   hasReceptionist: boolean;
 };
 
-const DEFAULTS: Inputs = {
-  callsPerWeek: 60,
-  avgTicket: 380,
-  missedPct: 30,
-  monthlyTickets: 220,
-  currentReviewsPerMonth: 3,
-  hasReceptionist: false,
-};
+type TradeId = "hvac" | "restaurant" | "salon" | "dental";
+
+const TRADE_PRESETS: { id: TradeId; label: string; preset: Inputs }[] = [
+  {
+    id: "hvac",
+    label: "HVAC + Trades",
+    preset: {
+      callsPerWeek: 80,
+      avgTicket: 480,
+      missedPct: 30,
+      monthlyTickets: 180,
+      currentReviewsPerMonth: 3,
+      hasReceptionist: false,
+    },
+  },
+  {
+    id: "restaurant",
+    label: "Restaurant",
+    preset: {
+      callsPerWeek: 130,
+      avgTicket: 85,
+      missedPct: 18,
+      monthlyTickets: 600,
+      currentReviewsPerMonth: 5,
+      hasReceptionist: true,
+    },
+  },
+  {
+    id: "salon",
+    label: "Salon + Spa",
+    preset: {
+      callsPerWeek: 65,
+      avgTicket: 130,
+      missedPct: 22,
+      monthlyTickets: 320,
+      currentReviewsPerMonth: 4,
+      hasReceptionist: true,
+    },
+  },
+  {
+    id: "dental",
+    label: "Dental + Med",
+    preset: {
+      callsPerWeek: 55,
+      avgTicket: 300,
+      missedPct: 18,
+      monthlyTickets: 240,
+      currentReviewsPerMonth: 2,
+      hasReceptionist: true,
+    },
+  },
+];
+
+// Default state = HVAC preset (cold-email primary target).
+const DEFAULTS: Inputs = TRADE_PRESETS[0].preset;
 
 function fmt(n: number) {
   return n.toLocaleString("en-US", { maximumFractionDigits: 0 });
@@ -32,6 +79,16 @@ function fmtMoney(n: number) {
 
 export function RoiCalculator() {
   const [inputs, setInputs] = useState<Inputs>(DEFAULTS);
+  // Currently-selected trade chip. null when the visitor has manually tweaked
+  // a slider, so the chips visually de-select to signal "Custom."
+  const [tradeId, setTradeId] = useState<TradeId | null>("hvac");
+
+  function applyPreset(id: TradeId) {
+    const trade = TRADE_PRESETS.find((t) => t.id === id);
+    if (!trade) return;
+    setInputs(trade.preset);
+    setTradeId(id);
+  }
 
   const out = useMemo(() => {
     // Lost calls = missed_pct of (calls_per_week * 52)
@@ -74,6 +131,9 @@ export function RoiCalculator() {
 
   function update<K extends keyof Inputs>(key: K, value: Inputs[K]) {
     setInputs((prev) => ({ ...prev, [key]: value }));
+    // Manual tweak -> drop trade selection so the visitor knows they're now in
+    // custom territory.
+    setTradeId(null);
   }
 
   return (
@@ -103,6 +163,7 @@ export function RoiCalculator() {
                   YOUR BUSINESS
                 </span>
                 <div className="mt-5 space-y-4">
+                  <TradeChips tradeId={tradeId} onPick={applyPreset} />
                   <ReceptionistToggle
                     value={inputs.hasReceptionist}
                     onChange={(v) => update("hasReceptionist", v)}
@@ -318,6 +379,47 @@ function Slider({
   );
 }
 
+function TradeChips({
+  tradeId,
+  onPick,
+}: {
+  tradeId: TradeId | null;
+  onPick: (id: TradeId) => void;
+}) {
+  return (
+    <div>
+      <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--muted)] font-semibold">
+        PICK YOUR TRADE — AUTO-FILLS THE NUMBERS
+      </div>
+      <div className="mt-2 flex flex-wrap gap-1.5">
+        {TRADE_PRESETS.map((t) => {
+          const active = t.id === tradeId;
+          return (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => onPick(t.id)}
+              aria-pressed={active}
+              className={`rounded-full px-3 py-1.5 text-[12px] font-semibold tracking-tight transition-all cursor-pointer ${
+                active
+                  ? "bg-[var(--accent)] text-[var(--text-inverse)] shadow-[0_4px_14px_-4px_rgba(34,69,56,0.35)]"
+                  : "bg-[var(--bg)] text-[var(--muted)] border border-[var(--border)] hover:border-[var(--accent)]/50 hover:text-[var(--text)]"
+              }`}
+            >
+              {t.label}
+            </button>
+          );
+        })}
+        {tradeId === null && (
+          <span className="inline-flex items-center rounded-full px-3 py-1.5 text-[12px] font-semibold tracking-tight bg-[var(--accent-bright)]/15 text-[var(--accent)] border border-[var(--accent)]/40">
+            Custom
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function ReceptionistToggle({
   value,
   onChange,
@@ -328,12 +430,20 @@ function ReceptionistToggle({
   return (
     <div className="rounded-xl border border-[var(--accent-bright)]/50 bg-[var(--accent-bright)]/15 p-3.5">
       <span className="font-mono text-[10px] tracking-[0.16em] text-[var(--accent)] font-semibold">
-        DO YOU HAVE A RECEPTIONIST TODAY?
+        WHO ANSWERS YOUR PHONE RIGHT NOW?
       </span>
       <div className="mt-2.5 grid grid-cols-2 gap-2">
         {[
-          { v: false, label: "No", sub: "AI is my receptionist" },
-          { v: true, label: "Yes", sub: "AI as overflow / backup" },
+          {
+            v: false,
+            label: "Nobody",
+            sub: "AI becomes the front desk",
+          },
+          {
+            v: true,
+            label: "I have someone",
+            sub: "AI as overflow + after-hours",
+          },
         ].map((opt) => {
           const selected = value === opt.v;
           return (
@@ -348,7 +458,7 @@ function ReceptionistToggle({
                   : "bg-[var(--card)] text-[var(--text)] hover:bg-white"
               }`}
             >
-              <div className="font-display text-[16px] font-semibold tracking-[-0.01em]">
+              <div className="font-display text-[15px] font-semibold tracking-[-0.01em]">
                 {opt.label}
               </div>
               <div
@@ -364,8 +474,8 @@ function ReceptionistToggle({
       </div>
       <p className="mt-2.5 text-[11px] text-[var(--muted)] leading-[1.5]">
         {value
-          ? "Math drops the front-desk replacement line."
-          : "Math includes a $34k/yr front-desk replacement vs hiring loaded."}
+          ? "Math counts only missed-call recovery and reviews. No staff cuts."
+          : "Math also counts replacing a $34k/yr front-desk seat."}
       </p>
     </div>
   );
