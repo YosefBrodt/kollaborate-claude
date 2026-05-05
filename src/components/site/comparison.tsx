@@ -74,11 +74,11 @@ const ROWS: Row[] = [
 
 export function Comparison() {
   return (
-    <section className="bg-[var(--bg-cream)] py-24 sm:py-32 border-b border-[var(--border)]">
+    <section className="bg-[var(--bg-cream)] py-20 sm:py-24 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <SectionLabel>The honest comparison</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[960px]">
             How we stack up against the other two ways to do this.
           </h2>
           <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">

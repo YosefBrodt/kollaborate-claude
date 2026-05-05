@@ -65,7 +65,7 @@ export function GbpAudit() {
   }
 
   return (
-    <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
+    <section className="bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <FadeUp className="lg:col-span-6">

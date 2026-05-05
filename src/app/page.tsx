@@ -256,7 +256,7 @@ function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative bg-[var(--bg-cream)] py-24 sm:py-32 border-b border-[var(--border)]"
+      className="relative bg-[var(--bg-cream)] py-20 sm:py-24 border-b border-[var(--border)]"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
@@ -264,7 +264,7 @@ function Pricing() {
             <div className="inline-flex">
               <SectionLabel>Pricing</SectionLabel>
             </div>
-            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px]">
+            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px]">
               One team, three ways
               <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
                 to take it off your plate.
@@ -292,11 +292,11 @@ function Pricing() {
 
 function About() {
   return (
-    <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
+    <section className="bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
         <FadeUp className="lg:col-span-5">
           <SectionLabel>Who runs this</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[48px] lg:text-[52px]">
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[32px] sm:text-[40px] lg:text-[44px]">
             Built in Montreal.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               Run by people, not a platform.
@@ -341,14 +341,14 @@ function About() {
 
 function FAQSection() {
   return (
-    <section className="bg-[var(--bg-cream)] py-24 sm:py-32 border-b border-[var(--border)]">
+    <section className="bg-[var(--bg-cream)] py-20 sm:py-24 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
-          <div className="max-w-3xl mx-auto text-center mb-14">
+          <div className="max-w-3xl mx-auto text-center mb-12">
             <div className="inline-flex">
               <SectionLabel>Questions</SectionLabel>
             </div>
-            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[56px]">
+            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[48px]">
               Before you book the call.
             </h2>
           </div>

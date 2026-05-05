@@ -79,12 +79,12 @@ export function RoiCalculator() {
   return (
     <section
       id="roi"
-      className="relative bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]"
+      className="relative bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <SectionLabel>The math</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[960px]">
             Run your own numbers. See what each missed call is costing you.
           </h2>
           <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
@@ -172,7 +172,7 @@ export function RoiCalculator() {
                     transition={{ duration: 0.25 }}
                     className="mt-4 flex items-baseline gap-2"
                   >
-                    <span className="font-display text-[60px] sm:text-[88px] lg:text-[104px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)]">
+                    <span className="font-display text-[48px] sm:text-[64px] lg:text-[76px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)]">
                       {fmtMoney(out.totalGain)}
                     </span>
                     <span className="font-display text-[24px] sm:text-[30px] text-[var(--text-inverse)]/65">

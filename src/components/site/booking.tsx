@@ -68,7 +68,7 @@ export function Booking() {
   return (
     <section
       id="book"
-      className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]"
+      className="bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">

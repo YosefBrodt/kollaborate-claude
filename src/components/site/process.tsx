@@ -51,11 +51,11 @@ export function Process() {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
+    <section className="bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <SectionLabel>How we work</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[900px]">
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[900px]">
             From hello to live on your phones.
             <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
               Ten days or less.

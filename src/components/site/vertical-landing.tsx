@@ -129,7 +129,7 @@ function VerticalHero({ config }: { config: VerticalConfig }) {
 
 function VerticalPain({ config }: { config: VerticalConfig }) {
   return (
-    <section className="bg-[var(--bg)] py-24 sm:py-32 border-b border-[var(--border)]">
+    <section className="bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <SectionLabel>{config.pain.eyebrow}</SectionLabel>
@@ -163,7 +163,7 @@ function VerticalPain({ config }: { config: VerticalConfig }) {
 
 function VerticalScenario({ config }: { config: VerticalConfig }) {
   return (
-    <section className="bg-[var(--bg-dark)] text-[var(--text-inverse)] py-24 sm:py-32 border-b border-[var(--border-on-dark)] relative overflow-hidden">
+    <section className="bg-[var(--bg-dark)] text-[var(--text-inverse)] py-20 sm:py-24 border-b border-[var(--border-on-dark)] relative overflow-hidden">
       <div className="absolute inset-0 grain-dark pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
@@ -209,7 +209,7 @@ function VerticalPricing() {
   return (
     <section
       id="pricing"
-      className="relative bg-[var(--bg-cream)] py-24 sm:py-32 border-b border-[var(--border)]"
+      className="relative bg-[var(--bg-cream)] py-20 sm:py-24 border-b border-[var(--border)]"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>

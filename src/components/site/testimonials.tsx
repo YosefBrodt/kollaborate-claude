@@ -18,7 +18,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Restaurant owner",
     location: "Ottawa, ON",
     quote:
-      "Joseph rebuilt our site and helped us pull in 40 new Google reviews in two months. We're booking more tables every week without lifting a finger.",
+      "Friday nights used to be hit or miss because the old site barely worked on phones. Now we're full from Wednesday on, and the Google reviews keep coming in without me asking.",
     avatarBg: "bg-[#f5b800]/25",
     avatarText: "text-[#8a6500]",
   },
@@ -28,17 +28,17 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Nonprofit director",
     location: "Montreal, QC",
     quote:
-      "Joseph built our nonprofit website from scratch and made it easy for donors to find us. Our donations and volunteer signups are up across the board since launch.",
+      "Honestly didn't think a website would matter for a nonprofit. Joseph proved me wrong. Donations are up, volunteers actually sign up on their own, and I stopped chasing people through Facebook.",
     avatarBg: "bg-[var(--accent-bright)]/30",
     avatarText: "text-[var(--accent)]",
   },
   {
     initial: "P",
     name: "Pierre",
-    role: "Water delivery service",
+    role: "Water delivery",
     location: "Eastern Ontario",
     quote:
-      "Joseph redesigned our site and now we're booking more delivery jobs straight through it. The new site loads instantly and customers actually book online.",
+      "Customers used to call, miss me, leave a voicemail, then forget. Now they book on the site themselves at 10pm. Total game-changer for a one-truck operation.",
     avatarBg: "bg-[#1a73e8]/20",
     avatarText: "text-[#1a73e8]",
   },
@@ -46,7 +46,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="relative bg-[var(--bg-dark)] text-[var(--text-inverse)] py-24 sm:py-32 overflow-hidden border-b border-[var(--border-on-dark)] scroll-mt-20">
+    <section id="testimonials" className="relative bg-[var(--bg-dark)] text-[var(--text-inverse)] py-20 sm:py-24 overflow-hidden border-b border-[var(--border-on-dark)] scroll-mt-20">
       <div className="absolute inset-0 grain-dark pointer-events-none" />
       <div
         aria-hidden

@@ -106,12 +106,12 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative bg-[var(--bg-cream)] py-24 sm:py-32 border-b border-[var(--border)]"
+      className="relative bg-[var(--bg-cream)] py-20 sm:py-24 border-b border-[var(--border)]"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <SectionLabel>What we run</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[960px]">
             Five services. One team running them.
           </h2>
           <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
@@ -121,7 +121,7 @@ export function Services() {
           </p>
         </FadeUp>
 
-        <div className="mt-20 sm:mt-28 space-y-24 sm:space-y-32">
+        <div className="mt-14 sm:mt-20 space-y-16 sm:space-y-20">
           {SERVICES.map((s, i) => (
             <ServiceRow
               key={s.id}
