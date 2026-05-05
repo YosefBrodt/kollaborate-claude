@@ -247,15 +247,16 @@ function Industries() {
           <div className="flex items-center gap-3">
             <span className="h-px w-12 bg-[var(--accent-bright)]" />
             <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
-              BUILT FOR
+              PICK YOURS
             </span>
           </div>
           <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[820px]">
-            Local service businesses that{" "}
-            <span className="text-[var(--accent-bright)]">
-              live or die on the phone.
-            </span>
+            What kind of business{" "}
+            <span className="text-[var(--accent-bright)]">do you run?</span>
           </h2>
+          <p className="mt-6 max-w-[640px] text-[18px] sm:text-[19px] leading-[1.55] text-[var(--text-inverse)]/75">
+            Tap yours to see the playbook tuned for it.
+          </p>
         </FadeUp>
         <FadeUp delay={0.08}>
           <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -292,9 +293,9 @@ function Industries() {
             })}
           </div>
           <p className="mt-9 max-w-[720px] text-[17px] sm:text-[18px] leading-[1.6] text-[var(--text-inverse)]/75">
-            If your business runs on phone calls, walk-ins, bookings, or Google
-            reviews, the stack works. Not built for pure e-commerce or software
-            companies.
+            Don&apos;t see your exact vertical? If your business runs on phone
+            calls, walk-ins, bookings, or Google reviews, the stack works. Not
+            built for pure e-commerce or software companies.
           </p>
         </FadeUp>
       </div>
