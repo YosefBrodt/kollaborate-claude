@@ -42,13 +42,17 @@ const ITEMS = [
   },
   {
     q: "Who actually runs this? Is it really one team?",
-    a: "Yes. Kollaborate is run out of Montreal by Joseph Brodt, with a small technical bench. You get one point of contact, one invoice, one Slack channel. No agency-of-agencies maze. We keep the roster small on purpose: three new clients per month, max.",
+    a: "Yes. Kollaborate is run out of Montreal by Joseph Brodt. You get one point of contact, one invoice, one Slack channel. No agency-of-agencies maze. The roster stays small on purpose so every account gets the same person from kickoff to launch.",
   },
 ];
 
 export function FAQ() {
   return (
-    <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto">
+    <Accordion
+      type="multiple"
+      defaultValue={["item-0", "item-1", "item-2"]}
+      className="w-full max-w-3xl mx-auto"
+    >
       {ITEMS.map((item, i) => (
         <AccordionItem key={i} value={`item-${i}`}>
           <AccordionTrigger>{item.q}</AccordionTrigger>

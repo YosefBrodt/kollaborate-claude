@@ -72,27 +72,24 @@ export function CallDemo() {
     `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
   return (
-    <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50">
+    <div className="hidden sm:block fixed bottom-6 right-6 z-50">
       {status === "idle" && (
         <button
           type="button"
           onClick={start}
-          className="group flex items-center gap-3 rounded-full bg-[var(--accent-bright)] pl-4 pr-5 py-3 shadow-[0_10px_40px_-8px_rgba(0,0,0,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white"
+          className="group flex items-center gap-2.5 rounded-full border border-[var(--accent-bright)]/30 bg-[var(--bg-dark)]/95 backdrop-blur-md pl-3.5 pr-4 py-2.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent-bright)]/60 hover:bg-[var(--bg-dark)]"
         >
-          <span className="relative flex h-3 w-3">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--bg-dark)] opacity-60" />
-            <span className="relative inline-flex h-3 w-3 rounded-full bg-[var(--bg-dark)]" />
-          </span>
-          <span className="text-[14px] font-semibold text-[var(--bg-dark)]">
+          <span className="inline-flex h-2 w-2 rounded-full bg-[var(--accent-bright)]" />
+          <span className="text-[13px] font-medium text-[var(--text-inverse)]">
             Try the receptionist live
           </span>
         </button>
       )}
 
       {status === "connecting" && (
-        <div className="flex items-center gap-3 rounded-full bg-[var(--bg-dark)] pl-4 pr-5 py-3 shadow-lg">
-          <span className="inline-block h-3 w-3 animate-pulse rounded-full bg-[var(--accent-bright)]" />
-          <span className="text-[14px] font-medium text-white">
+        <div className="flex items-center gap-2.5 rounded-full border border-[var(--accent-bright)]/40 bg-[var(--bg-dark)]/95 backdrop-blur-md pl-3.5 pr-4 py-2.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)]">
+          <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[var(--accent-bright)]" />
+          <span className="text-[13px] font-medium text-[var(--text-inverse)]">
             Connecting
           </span>
         </div>
@@ -102,19 +99,19 @@ export function CallDemo() {
         <button
           type="button"
           onClick={stop}
-          className="flex items-center gap-3 rounded-full border border-[var(--accent-bright)]/40 bg-[var(--bg-dark)] pl-4 pr-5 py-3 shadow-lg"
+          className="flex items-center gap-2.5 rounded-full border border-[var(--accent-bright)]/50 bg-[var(--bg-dark)] pl-3.5 pr-4 py-2.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)]"
         >
-          <span className="inline-block h-3 w-3 animate-pulse rounded-full bg-red-500" />
-          <span className="font-mono text-[13px] text-white/85">
+          <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-red-400" />
+          <span className="font-mono text-[12px] text-white/80 tabular-nums">
             {fmt(seconds)}
           </span>
-          <span className="text-[14px] font-semibold text-white">End call</span>
+          <span className="text-[13px] font-medium text-white">End call</span>
         </button>
       )}
 
       {status === "ended" && (
-        <div className="flex items-center gap-3 rounded-full bg-[var(--bg-dark)] pl-4 pr-5 py-3 shadow-lg">
-          <span className="text-[14px] font-medium text-white">
+        <div className="flex items-center gap-2.5 rounded-full border border-[var(--accent-bright)]/30 bg-[var(--bg-dark)]/95 backdrop-blur-md pl-3.5 pr-4 py-2.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)]">
+          <span className="text-[13px] font-medium text-[var(--text-inverse)]">
             Thanks for trying.
           </span>
         </div>

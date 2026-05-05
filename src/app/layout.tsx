@@ -27,7 +27,7 @@ const newsreader = Newsreader({
 const SITE = "https://kollaborate.ca";
 const TITLE = "Kollaborate · We run the five things that grow your business.";
 const DESC =
-  "One team handles call answering, reviews, website, content, and lead follow-up for local service businesses. Replace a $60k front-desk seat for $750/mo.";
+  "AI receptionist plus reviews, website, Google profile, and lead follow-up for local service businesses. Replaces a $52k front-desk seat for $1,499/mo. From $749 without the AI.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

@@ -84,15 +84,9 @@ function Hero() {
       </div>
       <div className="absolute inset-0 grain-dark pointer-events-none" />
 
-      <div className="relative h-full mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-12 sm:pt-32 sm:pb-16 flex flex-col justify-center">
-        <FadeUp onView={false} duration={0.6}>
-          <p className="font-serif italic text-[18px] sm:text-[22px] text-[var(--accent-bright)] tracking-[-0.005em]">
-            Local jobs go to whoever shows up first.
-          </p>
-        </FadeUp>
-
+      <div className="relative h-full mx-auto max-w-7xl px-5 sm:px-8 pt-32 pb-14 sm:pt-32 sm:pb-16 flex flex-col justify-center">
         <FadeUp onView={false} delay={0.06} duration={0.7}>
-          <h1 className="mt-5 sm:mt-6 font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[80px] max-w-[1100px]">
+          <h1 className="font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[80px] max-w-[1100px]">
             We run the five things that grow your business.
             <span className="block mt-2 sm:mt-3 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
               You focus on the work.
@@ -101,7 +95,8 @@ function Hero() {
         </FadeUp>
 
         <FadeUp onView={false} delay={0.14} duration={0.6}>
-          <p className="mt-8 sm:mt-10 max-w-[720px] text-[18px] sm:text-[20px] leading-[1.55] text-[var(--text-inverse)]/85">
+          {/* Desktop: full sentence */}
+          <p className="hidden sm:block mt-10 max-w-[720px] text-[20px] leading-[1.55] text-[var(--text-inverse)]/85">
             We pick up your{" "}
             <span className="font-semibold text-[var(--accent-bright)]">phones</span>
             , chase your{" "}
@@ -116,6 +111,15 @@ function Hero() {
             <span className="text-[var(--text-inverse)]">
               One team. One invoice. Starting at $750 a month.
             </span>
+          </p>
+          {/* Mobile: tightened version, more breathing room */}
+          <p className="sm:hidden mt-8 max-w-[420px] text-[17px] leading-[1.55] text-[var(--text-inverse)]/85">
+            <span className="font-semibold text-[var(--accent-bright)]">Phones</span>,{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">reviews</span>,{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">site</span>,{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">Google profile</span>,{" "}
+            <span className="font-semibold text-[var(--accent-bright)]">leads</span>.{" "}
+            <span className="text-[var(--text-inverse)]">One team. From $750/mo.</span>
           </p>
         </FadeUp>
 
@@ -233,10 +237,8 @@ function Industries() {
   const tiles: { name: string; sub: string; href?: string }[] = [
     { name: "HVAC + Trades", sub: "HVAC, plumbing, electrical, roofing", href: "/hvac" },
     { name: "Restaurants", sub: "Front-of-house and reservations", href: "/restaurants" },
-    { name: "Auto + repair", sub: "Body shops, mechanics, detailing" },
     { name: "Salons + Spas", sub: "Color, lash, brows, med-spa", href: "/salons" },
     { name: "Dental + Med", sub: "Clinics, dentists, specialty practices", href: "/dental" },
-    { name: "Pro services", sub: "Vets, studios, training, cleaning, movers" },
   ];
   return (
     <section className="relative bg-[var(--bg-dark-2)] text-[var(--text-inverse)] py-20 sm:py-24 border-b border-[var(--border-on-dark)]">
@@ -256,7 +258,7 @@ function Industries() {
           </h2>
         </FadeUp>
         <FadeUp delay={0.08}>
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
             {tiles.map((tile) => {
               const inner = (
                 <>
@@ -356,26 +358,17 @@ function About() {
         <FadeUp className="lg:col-span-7" delay={0.1}>
           <div className="space-y-6 max-w-[640px]">
             <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--text)]">
-              Kollaborate is a small agency out of Côte-Saint-Luc. The stack
-              we sell is the stack we built and run ourselves: voice agents
-              answering live, review pipelines wired into POS systems, sites
-              that load in under a second, Google profiles kept alive week to
-              week.
+              Kollaborate is a small Montreal shop. The stack we sell is the
+              stack we built and run ourselves: voice agents answering live,
+              review pipelines wired into POS systems, sites that load in
+              under a second, Google profiles kept alive week to week.
             </p>
             <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--muted)]">
-              The roster stays small on purpose. Three new clients per month,
-              no more. Every account has a direct line to the person doing
-              the work. No account executives, no offshore support, no
-              ticketing maze. When something breaks, you text me. It gets
-              fixed.
+              Every account has a direct line to me. One point of contact, one
+              invoice, one Slack channel. When something breaks, you text me.
+              It gets fixed.
             </p>
             <div className="pt-5 flex flex-wrap gap-8 text-[16px] font-mono tracking-wide text-[var(--muted)]">
-              <div>
-                <span className="text-[var(--text)] font-semibold text-[18px]">
-                  3 / mo
-                </span>{" "}
-                new client cap
-              </div>
               <div>
                 <span className="text-[var(--text)] font-semibold text-[18px]">
                   10 days

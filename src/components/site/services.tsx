@@ -39,6 +39,21 @@ const SERVICES: Service[] = [
     Visual: CallVisual,
   },
   {
+    id: "gbp",
+    eyebrow: "GOOGLE BUSINESS PROFILE",
+    title: "Your Google profile, actively run.",
+    bullets: [
+      "3 Google Business posts a week with real photos",
+      "Categories, services, and hours kept tight for local search",
+      "Every review gets a drafted reply within 24 hours",
+      "Monthly report: views, calls, direction requests",
+    ],
+    detail:
+      "The page where 80% of your local customers find you, treated like a living surface. Fresh posts every week with real photos from your business. Profile categories and services optimized so you show up in the right local searches. Every review reply drafted in your voice within 24 hours. You get a monthly report that ties calls and direction requests back to actual revenue.",
+    result: "The page 80% of local customers see first, kept alive weekly.",
+    Visual: ContentVisual,
+  },
+  {
     id: "reviews",
     eyebrow: "REVIEW AUTOMATION",
     title: "Every happy customer becomes a review.",
@@ -67,21 +82,6 @@ const SERVICES: Service[] = [
       "Fast, professional, built for the industries you actually work in. Live in 7 to 10 days. Every page loads in under a second. You own the code and everything on it. Ready to rank on Google from day one with proper schema, sitemaps, and on-page SEO. Monthly updates mean we keep your hours, services, photos, and seasonal pages current so you never have to log in.",
     result: "Target 95+ Lighthouse on every build, every device.",
     Visual: SiteVisual,
-  },
-  {
-    id: "gbp",
-    eyebrow: "GOOGLE BUSINESS PROFILE",
-    title: "Your Google profile, actively run.",
-    bullets: [
-      "3 Google Business posts a week with real photos",
-      "Categories, services, and hours kept tight for local search",
-      "Every review gets a drafted reply within 24 hours",
-      "Monthly report: views, calls, direction requests",
-    ],
-    detail:
-      "The page where 80% of your local customers find you, treated like a living surface. Fresh posts every week with real photos from your business. Profile categories and services optimized so you show up in the right local searches. Every review reply drafted in your voice within 24 hours. You get a monthly report that ties calls and direction requests back to actual revenue.",
-    result: "The page 80% of local customers see first, kept alive weekly.",
-    Visual: ContentVisual,
   },
   {
     id: "leads",
