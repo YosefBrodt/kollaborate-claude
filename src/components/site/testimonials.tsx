@@ -6,6 +6,9 @@ type Testimonial = {
   role: string;
   location: string;
   quote: string;
+  // Optional live site URL — when set, renders a "View site" link instead of a chip
+  siteUrl?: string;
+  siteLabel?: string;
   // Tailwind-friendly background tint for the avatar circle
   avatarBg: string;
   avatarText: string;
@@ -18,7 +21,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Restaurant owner",
     location: "Ottawa, ON",
     quote:
-      "Friday nights used to be hit or miss because the old site barely worked on phones. Now we're full from Wednesday on, and the Google reviews keep coming in without me asking.",
+      "Joseph rebuilt our site from scratch. It actually works on a phone now, looks like our place feels, and the booking page is clean. Real upgrade from what we had.",
     avatarBg: "bg-[#f5b800]/25",
     avatarText: "text-[#8a6500]",
   },
@@ -28,7 +31,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Nonprofit director",
     location: "Montreal, QC",
     quote:
-      "Honestly didn't think a website would matter for a nonprofit. Joseph proved me wrong. Donations are up, volunteers actually sign up on their own, and I stopped chasing people through Facebook.",
+      "Joseph built our nonprofit's website. Cleaner, faster, easier for donors and volunteers to find what they need. Held up well for us since launch.",
     avatarBg: "bg-[var(--accent-bright)]/30",
     avatarText: "text-[var(--accent)]",
   },
@@ -38,7 +41,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Water delivery",
     location: "Eastern Ontario",
     quote:
-      "Customers used to call, miss me, leave a voicemail, then forget. Now they book on the site themselves at 10pm. Total game-changer for a one-truck operation.",
+      "Joseph rebuilt our site and the booking flow. Loads instantly and customers can place an order without picking up the phone. Solid work.",
     avatarBg: "bg-[#1a73e8]/20",
     avatarText: "text-[#1a73e8]",
   },
@@ -62,15 +65,16 @@ export function Testimonials() {
           <div className="flex items-center gap-3">
             <span className="h-px w-12 bg-[var(--accent-bright)]" />
             <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
-              REAL CLIENTS
+              SITES I&apos;VE BUILT
             </span>
           </div>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] lg:text-[56px] max-w-[920px]">
-            What owners actually say.
+          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[920px]">
+            What owners say about the work.
           </h2>
           <p className="mt-6 max-w-[640px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--text-inverse)]/70">
-            Three businesses I&apos;ve built and currently run sites for. Full
-            case studies and Google review links available on the call.
+            Three businesses I&apos;ve built and currently maintain websites
+            for. Live site links available on the call. Full receptionist and
+            review case studies coming soon.
           </p>
         </FadeUp>
 
@@ -78,26 +82,18 @@ export function Testimonials() {
           {TESTIMONIALS.map((t, i) => (
             <FadeUp key={t.name} delay={i * 0.08}>
               <article className="group h-full flex flex-col rounded-2xl border border-[var(--border-on-dark)] bg-white/[0.03] p-7 sm:p-8 transition-all duration-200 hover:border-[var(--accent-bright)]/40 hover:bg-white/[0.05]">
-                {/* Top row: stars + verified chip */}
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <svg
-                        key={s}
-                        viewBox="0 0 20 20"
-                        fill="#F5B800"
-                        className="h-4 w-4"
-                      >
-                        <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[#0c8a4e]/15 border border-[#0c8a4e]/30 px-2 py-0.5 text-[10px] font-mono font-semibold tracking-wider text-[#0c8a4e]">
-                    <svg viewBox="0 0 16 16" className="h-2.5 w-2.5" fill="currentColor" aria-hidden>
-                      <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm-1.2 11.5L3 7.7l1.4-1.4 2.4 2.4 5-5L13.2 5l-6.4 6.5z" />
+                {/* Top row: 5-star rating */}
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <svg
+                      key={s}
+                      viewBox="0 0 20 20"
+                      fill="#F5B800"
+                      className="h-4 w-4"
+                    >
+                      <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" />
                     </svg>
-                    VERIFIED
-                  </span>
+                  ))}
                 </div>
 
                 {/* Quote */}
@@ -121,6 +117,16 @@ export function Testimonials() {
                       {t.role} · {t.location}
                     </div>
                   </div>
+                  {t.siteUrl && (
+                    <a
+                      href={t.siteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 inline-flex items-center gap-1 rounded-full border border-[var(--accent-bright)]/40 bg-[var(--accent-bright)]/10 px-2.5 py-1 text-[11px] font-mono font-semibold tracking-wider text-[var(--accent-bright)] hover:bg-[var(--accent-bright)]/20 hover:border-[var(--accent-bright)]/70 transition-colors"
+                    >
+                      {t.siteLabel || "VIEW SITE"} ↗
+                    </a>
+                  )}
                 </div>
               </article>
             </FadeUp>
