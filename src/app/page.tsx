@@ -31,8 +31,8 @@ export default function Home() {
         <Process />
         <About />
         <FAQSection />
-        <GbpAudit />
         <Booking />
+        <GbpAudit />
         <FinalCTA />
         <Footer />
       </main>

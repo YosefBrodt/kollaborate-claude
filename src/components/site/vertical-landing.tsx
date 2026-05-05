@@ -28,9 +28,9 @@ export function VerticalLanding({ config }: { config: VerticalConfig }) {
         <VerticalPricing />
         <Comparison />
         <Process />
-        <VerticalFinalCTA config={config} />
-        <GbpAudit />
         <Booking />
+        <GbpAudit />
+        <VerticalFinalCTA config={config} />
         <Footer />
       </main>
       <CallDemo />
