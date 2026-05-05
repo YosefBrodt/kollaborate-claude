@@ -100,39 +100,27 @@ function VerticalBadge({
 }) {
   return (
     <div
-      className={`group inline-flex items-center gap-2 rounded-full pl-3 pr-1 py-1 transition-colors ${
+      className={`group hidden sm:inline-flex items-center gap-2 rounded-full pl-3.5 pr-1.5 py-1 transition-colors ${
         scrolled
-          ? "bg-[var(--accent-bright)]/25 border border-[var(--accent)]/30"
-          : "bg-[var(--accent-bright)]/15 border border-[var(--accent-bright)]/40"
+          ? "bg-[var(--accent)]/8 border border-[var(--accent)]/25"
+          : "bg-white/[0.06] border border-[var(--accent-bright)]/30"
       }`}
       title={`Currently viewing the ${label} page`}
     >
-      <span className="relative flex h-2 w-2">
-        <span
-          className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-60 ${
-            scrolled ? "bg-[var(--accent)]" : "bg-[var(--accent-bright)]"
-          }`}
-        />
-        <span
-          className={`relative inline-flex h-2 w-2 rounded-full ${
-            scrolled ? "bg-[var(--accent)]" : "bg-[var(--accent-bright)]"
-          }`}
-        />
-      </span>
       <span
-        className={`font-mono text-[11px] sm:text-[12px] tracking-[0.14em] font-semibold whitespace-nowrap ${
+        className={`text-[13px] sm:text-[14px] font-medium whitespace-nowrap ${
           scrolled ? "text-[var(--accent)]" : "text-[var(--accent-bright)]"
         }`}
       >
-        {label.toUpperCase()}
+        {label}
       </span>
       <Link
         href="/"
         aria-label="Return to general site"
         className={`grid h-6 w-6 place-items-center rounded-full transition-colors ${
           scrolled
-            ? "hover:bg-[var(--accent)]/15 text-[var(--accent)]/70 hover:text-[var(--accent)]"
-            : "hover:bg-white/15 text-[var(--accent-bright)]/70 hover:text-[var(--accent-bright)]"
+            ? "hover:bg-[var(--accent)]/15 text-[var(--accent)]/60 hover:text-[var(--accent)]"
+            : "hover:bg-white/15 text-[var(--accent-bright)]/60 hover:text-[var(--accent-bright)]"
         }`}
       >
         <svg

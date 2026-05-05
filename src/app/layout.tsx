@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { StickyMobileCTA } from "@/components/site/sticky-mobile-cta";
 import "./globals.css";
 
 const geist = Geist({
@@ -59,6 +60,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
         {children}
+        <StickyMobileCTA />
         <Analytics />
       </body>
     </html>

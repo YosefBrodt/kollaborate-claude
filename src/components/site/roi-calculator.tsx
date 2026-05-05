@@ -85,10 +85,7 @@ export function RoiCalculator() {
         <FadeUp>
           <SectionLabel>The math</SectionLabel>
           <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
-            Run your own numbers.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              See what each missed call is costing you.
-            </span>
+            Run your own numbers. See what each missed call is costing you.
           </h2>
           <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
             Drag the inputs to match your business. The numbers update live.

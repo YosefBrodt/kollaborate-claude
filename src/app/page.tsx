@@ -134,10 +134,10 @@ function Hero() {
               </span>
             </Link>
             <Link
-              href="#services"
+              href="#pricing"
               className="group inline-flex h-16 items-center justify-center gap-2 rounded-full border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] px-8 text-[17px] font-semibold text-[var(--text-inverse)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent-bright)] hover:bg-white/[0.08]"
             >
-              See the five services
+              See pricing first
               <span
                 aria-hidden
                 className="inline-block transition-transform duration-200 group-hover:translate-y-0.5"
@@ -146,6 +146,27 @@ function Hero() {
               </span>
             </Link>
           </div>
+        </FadeUp>
+
+        <FadeUp onView={false} delay={0.32} duration={0.5}>
+          <ul className="mt-7 sm:mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px] sm:text-[15px] text-[var(--text-inverse)]/75">
+            {[
+              "30-day money-back",
+              "Month-to-month, cancel any time",
+              "Live in 10 days",
+              "Direct line to the founder",
+            ].map((item, i) => (
+              <li key={item} className="flex items-center gap-2.5">
+                {i > 0 && (
+                  <span
+                    aria-hidden
+                    className="hidden sm:inline-block h-1 w-1 rounded-full bg-[var(--accent-bright)]/50"
+                  />
+                )}
+                <span className="font-medium">{item}</span>
+              </li>
+            ))}
+          </ul>
         </FadeUp>
       </div>
     </section>
@@ -228,8 +249,8 @@ function Industries() {
             </span>
           </div>
           <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[820px]">
-            Local service businesses that
-            <span className="block mt-1.5 font-serif italic font-medium text-[var(--accent-bright)]">
+            Local service businesses that{" "}
+            <span className="text-[var(--accent-bright)]">
               live or die on the phone.
             </span>
           </h2>

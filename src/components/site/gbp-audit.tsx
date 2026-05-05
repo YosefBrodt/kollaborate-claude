@@ -76,10 +76,7 @@ export function GbpAudit() {
               </span>
             </div>
             <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[48px] lg:text-[56px] max-w-[600px]">
-              Get a free Google Business audit.
-              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-                See what you&apos;re leaving on the table.
-              </span>
+              Get a free Google Business audit. See what you&apos;re leaving on the table.
             </h2>
             <p className="mt-7 max-w-[560px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)]">
               We&apos;ll pull your Google Business profile, run it against the

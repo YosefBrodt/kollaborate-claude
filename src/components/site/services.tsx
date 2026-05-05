@@ -112,10 +112,7 @@ export function Services() {
         <FadeUp>
           <SectionLabel>What we run</SectionLabel>
           <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
-            Five services.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              One team running them.
-            </span>
+            Five services. One team running them.
           </h2>
           <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
             Each of these is already taking a seat on your team. We take the

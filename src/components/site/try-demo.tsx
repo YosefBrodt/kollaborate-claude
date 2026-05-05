@@ -1,10 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { FadeUp } from "@/components/site/fade-up";
-
-const FALLBACK_PHONE = "+15145550125";
-const FALLBACK_DISPLAY = "(514) 555-0125";
 
 function formatPhoneForDisplay(raw: string): string {
   const digits = raw.replace(/\D/g, "");
@@ -20,9 +18,14 @@ function formatPhoneForDisplay(raw: string): string {
 type Status = "idle" | "connecting" | "active" | "ended" | "unconfigured";
 
 export function TryDemo() {
-  const phoneRaw = process.env.NEXT_PUBLIC_DEMO_PHONE || FALLBACK_PHONE;
-  const phoneDisplay = formatPhoneForDisplay(phoneRaw) || FALLBACK_DISPLAY;
-  const phoneTel = phoneRaw.startsWith("+") ? phoneRaw : `+1${phoneRaw.replace(/\D/g, "")}`;
+  const phoneRaw = process.env.NEXT_PUBLIC_DEMO_PHONE;
+  const phoneConfigured = Boolean(phoneRaw);
+  const phoneDisplay = phoneRaw ? formatPhoneForDisplay(phoneRaw) : "";
+  const phoneTel = phoneRaw
+    ? phoneRaw.startsWith("+")
+      ? phoneRaw
+      : `+1${phoneRaw.replace(/\D/g, "")}`
+    : "";
 
   const publicKey = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY;
   const assistantId = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID;
@@ -112,27 +115,43 @@ export function TryDemo() {
               </span>
             </h2>
             <p className="mt-7 max-w-[560px] text-[18px] sm:text-[20px] leading-[1.6] text-[var(--text-inverse)]/80">
-              Most agencies show you a video. We let you call the line. Same
-              voice agent that picks up your customers, answering live in
-              under two rings. Ask it about pricing, booking a 7am Tuesday,
-              what services you offer, whatever.
+              {phoneConfigured || vapiConfigured
+                ? "Most agencies show you a video. We let you talk to the line. Same voice agent that picks up your customers, answering live in under two rings. Ask it about pricing, booking a 7am Tuesday, whatever."
+                : "Most agencies show you a video. We run our voice agent against your actual intake questions live on the discovery call. Fifteen minutes, no slides, no pressure. You judge it yourself."}
             </p>
 
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[540px]">
-              <a
-                href={`tel:${phoneTel}`}
-                className="group flex flex-col rounded-2xl border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] hover:border-[var(--accent-bright)] hover:bg-white/[0.08] px-5 py-5 transition-all hover:-translate-y-0.5"
-              >
-                <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
-                  CALL THE DEMO LINE
-                </span>
-                <span className="mt-3 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.015em] text-[var(--text-inverse)] tabular-nums">
-                  {phoneDisplay}
-                </span>
-                <span className="mt-1 text-[13px] text-[var(--text-inverse)]/55 font-mono tracking-wide">
-                  TAP TO CALL
-                </span>
-              </a>
+              {phoneConfigured ? (
+                <a
+                  href={`tel:${phoneTel}`}
+                  className="group flex flex-col rounded-2xl border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] hover:border-[var(--accent-bright)] hover:bg-white/[0.08] px-5 py-5 transition-all hover:-translate-y-0.5"
+                >
+                  <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+                    CALL THE DEMO LINE
+                  </span>
+                  <span className="mt-3 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.015em] text-[var(--text-inverse)] tabular-nums">
+                    {phoneDisplay}
+                  </span>
+                  <span className="mt-1 text-[13px] text-[var(--text-inverse)]/55 font-mono tracking-wide">
+                    TAP TO CALL
+                  </span>
+                </a>
+              ) : (
+                <Link
+                  href="#book"
+                  className="group flex flex-col rounded-2xl border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] hover:border-[var(--accent-bright)] hover:bg-white/[0.08] px-5 py-5 transition-all hover:-translate-y-0.5"
+                >
+                  <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+                    HEAR IT ON THE CALL
+                  </span>
+                  <span className="mt-3 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.015em] text-[var(--text-inverse)]">
+                    Book a 15-min demo
+                  </span>
+                  <span className="mt-1 text-[13px] text-[var(--text-inverse)]/55 font-mono tracking-wide">
+                    LIVE ON ZOOM
+                  </span>
+                </Link>
+              )}
 
               <BrowserDemoButton
                 vapiConfigured={vapiConfigured}
@@ -145,9 +164,9 @@ export function TryDemo() {
             </div>
 
             <p className="mt-7 text-[13px] sm:text-[14px] text-[var(--text-inverse)]/55 leading-[1.55] max-w-[520px]">
-              Demo line is the same agent your customers would reach. We
-              don&apos;t store your number, don&apos;t spam you, don&apos;t
-              follow up unless you ask.
+              {phoneConfigured
+                ? "Demo line is the same agent your customers would reach. We don't store your number, don't spam you, don't follow up unless you ask."
+                : "No sales sequence. We don't follow up unless you ask. The 15 minutes is yours, walk if it's not a fit."}
             </p>
           </FadeUp>
 

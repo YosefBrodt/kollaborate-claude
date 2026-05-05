@@ -79,10 +79,7 @@ export function Comparison() {
         <FadeUp>
           <SectionLabel>The honest comparison</SectionLabel>
           <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px] max-w-[960px]">
-            How we stack up against
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              the other two ways to do this.
-            </span>
+            How we stack up against the other two ways to do this.
           </h2>
           <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
             Most local businesses are choosing between hiring a front-desk seat

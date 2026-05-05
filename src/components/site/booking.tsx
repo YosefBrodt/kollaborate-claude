@@ -5,11 +5,8 @@ import { useEffect, useRef, useState } from "react";
 const MAILTO =
   "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
 
-const HOURS = [
-  { day: "Mon to Thu", time: "6:00pm to 10:00pm" },
-  { day: "Sunday", time: "10:00am to 10:00pm" },
-  { day: "Fri and Sat", time: "Closed" },
-];
+const DEFAULT_BOOKING_URL =
+  "https://calendly.com/joseph-kollaborate/kollaborate-discovery-call";
 
 type Provider = "cal" | "calendly" | "none";
 
@@ -20,26 +17,51 @@ function detectProvider(url: string | undefined): Provider {
   return "none";
 }
 
+function withCalendlyTheme(baseUrl: string): string {
+  const params = new URLSearchParams({
+    hide_event_type_details: "1",
+    hide_gdpr_banner: "1",
+    primary_color: "224538",
+    text_color: "0F0F0F",
+    background_color: "F8F1DB",
+  });
+  const sep = baseUrl.includes("?") ? "&" : "?";
+  return `${baseUrl}${sep}${params.toString()}`;
+}
+
 export function Booking() {
-  const url = process.env.NEXT_PUBLIC_BOOKING_URL;
-  const provider = detectProvider(url);
-  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const rawUrl = process.env.NEXT_PUBLIC_BOOKING_URL || DEFAULT_BOOKING_URL;
+  const provider = detectProvider(rawUrl);
+  const url =
+    provider === "calendly" ? withCalendlyTheme(rawUrl) : rawUrl;
+  const [widgetLoaded, setWidgetLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (provider !== "calendly" || !url) return;
     const w = window as unknown as { Calendly?: unknown };
-    if (w.Calendly) return;
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      try {
-        document.body.removeChild(script);
-      } catch {
-        /* already removed */
+    if (!w.Calendly) {
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    function onMessage(e: MessageEvent) {
+      if (typeof e.origin !== "string" || !e.origin.includes("calendly.com"))
+        return;
+      const data = e.data as { event?: string } | undefined;
+      if (data?.event && data.event.indexOf("calendly.") === 0) {
+        setWidgetLoaded(true);
       }
+    }
+    window.addEventListener("message", onMessage);
+
+    const fallback = window.setTimeout(() => setWidgetLoaded(true), 4000);
+
+    return () => {
+      window.removeEventListener("message", onMessage);
+      window.clearTimeout(fallback);
     };
   }, [provider, url]);
 
@@ -57,11 +79,8 @@ export function Booking() {
                 Book a 15-minute call
               </span>
             </div>
-            <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[480px]">
-              Pick a time.
-              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-                I show up live.
-              </span>
+            <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[480px] text-[var(--text)]">
+              Pick a time. I show up live.
             </h2>
             <p className="mt-7 text-[17px] sm:text-[18px] leading-[1.6] text-[var(--muted)] max-w-[440px]">
               Fifteen minutes on Zoom. We run the voice agent against your
@@ -69,37 +88,24 @@ export function Booking() {
               walk. No pressure, no follow-up sequence.
             </p>
 
-            <div className="mt-9 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6">
-              <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--muted)] font-semibold">
-                AVAILABILITY
-              </span>
-              <ul className="mt-5 space-y-3.5">
-                {HOURS.map((h) => (
-                  <li
-                    key={h.day}
-                    className="flex items-baseline justify-between gap-4"
-                  >
-                    <span className="text-[15px] sm:text-[16px] text-[var(--text)] font-medium">
-                      {h.day}
-                    </span>
-                    <span
-                      className={`font-mono text-[14px] tabular-nums ${
-                        h.time === "Closed"
-                          ? "text-[var(--muted)]/70"
-                          : "text-[var(--accent)]"
-                      }`}
-                    >
-                      {h.time}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-5 pt-5 border-t border-[var(--border)] text-[13px] text-[var(--muted)] leading-[1.5] font-mono tracking-wide">
-                EASTERN TIME · KOLLABORATE.CA · MTL
-              </p>
-            </div>
+            <ul className="mt-9 space-y-4 max-w-[440px]">
+              {[
+                "15 minutes, on Zoom, founder on the call",
+                "Voice agent runs against your actual intake live",
+                "No slides, no contract, no follow-up sequence",
+                "Walk if it isn't a fit, that is the whole point",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3.5 text-[16px] sm:text-[17px] leading-[1.55] text-[var(--text)]"
+                >
+                  <BookingCheck />
+                  <span className="font-medium">{item}</span>
+                </li>
+              ))}
+            </ul>
 
-            <p className="mt-7 text-[14px] text-[var(--muted)]">
+            <p className="mt-9 text-[14px] text-[var(--muted)]">
               Prefer email? Write me at{" "}
               <a
                 href={MAILTO}
@@ -119,11 +125,11 @@ export function Booking() {
             >
               {provider === "cal" && url && (
                 <>
-                  {!iframeLoaded && <BookingSkeleton />}
+                  {!widgetLoaded && <BookingSkeleton />}
                   <iframe
                     title="Book a 15-minute call with Joseph"
                     src={url}
-                    onLoad={() => setIframeLoaded(true)}
+                    onLoad={() => setWidgetLoaded(true)}
                     className="block w-full"
                     style={{ height: 720, border: 0 }}
                     loading="lazy"
@@ -133,11 +139,16 @@ export function Booking() {
               )}
 
               {provider === "calendly" && url && (
-                <div
-                  className="calendly-inline-widget"
-                  data-url={url}
-                  style={{ minWidth: 320, height: 720 }}
-                />
+                <>
+                  {!widgetLoaded && <BookingSkeleton />}
+                  <div
+                    className={`calendly-inline-widget transition-opacity duration-300 ${
+                      widgetLoaded ? "opacity-100" : "opacity-0"
+                    }`}
+                    data-url={url}
+                    style={{ minWidth: 320, height: 720 }}
+                  />
+                </>
               )}
 
               {provider === "none" && <BookingFallback />}
@@ -146,6 +157,27 @@ export function Booking() {
         </div>
       </div>
     </section>
+  );
+}
+
+function BookingCheck() {
+  return (
+    <span
+      aria-hidden
+      className="mt-[3px] grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-[var(--accent-bright)]/40"
+    >
+      <svg
+        viewBox="0 0 16 16"
+        className="h-[12px] w-[12px] text-[var(--accent)]"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3 8.5l3.25 3.25L13 5" />
+      </svg>
+    </span>
   );
 }
 
