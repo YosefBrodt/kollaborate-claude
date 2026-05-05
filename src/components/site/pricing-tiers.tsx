@@ -154,17 +154,17 @@ function TierCard({ tier }: { tier: Tier }) {
       </div>
 
       {/* Price */}
-      <div className="mt-7 pb-7 border-b border-[var(--border)]/40 lg:border-[currentColor]/10">
+      <div className="mt-5 pb-5 border-b border-[var(--border)]/40 lg:border-[currentColor]/10">
         <div className="flex items-baseline gap-1.5">
           <span
-            className={`font-display text-[52px] sm:text-[60px] font-semibold tracking-[-0.04em] leading-none ${
+            className={`font-display text-[44px] sm:text-[52px] font-semibold tracking-[-0.04em] leading-none ${
               highlight ? "text-[var(--accent-bright)]" : "text-[var(--text)]"
             }`}
           >
             ${fmt(monthly)}
           </span>
           <span
-            className={`font-display text-[20px] ${
+            className={`font-display text-[18px] ${
               highlight ? "text-[var(--text-inverse)]/65" : "text-[var(--muted)]"
             }`}
           >

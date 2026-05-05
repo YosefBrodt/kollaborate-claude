@@ -79,15 +79,15 @@ export function RoiCalculator() {
   return (
     <section
       id="roi"
-      className="relative bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]"
+      className="relative bg-[var(--bg)] py-16 sm:py-20 border-b border-[var(--border)]"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <FadeUp>
           <SectionLabel>The math</SectionLabel>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[960px]">
+          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[32px] sm:text-[40px] lg:text-[44px] max-w-[960px]">
             Run your own numbers. See what each missed call is costing you.
           </h2>
-          <p className="mt-7 max-w-[720px] text-[19px] sm:text-[21px] leading-[1.6] text-[var(--muted)]">
+          <p className="mt-5 max-w-[720px] text-[17px] sm:text-[18px] leading-[1.55] text-[var(--muted)]">
             Drag the inputs to match your business. The numbers update live.
             Math uses standard local-service close rates and review response
             data, not made-up multipliers.
@@ -95,14 +95,14 @@ export function RoiCalculator() {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-          <div className="mt-16 sm:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10">
+          <div className="mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             {/* Inputs */}
             <div className="lg:col-span-5">
-              <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 sm:p-8">
-                <span className="font-mono text-[13px] tracking-[0.18em] text-[var(--muted)] font-semibold">
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6">
+                <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--muted)] font-semibold">
                   YOUR BUSINESS
                 </span>
-                <div className="mt-7 space-y-7">
+                <div className="mt-5 space-y-4">
                   <ReceptionistToggle
                     value={inputs.hasReceptionist}
                     onChange={(v) => update("hasReceptionist", v)}
@@ -159,10 +159,10 @@ export function RoiCalculator() {
 
             {/* Output */}
             <div className="lg:col-span-7">
-              <div className="rounded-2xl bg-[var(--bg-dark)] text-[var(--text-inverse)] p-8 sm:p-10 border border-[var(--accent-bright)]/30 shadow-[0_28px_70px_-28px_rgba(12,31,26,0.5)] relative overflow-hidden">
+              <div className="rounded-2xl bg-[var(--bg-dark)] text-[var(--text-inverse)] p-6 sm:p-7 border border-[var(--accent-bright)]/30 shadow-[0_28px_70px_-28px_rgba(12,31,26,0.5)] relative overflow-hidden">
                 <div className="absolute inset-0 grain-dark pointer-events-none" />
                 <div className="relative z-10">
-                  <span className="font-mono text-[13px] tracking-[0.18em] text-[var(--accent-bright)] font-semibold">
+                  <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent-bright)] font-semibold">
                     YOUR ANNUAL UPSIDE
                   </span>
                   <motion.div
@@ -170,21 +170,21 @@ export function RoiCalculator() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.25 }}
-                    className="mt-4 flex items-baseline gap-2"
+                    className="mt-3 flex items-baseline gap-2"
                   >
-                    <span className="font-display text-[48px] sm:text-[64px] lg:text-[76px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)]">
+                    <span className="font-display text-[40px] sm:text-[52px] lg:text-[60px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)]">
                       {fmtMoney(out.totalGain)}
                     </span>
-                    <span className="font-display text-[24px] sm:text-[30px] text-[var(--text-inverse)]/65">
+                    <span className="font-display text-[20px] sm:text-[24px] text-[var(--text-inverse)]/65">
                       /yr
                     </span>
                   </motion.div>
-                  <p className="mt-6 text-[16px] sm:text-[18px] leading-[1.55] text-[var(--text-inverse)]/85 max-w-[520px]">
+                  <p className="mt-4 text-[15px] sm:text-[16px] leading-[1.55] text-[var(--text-inverse)]/85 max-w-[520px]">
                     What this stack puts back into your business each year,
                     based on the inputs you just set. Net of what you pay us.
                   </p>
 
-                  <div className="mt-9 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <Stat
                       label="Missed calls recovered"
                       value={fmt(out.recoveredJobs) + " jobs/yr"}
@@ -210,25 +210,25 @@ export function RoiCalculator() {
                     />
                   </div>
 
-                  <div className="mt-9 pt-8 border-t border-[var(--border-on-dark)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+                  <div className="mt-6 pt-5 border-t border-[var(--border-on-dark)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
-                      <div className="font-mono text-[12px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-semibold">
+                      <div className="font-mono text-[11px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-semibold">
                         ROI VS FULL STACK ($1,499 / MO)
                       </div>
-                      <div className="mt-2 font-display text-[30px] sm:text-[36px] font-semibold tracking-[-0.025em] text-[var(--accent-bright)]">
+                      <div className="mt-1 font-display text-[26px] sm:text-[30px] font-semibold tracking-[-0.025em] text-[var(--accent-bright)]">
                         {out.roiMultiple.toFixed(1)}x return
                       </div>
                     </div>
                     <a
                       href="#pricing"
-                      className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-7 text-[16px] font-semibold text-[var(--bg-dark)] transition-all hover:-translate-y-0.5 hover:bg-white"
+                      className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-6 text-[15px] font-semibold text-[var(--bg-dark)] transition-all hover:-translate-y-0.5 hover:bg-white"
                     >
                       Pick a plan that captures this →
                     </a>
                   </div>
                 </div>
               </div>
-              <p className="mt-5 text-[13px] sm:text-[14px] text-[var(--muted)] leading-[1.55] max-w-[640px]">
+              <p className="mt-4 text-[12px] sm:text-[13px] text-[var(--muted)] leading-[1.55] max-w-[640px]">
                 Math: missed calls recovered at a 30% close rate on inbound,
                 review uplift assumes 22% response on auto-ask, front-desk
                 replacement assumes a $52k loaded annual seat. Conservative
@@ -266,14 +266,14 @@ function Slider({
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <label className="text-[15px] sm:text-[16px] font-medium text-[var(--text)]">
+        <label className="text-[14px] sm:text-[15px] font-medium text-[var(--text)]">
           {label}
         </label>
-        <span className="font-display text-[24px] sm:text-[26px] font-semibold tracking-[-0.02em] text-[var(--accent)] tabular-nums">
+        <span className="font-display text-[20px] sm:text-[22px] font-semibold tracking-[-0.02em] text-[var(--accent)] tabular-nums">
           {prefix}
           {fmt(value)}
           {suffix && (
-            <span className="ml-1 text-[15px] text-[var(--muted)] font-mono">
+            <span className="ml-1 text-[13px] text-[var(--muted)] font-mono">
               {suffix}
             </span>
           )}
@@ -286,7 +286,7 @@ function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-3 w-full h-2 cursor-pointer appearance-none bg-[var(--border)] rounded-full
+        className="mt-2 w-full h-2 cursor-pointer appearance-none bg-[var(--border)] rounded-full
           [&::-webkit-slider-thumb]:appearance-none
           [&::-webkit-slider-thumb]:h-5
           [&::-webkit-slider-thumb]:w-5
@@ -310,7 +310,7 @@ function Slider({
         }}
       />
       {helper && (
-        <p className="mt-2 text-[13px] text-[var(--muted)] leading-[1.45]">
+        <p className="mt-1.5 text-[12px] text-[var(--muted)] leading-[1.4]">
           {helper}
         </p>
       )}
@@ -326,11 +326,11 @@ function ReceptionistToggle({
   onChange: (v: boolean) => void;
 }) {
   return (
-    <div className="rounded-xl border border-[var(--accent-bright)]/50 bg-[var(--accent-bright)]/15 p-4">
-      <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent)] font-semibold">
+    <div className="rounded-xl border border-[var(--accent-bright)]/50 bg-[var(--accent-bright)]/15 p-3.5">
+      <span className="font-mono text-[10px] tracking-[0.16em] text-[var(--accent)] font-semibold">
         DO YOU HAVE A RECEPTIONIST TODAY?
       </span>
-      <div className="mt-3 grid grid-cols-2 gap-2">
+      <div className="mt-2.5 grid grid-cols-2 gap-2">
         {[
           { v: false, label: "No", sub: "AI is my receptionist" },
           { v: true, label: "Yes", sub: "AI as overflow / backup" },
@@ -342,17 +342,17 @@ function ReceptionistToggle({
               type="button"
               onClick={() => onChange(opt.v)}
               aria-pressed={selected}
-              className={`text-left rounded-lg px-4 py-3 transition-all cursor-pointer ${
+              className={`text-left rounded-lg px-3.5 py-2.5 transition-all cursor-pointer ${
                 selected
                   ? "bg-[var(--accent)] text-[var(--text-inverse)] shadow-[0_4px_14px_-4px_rgba(34,69,56,0.35)]"
                   : "bg-[var(--card)] text-[var(--text)] hover:bg-white"
               }`}
             >
-              <div className="font-display text-[18px] font-semibold tracking-[-0.01em]">
+              <div className="font-display text-[16px] font-semibold tracking-[-0.01em]">
                 {opt.label}
               </div>
               <div
-                className={`mt-0.5 text-[12px] leading-[1.35] ${
+                className={`mt-0.5 text-[11px] leading-[1.35] ${
                   selected ? "text-[var(--text-inverse)]/75" : "text-[var(--muted)]"
                 }`}
               >
@@ -362,9 +362,9 @@ function ReceptionistToggle({
           );
         })}
       </div>
-      <p className="mt-3 text-[12px] text-[var(--muted)] leading-[1.5]">
+      <p className="mt-2.5 text-[11px] text-[var(--muted)] leading-[1.5]">
         {value
-          ? "Math drops the front-desk replacement line. We pitch you missed-call recovery + reviews, not staff cuts."
+          ? "Math drops the front-desk replacement line."
           : "Math includes a $34k/yr front-desk replacement vs hiring loaded."}
       </p>
     </div>
@@ -381,14 +381,14 @@ function Stat({
   sub: string;
 }) {
   return (
-    <div className="rounded-xl border border-[var(--border-on-dark)] bg-white/[0.04] p-5">
-      <div className="font-mono text-[11px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-semibold">
+    <div className="rounded-xl border border-[var(--border-on-dark)] bg-white/[0.04] p-4">
+      <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-semibold">
         {label.toUpperCase()}
       </div>
-      <div className="mt-3 font-display text-[24px] sm:text-[26px] font-semibold tracking-[-0.02em] text-[var(--text-inverse)] tabular-nums">
+      <div className="mt-2 font-display text-[20px] sm:text-[22px] font-semibold tracking-[-0.02em] text-[var(--text-inverse)] tabular-nums">
         {value}
       </div>
-      <div className="mt-1 text-[13px] text-[var(--text-inverse)]/55 font-mono tracking-wide">
+      <div className="mt-0.5 text-[12px] text-[var(--text-inverse)]/55 font-mono tracking-wide">
         {sub}
       </div>
     </div>
