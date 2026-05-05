@@ -11,6 +11,7 @@ import { TryDemo } from "@/components/site/try-demo";
 import { RoiCalculator } from "@/components/site/roi-calculator";
 import { Comparison } from "@/components/site/comparison";
 import { GbpAudit } from "@/components/site/gbp-audit";
+import { DemoHero } from "@/components/site/demo-hero";
 
 const MAILTO =
   "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
@@ -21,7 +22,7 @@ export default function Home() {
       <Header />
       <main id="top">
         <Hero />
-        <HeroStats />
+        <DemoHero />
         <Industries />
         <Services />
         <TryDemo />
@@ -172,60 +173,6 @@ function Hero() {
             ))}
           </ul>
         </FadeUp>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- HERO STATS (separated from video hero) ---------- */
-
-function HeroStats() {
-  const stats = [
-    {
-      big: "$140k+",
-      unit: "/yr",
-      label: "typical recovered upside for a local-service business",
-      note: "missed calls + reviews, run your own numbers below",
-    },
-    {
-      big: "2",
-      unit: "rings",
-      label: "average pickup, day or night",
-      note: "every call answered, no voicemail, no callback chase",
-    },
-    {
-      big: "40",
-      unit: "/mo",
-      label: "new Google reviews captured automatically",
-      note: "vs ~2 today on a typical paid-ticket profile",
-    },
-  ];
-  return (
-    <section className="relative bg-[var(--bg-dark)] text-[var(--text-inverse)] py-20 sm:py-24 overflow-hidden">
-      <div className="absolute inset-0 grain-dark pointer-events-none" />
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--border-on-dark)] rounded-2xl overflow-hidden border border-[var(--border-on-dark)]">
-          {stats.map((s, i) => (
-            <FadeUp key={s.big} delay={i * 0.08} duration={0.6} travel={24}>
-              <div className="h-full bg-[var(--bg-dark-2)] p-8 sm:p-10">
-                <div className="flex items-baseline gap-1.5">
-                  <span className="font-display text-[56px] sm:text-[64px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)]">
-                    {s.big}
-                  </span>
-                  <span className="font-display text-[28px] sm:text-[32px] text-[var(--text-inverse)]/60">
-                    {s.unit}
-                  </span>
-                </div>
-                <p className="mt-6 text-[18px] sm:text-[20px] text-[var(--text-inverse)]/95 leading-[1.4] font-semibold">
-                  {s.label}
-                </p>
-                <p className="mt-3 text-[14px] sm:text-[15px] text-[var(--text-inverse)]/55 font-mono tracking-wide">
-                  {s.note}
-                </p>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
       </div>
     </section>
   );

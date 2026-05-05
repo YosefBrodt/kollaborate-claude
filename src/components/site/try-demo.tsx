@@ -342,17 +342,24 @@ function PhoneMock() {
             </div>
           </div>
 
-          {/* Wave bars */}
-          <div className="absolute inset-x-0 bottom-10 px-6 flex items-end gap-1 h-8">
-            {Array.from({ length: 32 }).map((_, i) => (
-              <span
-                key={i}
-                className="flex-1 rounded-full bg-[var(--accent-bright)]/65"
-                style={{
-                  height: `${30 + Math.abs(Math.sin(i * 1.4)) * 70}%`,
-                }}
-              />
-            ))}
+          {/* Wave bars — continuously animated */}
+          <div className="absolute inset-x-0 bottom-10 px-6 flex items-center justify-center gap-[3px] h-12">
+            {Array.from({ length: 32 }).map((_, i) => {
+              const variants = [0.7, 1.0, 0.85, 1.15, 0.95, 1.05, 0.8];
+              const dur = 0.85 + variants[i % variants.length] * 0.5;
+              const delay = ((i * 0.073) % 1.4).toFixed(2);
+              return (
+                <span
+                  key={i}
+                  className="block w-[3px] h-full rounded-full bg-[var(--accent-bright)] animate-voice-wave"
+                  style={{
+                    animationDuration: `${dur}s`,
+                    animationDelay: `${delay}s`,
+                    opacity: 0.4 + (i % 4) * 0.15,
+                  }}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

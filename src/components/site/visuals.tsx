@@ -40,22 +40,32 @@ export function CallVisual() {
             </span>
           </div>
         </div>
-        <div className="mt-3 flex items-end gap-0.5 h-8">
-          {[3, 6, 4, 8, 5, 7, 3, 9, 4, 6, 5, 7, 4, 8, 3, 6, 5, 7, 4, 8].map(
-            (h, i) => (
-              <div
+        <div className="mt-3 flex items-center gap-[3px] h-10">
+          {Array.from({ length: 28 }).map((_, i) => {
+            const variants = [0.7, 1.0, 0.85, 1.15, 0.95, 1.05, 0.8];
+            const dur = 0.85 + variants[i % variants.length] * 0.45;
+            const delay = ((i * 0.073) % 1.4).toFixed(2);
+            return (
+              <span
                 key={i}
-                style={{ height: `${h * 10}%` }}
-                className="flex-1 rounded-sm bg-[var(--accent-bright)]/70"
+                className="block flex-1 h-full rounded-full bg-[var(--accent-bright)] animate-voice-wave"
+                style={{
+                  animationDuration: `${dur}s`,
+                  animationDelay: `${delay}s`,
+                  opacity: 0.45 + (i % 4) * 0.15,
+                }}
               />
-            )
-          )}
+            );
+          })}
         </div>
         <a
           href="#demo"
-          className="mt-4 group inline-flex items-center justify-center gap-2 rounded-full border border-[var(--accent-bright)]/40 bg-white/[0.04] hover:bg-white/[0.08] hover:border-[var(--accent-bright)] px-4 py-2.5 font-mono text-[12px] tracking-[0.14em] font-semibold text-[var(--accent-bright)] transition-all"
+          className="mt-4 group relative inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)]/15 hover:bg-[var(--accent-bright)] border border-[var(--accent-bright)]/60 hover:border-[var(--accent-bright)] px-4 py-2.5 font-mono text-[12px] tracking-[0.14em] font-semibold text-[var(--accent-bright)] hover:text-[var(--bg-dark)] transition-all duration-200 animate-breathe-pulse hover:-translate-y-0.5"
         >
-          <span className="inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent-bright)]" />
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent-bright)] opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent-bright)] group-hover:bg-[var(--bg-dark)]" />
+          </span>
           TALK TO IT LIVE
           <span aria-hidden className="transition-transform duration-200 group-hover:translate-y-0.5">
             ↓
@@ -193,80 +203,158 @@ export function ReviewVisual() {
 
 export function SiteVisual() {
   return (
-    <div className="relative h-full min-h-[260px] w-full rounded-2xl border border-[var(--border)] bg-[var(--bg-cream)] p-4 overflow-hidden">
-      <div className="rounded-xl bg-[var(--card)] shadow-[0_1px_0_var(--border)] border border-[var(--border)] overflow-hidden">
+    <div className="relative w-full">
+      {/* Macbook-style window */}
+      <div className="rounded-2xl overflow-hidden bg-[#1a1d1b] shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)] border border-black/20">
         {/* Browser chrome */}
-        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[var(--border)] bg-[var(--bg)]">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#E8B04B]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#D4D0C5]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#D4D0C5]" />
-          <span className="ml-2 flex-1 rounded-md bg-[var(--card)] px-2 py-0.5 font-mono text-[9px] text-[var(--muted)] border border-[var(--border)]">
-            goldencomforthvac.ca
+        <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#1a1d1b] border-b border-black/40">
+          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+          <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+          <div className="ml-3 flex-1 flex items-center gap-1.5 rounded-md bg-[#0a0b0a] px-2.5 py-1 font-mono text-[10px] text-white/65 border border-white/5">
+            <svg viewBox="0 0 16 16" className="h-2.5 w-2.5 text-[#10b981] shrink-0" fill="currentColor" aria-hidden>
+              <path d="M5 7V5a3 3 0 1 1 6 0v2h1v7H4V7h1zm1 0h4V5a2 2 0 0 0-4 0v2z" />
+            </svg>
+            <span className="truncate">goldencomforthvac.ca</span>
+          </div>
+          <span className="hidden sm:inline-flex items-center gap-1 font-mono text-[9px] text-white/45 px-2 py-0.5 rounded bg-white/5 border border-white/10">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#10b981]" />
+            0.8s
           </span>
         </div>
 
-        {/* Site nav */}
-        <div className="flex items-center justify-between px-3.5 py-1.5 border-b border-[var(--border)]">
-          <span className="font-display text-[10.5px] font-semibold tracking-[-0.01em]">
-            Golden Comfort
-          </span>
-          <div className="hidden sm:flex gap-3 font-mono text-[8px] tracking-wider text-[var(--muted)]">
-            <span>SERVICES</span>
-            <span>AREAS</span>
-            <span>ABOUT</span>
-          </div>
-          <span className="inline-flex h-[18px] items-center rounded bg-[var(--accent)] px-1.5 text-[8px] font-medium text-white">
-            BOOK
-          </span>
-        </div>
-
-        {/* Hero */}
-        <div className="px-3.5 py-3.5">
-          <div className="font-mono text-[8px] tracking-wider text-[var(--accent)]">
-            HVAC · OTTAWA
-          </div>
-          <div className="mt-1 font-display text-[15.5px] font-semibold tracking-[-0.02em] leading-[1.15]">
-            Ottawa&apos;s most booked
-            <br />
-            HVAC team.
-          </div>
-          <div className="mt-1.5 text-[10px] text-[var(--muted)] leading-relaxed">
-            Furnace, AC, and emergency service across the National Capital
-            Region. Licensed, insured, 24/7.
-          </div>
-          <div className="mt-2.5 flex items-center gap-1.5">
-            <span className="inline-flex h-6 items-center rounded-md bg-[var(--accent)] px-2 text-[9.5px] font-medium text-white">
-              Book a tech
-            </span>
-            <span className="inline-flex h-6 items-center rounded-md border border-[var(--border)] px-2 text-[9.5px] font-medium">
-              Get a quote
-            </span>
-          </div>
-
-          {/* Trust strip */}
-          <div className="mt-3 flex items-center gap-2 pt-2 border-t border-[var(--border)]">
-            <div className="flex gap-0.5">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <svg
-                  key={i}
-                  viewBox="0 0 20 20"
-                  fill="#F5B800"
-                  className="h-2.5 w-2.5"
-                >
-                  <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" />
-                </svg>
-              ))}
+        {/* Site content */}
+        <div className="bg-white">
+          {/* Top nav */}
+          <div className="flex items-center justify-between px-4 py-2.5 border-b border-black/5">
+            <div className="flex items-center gap-1.5">
+              <span className="grid h-5 w-5 place-items-center rounded bg-[var(--accent)] text-white text-[10px] font-bold">
+                G
+              </span>
+              <span className="font-display text-[12px] font-semibold tracking-[-0.01em] text-[#0d1f1a]">
+                Golden Comfort
+              </span>
             </div>
-            <span className="font-mono text-[8.5px] text-[var(--muted)]">
-              4.9 · 482 reviews
-            </span>
-            <span className="ml-auto flex items-center gap-1.5 font-mono text-[8px] text-[var(--muted)]">
-              <span>● 98 PERF</span>
-              <span>● 100 A11Y</span>
-            </span>
+            <div className="flex items-center gap-2.5">
+              <span className="hidden sm:inline font-mono text-[8.5px] tracking-[0.14em] text-[#5f6368] font-semibold">
+                SERVICES · AREAS · ABOUT
+              </span>
+              <span className="inline-flex h-6 items-center rounded-md bg-[var(--accent)] px-2.5 text-[9.5px] font-semibold text-white">
+                BOOK A TECH
+              </span>
+            </div>
+          </div>
+
+          {/* Hero with gradient + radial accent */}
+          <div className="relative px-4 py-5 overflow-hidden">
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(135deg, #d0e8db 0%, #f8f5e8 55%, #f3ebd0 100%)",
+              }}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 opacity-40"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 78% 20%, rgba(34,69,56,0.22), transparent 60%)",
+              }}
+            />
+            {/* Decorative HVAC silhouette icon */}
+            <svg
+              aria-hidden
+              viewBox="0 0 64 64"
+              className="absolute right-3 bottom-3 h-16 w-16 text-[var(--accent)]/15"
+              fill="currentColor"
+            >
+              <path d="M10 14h44a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4zm2 6v18h40V20H12zm6 4h6v4h-6v-4zm10 0h6v4h-6v-4zm10 0h6v4h-6v-4zM18 32h6v4h-6v-4zm10 0h6v4h-6v-4zm10 0h6v4h-6v-4z" />
+            </svg>
+            <div className="relative">
+              <div className="font-mono text-[8.5px] tracking-[0.16em] text-[var(--accent)] font-semibold">
+                HVAC · OTTAWA · 24/7 EMERGENCY
+              </div>
+              <div className="mt-1.5 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.025em] leading-[1.05] text-[#0d1f1a]">
+                Ottawa&apos;s most booked
+                <br />
+                HVAC team.
+              </div>
+              <div className="mt-2 text-[10.5px] text-[#3c4043] leading-snug max-w-[260px]">
+                Furnace, AC, and emergency service across the National Capital
+                Region. Licensed, insured, 24/7.
+              </div>
+              <div className="mt-3.5 flex items-center gap-1.5">
+                <span className="inline-flex h-7 items-center gap-1 rounded-md bg-[var(--accent)] px-2.5 text-[10px] font-semibold text-white">
+                  Book a tech →
+                </span>
+                <span className="inline-flex h-7 items-center rounded-md border border-[var(--accent)]/40 bg-white px-2.5 text-[10px] font-semibold text-[var(--accent)]">
+                  Get a quote
+                </span>
+              </div>
+              <div className="mt-3.5 flex items-center gap-2">
+                <div className="flex gap-0.5">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <svg key={i} viewBox="0 0 20 20" fill="#F5B800" className="h-2.5 w-2.5">
+                      <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" />
+                    </svg>
+                  ))}
+                </div>
+                <span className="font-mono text-[8.5px] text-[#5f6368] font-medium">
+                  4.9 · 482 Google reviews
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Service tile row */}
+          <div className="px-4 pt-3 pb-4 grid grid-cols-3 gap-1.5">
+            {[
+              { name: "Furnace", icon: "🔥" },
+              { name: "Air conditioning", icon: "❄" },
+              { name: "Emergency", icon: "⚡" },
+            ].map((s) => (
+              <div
+                key={s.name}
+                className="rounded-md border border-black/5 bg-[#fafafa] px-2 py-2"
+              >
+                <div className="font-display text-[10px] font-semibold tracking-[-0.01em] text-[#0d1f1a] truncate">
+                  {s.name}
+                </div>
+                <div className="mt-0.5 font-mono text-[8px] tracking-[0.14em] text-[var(--accent)] font-semibold">
+                  VIEW →
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
+      {/* Lighthouse score chips below the window */}
+      <div className="mt-4 flex items-center justify-center flex-wrap gap-1.5">
+        {[
+          { label: "PERFORMANCE", val: 98 },
+          { label: "ACCESSIBILITY", val: 100 },
+          { label: "BEST PRACTICES", val: 100 },
+          { label: "SEO", val: 100 },
+        ].map((s) => (
+          <div
+            key={s.label}
+            className="flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--card)] px-2.5 py-1"
+          >
+            <span className="grid h-5 w-5 place-items-center rounded-full bg-[#0c8a4e] text-[9px] font-bold text-white tabular-nums">
+              {s.val}
+            </span>
+            <span className="font-mono text-[9px] tracking-[0.12em] text-[var(--muted)] font-semibold">
+              {s.label}
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="mt-2 text-center font-mono text-[10px] tracking-wide text-[var(--muted)]">
+        REAL LIGHTHOUSE TARGET ON EVERY BUILD
+      </p>
     </div>
   );
 }
@@ -354,13 +442,16 @@ export function ContentVisual() {
             : "border-[var(--border)] shadow-[0_8px_28px_-22px_rgba(0,0,0,0.25)]"
         }`}
       >
-        {/* Header strip with Google logo dot pattern */}
+        {/* Header strip with multicolor Google G */}
         <div className="flex items-center justify-between border-b border-black/5 px-4 py-2.5">
           <div className="flex items-center gap-1.5">
+            <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden>
+              <path fill="#4285F4" d="M22.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h6c-.3 1.4-1 2.6-2.2 3.4v2.8h3.6c2.1-2 3.3-4.9 3.3-8.1z" />
+              <path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9C3.9 20.6 7.7 23 12 23z" />
+              <path fill="#FBBC05" d="M5.7 14c-.2-.7-.4-1.4-.4-2.1s.1-1.4.4-2.1V6.9H2C1.3 8.4 1 10.1 1 12s.3 3.6 1 5.1l3.7-3.1z" />
+              <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.6l3.2-3.2C17.5 2 15 1 12 1 7.7 1 3.9 3.4 2 6.9l3.7 2.9c.9-2.6 3.4-4.4 6.3-4.4z" />
+            </svg>
             <span className="text-[11px] font-semibold text-[#5f6368] tracking-tight">
-              Google
-            </span>
-            <span className="font-mono text-[10px] text-[#9aa0a6]">
               Business Profile
             </span>
           </div>
@@ -555,49 +646,172 @@ export function ContentVisual() {
 }
 
 export function EmailVisual() {
+  const leads: {
+    ch: "ig" | "email" | "fb" | "web";
+    name: string;
+    preview: string;
+    time: string;
+    bgColor: string;
+    iconColor: string;
+  }[] = [
+    {
+      ch: "web",
+      name: "Jamie L. · web form",
+      preview: "Looking for emergency service tonight, no heat...",
+      time: "18s",
+      bgColor: "#10b98120",
+      iconColor: "#10b981",
+    },
+    {
+      ch: "fb",
+      name: "Tom Ritchie",
+      preview: "Wondering about furnace tune-up before winter",
+      time: "32s",
+      bgColor: "#1877f220",
+      iconColor: "#1877f2",
+    },
+    {
+      ch: "ig",
+      name: "@maria.h",
+      preview: "Hey, do you do quick installs in Plateau?",
+      time: "47s",
+      bgColor: "#ec489920",
+      iconColor: "#ec4899",
+    },
+    {
+      ch: "email",
+      name: "sarah.m@gmail.com",
+      preview: "Need a quote for a roof inspection before end of month.",
+      time: "1m",
+      bgColor: "#1a73e820",
+      iconColor: "#1a73e8",
+    },
+  ];
+
   return (
-    <div className="relative h-full min-h-[260px] w-full rounded-2xl bg-[var(--bg-dark)] p-6 overflow-hidden">
-      <div className="absolute inset-0 grain-dark pointer-events-none" />
-      <div className="relative z-10">
-        <div className="flex items-center justify-between">
-          <span className="font-mono text-[11px] tracking-wider text-[var(--accent-bright)]">
-            LEAD INBOX · NEW
+    <div className="relative w-full rounded-2xl overflow-hidden bg-[#0c0c0e] border border-white/10 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.55)]">
+      {/* App chrome */}
+      <div className="flex items-center justify-between px-4 py-2.5 bg-[#1a1d1b] border-b border-white/5">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="grid h-5 w-5 shrink-0 place-items-center rounded bg-[var(--accent-bright)] text-[var(--bg-dark)] text-[11px] font-bold">
+            K
           </span>
-          <span className="font-mono text-[11px] text-[var(--text-inverse)]/60">
-            replied in 47s
+          <span className="text-[12px] font-semibold text-white truncate">
+            Lead inbox
+          </span>
+          <span className="font-mono text-[10px] text-white/40 truncate">
+            · last 24h
           </span>
         </div>
-        <div className="mt-4 rounded-xl border border-[var(--border-on-dark)] bg-white/[0.03] p-4">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-[var(--accent-bright)] font-mono">
-              ← INCOMING
+        <span className="shrink-0 inline-flex items-center gap-1.5 font-mono text-[10px] text-[var(--accent-bright)] font-semibold">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent-bright)] animate-beacon-pulse" />
+          ALL REPLIED &lt; 60s
+        </span>
+      </div>
+
+      {/* Channel filter strip */}
+      <div className="px-3 py-2 flex items-center gap-1.5 border-b border-white/5 overflow-x-auto">
+        {[
+          { c: "All", active: true },
+          { c: "Email", active: false },
+          { c: "IG", active: false },
+          { c: "FB", active: false },
+          { c: "Web", active: false },
+          { c: "TikTok", active: false },
+        ].map(({ c, active }) => (
+          <span
+            key={c}
+            className={`shrink-0 inline-flex h-5 items-center rounded-full px-2 text-[10px] font-semibold ${
+              active
+                ? "bg-white/10 text-white border border-white/15"
+                : "text-white/55 border border-white/5"
+            }`}
+          >
+            {c}
+          </span>
+        ))}
+      </div>
+
+      {/* Leads list */}
+      <ul className="divide-y divide-white/5">
+        {leads.map((lead) => (
+          <li
+            key={lead.name}
+            className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-white/[0.02]"
+          >
+            <span
+              className="grid h-7 w-7 shrink-0 place-items-center rounded-full"
+              style={{ backgroundColor: lead.bgColor }}
+              aria-hidden
+            >
+              <ChannelIcon ch={lead.ch} color={lead.iconColor} />
             </span>
-            <span className="text-[var(--text-inverse)]/50 font-mono">
-              14:03
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="text-[12.5px] font-semibold text-white truncate">
+                  {lead.name}
+                </span>
+                <span className="shrink-0 font-mono text-[10px] text-white/40 tabular-nums">
+                  {lead.time}
+                </span>
+              </div>
+              <div className="mt-0.5 text-[11.5px] text-white/65 truncate">
+                {lead.preview}
+              </div>
+            </div>
+            <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[var(--accent-bright)]/15 border border-[var(--accent-bright)]/30 px-2 py-0.5 text-[9px] font-mono font-semibold tracking-wider text-[var(--accent-bright)]">
+              <span className="inline-block h-1 w-1 rounded-full bg-[var(--accent-bright)]" />
+              REPLIED
             </span>
-          </div>
-          <div className="mt-2 text-[12px] text-[var(--text-inverse)]/90 leading-relaxed">
-            &quot;Need a quote for a roof inspection before end of month.&quot;
-          </div>
-          <div className="mt-1 text-[10px] text-[var(--text-inverse)]/50">
-            sarah.m@gmail.com
-          </div>
-        </div>
-        <div className="mt-2 rounded-xl border border-[var(--accent-bright)]/30 bg-[var(--accent-bright)]/[0.06] p-4">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-[var(--accent-bright)] font-mono">
-              → AUTO-REPLY
-            </span>
-            <span className="text-[var(--text-inverse)]/50 font-mono">
-              14:04
-            </span>
-          </div>
-          <div className="mt-2 text-[12px] text-[var(--text-inverse)]/90 leading-relaxed">
-            Hi Sarah. Thanks for reaching out. I&apos;ve booked you into our
-            inspection slot Wed 3pm. Calendar invite sent.
-          </div>
-        </div>
+          </li>
+        ))}
+      </ul>
+
+      {/* Footer stats */}
+      <div className="border-t border-white/5 px-4 py-2.5 flex items-center justify-between font-mono text-[10px] tracking-wide text-white/45">
+        <span>4 new · 0 missed</span>
+        <span>AVG 31s</span>
       </div>
     </div>
+  );
+}
+
+function ChannelIcon({
+  ch,
+  color,
+}: {
+  ch: "ig" | "email" | "fb" | "web";
+  color: string;
+}) {
+  const cls = "h-3.5 w-3.5";
+  if (ch === "ig") {
+    return (
+      <svg viewBox="0 0 24 24" className={cls} fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill={color} />
+      </svg>
+    );
+  }
+  if (ch === "email") {
+    return (
+      <svg viewBox="0 0 24 24" className={cls} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 7l9 6 9-6" />
+      </svg>
+    );
+  }
+  if (ch === "fb") {
+    return (
+      <svg viewBox="0 0 24 24" className={cls} fill={color}>
+        <path d="M22 12a10 10 0 1 0-11.6 9.9V15h-2.5v-3h2.5V9.7c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 3h-2.3v6.9A10 10 0 0 0 22 12z" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" className={cls} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+    </svg>
   );
 }
