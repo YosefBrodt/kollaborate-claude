@@ -9,7 +9,7 @@ import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
 import { RoiCalculator } from "@/components/site/roi-calculator";
 import { GbpAudit } from "@/components/site/gbp-audit";
-import { Testimonials } from "@/components/site/testimonials";
+// import { Testimonials } from "@/components/site/testimonials"; // hidden until real screenshots / Google review proof
 import { TryReceptionist } from "@/components/site/try-receptionist";
 
 const MAILTO =
@@ -24,7 +24,7 @@ export default function Home() {
         <Industries />
         <TryReceptionist />
         <Services />
-        <Testimonials />
+        {/* <Testimonials /> hidden until real screenshots / Google review proof */}
         <RoiCalculator />
         <Pricing />
         <Process />
@@ -68,7 +68,7 @@ function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.7) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.85) 100%)",
           }}
         />
       </div>
@@ -76,9 +76,9 @@ function Hero() {
 
       <div className="relative h-full mx-auto max-w-7xl px-5 sm:px-8 pt-32 pb-14 sm:pt-32 sm:pb-16 flex flex-col justify-center">
         <FadeUp onView={false} delay={0.06} duration={0.7}>
-          <h1 className="font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[80px] max-w-[1100px]">
+          <h1 className="font-display font-semibold tracking-[-0.035em] leading-[0.98] text-[44px] sm:text-[64px] lg:text-[80px] max-w-[1100px] text-white">
             We run the five things that grow your business.
-            <span className="block mt-2 sm:mt-3 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
+            <span className="block mt-2 sm:mt-3 font-display font-semibold text-[var(--accent-bright)] tracking-[-0.025em]">
               You focus on the work.
             </span>
           </h1>
@@ -237,7 +237,7 @@ function Pricing() {
             </div>
             <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px]">
               One team, three ways
-              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
+              <span className="block mt-2 font-display font-semibold text-[var(--accent)]">
                 to take it off your plate.
               </span>
             </h2>
@@ -269,7 +269,7 @@ function About() {
           <SectionLabel>Who runs this</SectionLabel>
           <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[32px] sm:text-[40px] lg:text-[44px]">
             Built in Montreal.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
+            <span className="block mt-2 font-display font-semibold text-[var(--accent)]">
               Run by people, not a platform.
             </span>
           </h2>

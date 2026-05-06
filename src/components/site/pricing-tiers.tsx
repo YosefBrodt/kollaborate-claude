@@ -125,22 +125,19 @@ function TierCard({ tier }: { tier: Tier }) {
   const { id, name, positioning, monthly, setup, features, highlight, ctaLabel } = tier;
   return (
     <article
-      className={`relative flex flex-col rounded-2xl border p-6 sm:p-7 transition-all ${
+      className={`relative flex flex-col rounded-2xl p-6 sm:p-7 transition-all ${
         highlight
-          ? "border-[var(--accent-bright)] bg-[var(--bg-dark)] text-[var(--text-inverse)] shadow-[0_24px_60px_-24px_rgba(12,31,26,0.45)] lg:scale-[1.02] lg:-mt-2 lg:mb-2"
-          : "border-[var(--border)] bg-[var(--card)] text-[var(--text)]"
+          ? "border-2 border-[var(--accent-bright)] bg-[var(--bg-dark)] text-[var(--text-inverse)] shadow-[0_24px_60px_-24px_rgba(12,31,26,0.45)] lg:scale-[1.02] lg:-mt-2 lg:mb-2"
+          : "border border-[var(--border)] bg-[var(--card)] text-[var(--text)]"
       }`}
     >
-      {highlight && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 rounded-full bg-[var(--accent-bright)] px-4 py-1.5 shadow-[0_8px_20px_-6px_rgba(168,213,187,0.6)]">
-          <span className="font-mono text-[11px] tracking-[0.18em] text-[var(--bg-dark)] font-bold">
-            MOST POPULAR
-          </span>
-        </div>
-      )}
-
       {/* Tier name + positioning */}
       <div>
+        {highlight && (
+          <div className="mb-2 text-[14px] sm:text-[15px] font-semibold text-[var(--accent-bright)]">
+            Most popular
+          </div>
+        )}
         <h3
           className={`font-display text-[24px] sm:text-[26px] font-bold tracking-[-0.02em] ${
             highlight ? "text-[var(--accent-bright)]" : "text-[var(--text)]"
