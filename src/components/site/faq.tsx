@@ -29,6 +29,10 @@ const ITEMS = [
     a: "Escalation rules are set up during onboarding. Common escalations: emergencies, anything about pricing complex quotes, angry customers, specific people asking for specific people. Those route to your cell, your manager, or a voicemail you review in the morning. You tell us the edge cases, we configure the rules.",
   },
   {
+    q: "Do people actually find local businesses through ChatGPT and Perplexity now?",
+    a: "Yes, and the shift happened fast. 45% of consumers now use ChatGPT, Gemini, or Perplexity to ask for local recommendations, up from 6% a year ago. The catch: those engines currently recommend only about 1.2% of local businesses. Almost every plumber, HVAC shop, and clinic in your city is invisible there. We make sure you're not. The work overlaps heavily with what we already do for Google (reviews, profile, structured pages), plus a few AI-specific moves: directory presence on Foursquare (where ChatGPT pulls 70% of its local data), FAQ schema, allowing AI crawlers, and a monthly report showing which queries you got cited on. Bundled into Full Stack and Multi-Location, or $299/mo as an add-on for Foundation.",
+  },
+  {
     q: "Can I cancel?",
     a: "Month to month. No lock-in. No termination fees. We keep clients by doing the work well, not with contracts.",
   },

@@ -39,7 +39,7 @@ export function GbpAudit() {
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
             ...form,
-            source: "kollaborate.ca free GBP audit",
+            source: "kollaborate.ca free Google + AI search audit",
           }),
         });
         if (res.ok) {
@@ -55,7 +55,7 @@ export function GbpAudit() {
 
     // Fallback: open mailto with the data prefilled
     const subject = encodeURIComponent(
-      `Free GBP audit request: ${form.business || "(no business name)"}`
+      `Free Google + AI search audit request: ${form.business || "(no business name)"}`
     );
     const body = encodeURIComponent(
       `Name: ${form.name}\nBusiness: ${form.business}\nEmail: ${form.email}\nCity: ${form.city}\n\n--\nSubmitted from kollaborate.ca free audit form.`
@@ -76,12 +76,13 @@ export function GbpAudit() {
               </span>
             </div>
             <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[48px] lg:text-[56px] max-w-[600px]">
-              Get a free Google Business audit. See what you&apos;re leaving on the table.
+              Get a free Google + AI search audit. See what you&apos;re leaving on the table.
             </h2>
             <p className="mt-7 max-w-[560px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)]">
-              We&apos;ll pull your Google Business profile, run it against the
-              local-search ranking signals that actually matter, and send a
-              one-page report to your inbox within 24 hours. No sales
+              We&apos;ll pull your Google Business profile, run the local-search
+              signals that actually matter, then check whether ChatGPT, Gemini,
+              and Perplexity recommend you when locals ask for your service.
+              One-page report in your inbox within 24 hours. No sales
               follow-up unless you ask.
             </p>
 
@@ -91,6 +92,7 @@ export function GbpAudit() {
                 "Top 5 missing or weak ranking signals",
                 "Review velocity vs your competitors",
                 "Photo, post, and category gaps",
+                "Whether ChatGPT, Gemini & Perplexity name you for 10 local queries",
                 "Three highest-impact fixes you can ship today",
               ].map((b) => (
                 <li

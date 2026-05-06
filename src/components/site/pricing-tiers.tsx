@@ -40,6 +40,7 @@ const TIERS: Tier[] = [
       "AI voice agent answering 24/7 (under 2 rings)",
       "Lead follow-up across web, email, IG, FB, TikTok",
       "Multi-page custom website built for your industry",
+      "Show up in ChatGPT, Gemini & Perplexity (AI search visibility)",
       "Direct text/Slack line to me",
     ],
     highlight: true,
@@ -57,6 +58,7 @@ const TIERS: Tier[] = [
       "Multi-location voice agent with location routing",
       "Bilingual agents (EN/FR or EN/ES)",
       "Custom CRM, EMR, or POS integration",
+      "AI search visibility with monthly citation tracking report",
       "Dedicated account lead, quarterly strategy review",
     ],
     ctaLabel: "Talk about Multi-Location",
@@ -100,8 +102,44 @@ export function PricingTiers() {
         ))}
       </div>
 
+      {/* Add-on: AI search visibility */}
+      <div className="mt-14 max-w-3xl mx-auto rounded-2xl border border-[var(--accent)]/25 bg-[var(--card)] p-6 sm:p-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+          <div className="max-w-[460px]">
+            <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent)] font-semibold">
+              ADD-ON · ANY TIER
+            </span>
+            <h4 className="mt-3 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.015em] text-[var(--text)] leading-[1.15]">
+              Show up in ChatGPT, Gemini &amp; Perplexity.
+            </h4>
+            <p className="mt-3 text-[15px] sm:text-[16px] leading-[1.55] text-[var(--muted)]">
+              Most local businesses are invisible when customers ask AI for a
+              recommendation. We fix that. Directory fan-out, FAQ schema,
+              citation tracking, monthly visibility report. Already included in
+              Full Stack and Multi-Location.
+            </p>
+          </div>
+          <div className="flex flex-col items-start sm:items-end gap-3 shrink-0">
+            <div className="flex items-baseline gap-1.5">
+              <span className="font-display text-[34px] font-semibold tracking-[-0.03em] leading-none text-[var(--text)]">
+                +$299
+              </span>
+              <span className="font-display text-[16px] text-[var(--muted)]">
+                /mo
+              </span>
+            </div>
+            <a
+              href={buildMailto("Kollaborate: add AI search visibility ($299/mo)")}
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full border-2 border-[var(--accent)] px-5 text-[14px] font-semibold text-[var(--accent)] transition-all hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-[var(--text-inverse)]"
+            >
+              Add to my plan →
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Custom / single-service footer */}
-      <div className="mt-14 text-center">
+      <div className="mt-10 text-center">
         <p className="text-[15px] sm:text-[16px] text-[var(--muted)] leading-[1.6]">
           Need just one piece, or a setup the tiers don&apos;t cover?{" "}
           <a
