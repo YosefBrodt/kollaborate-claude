@@ -25,7 +25,7 @@ const TESTIMONIALS: Testimonial[] = [
     location: "Ottawa, ON",
     services: ["Website", "Review automation"],
     quote:
-      "We used to forget to ask for reviews. Now they fire on their own after every table and we doubled our Google count in two months without lifting a finger.",
+      "Joseph was great to work with. Built our website and got the review thing set up so it just runs on its own now. Worth it.",
     avatarBg: "bg-[#f5b800]/25",
     avatarText: "text-[#8a6500]",
   },
@@ -36,7 +36,7 @@ const TESTIMONIALS: Testimonial[] = [
     location: "Montreal, QC",
     services: ["Website", "Google Business Profile"],
     quote:
-      "We were invisible online. Joseph built us a site and Google profile that finally make us look like a real organization. Donor inquiries went up the first month.",
+      "Honest guy. Did exactly what he said he would. Our website finally looks how it should and we actually show up on Google now.",
     avatarBg: "bg-[var(--accent-bright)]/30",
     avatarText: "text-[var(--accent)]",
   },
@@ -47,7 +47,7 @@ const TESTIMONIALS: Testimonial[] = [
     location: "Eastern Ontario",
     services: ["Website", "Booking form"],
     quote:
-      "Customers can finally book deliveries without calling. Cut my phone time in half and the site loads in under a second on the truck.",
+      "Easy to deal with. Got the new site up fast with the booking form I asked for. Customers can book themselves now instead of calling me all day. Recommend.",
     avatarBg: "bg-[#1a73e8]/20",
     avatarText: "text-[#1a73e8]",
   },
@@ -71,15 +71,15 @@ export function Testimonials() {
           <div className="flex items-center gap-3">
             <span className="h-px w-12 bg-[var(--accent-bright)]" />
             <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-bold">
-              SITES I&apos;VE BUILT
+              RECENT WORK
             </span>
           </div>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[920px]">
+          <h2 className="mt-6 font-display font-bold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[920px]">
             What owners say about the work.
           </h2>
           <p className="mt-6 max-w-[640px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--text-inverse)]/70">
-            Three real deployments. Different service combos per client. Live
-            walkthrough on the discovery call.
+            Real clients. Real deployments. Walkthrough live on the discovery
+            call if you want to see the work up close.
           </p>
         </FadeUp>
 

@@ -10,6 +10,7 @@ import { Process } from "@/components/site/process";
 import { RoiCalculator } from "@/components/site/roi-calculator";
 import { GbpAudit } from "@/components/site/gbp-audit";
 import { Testimonials } from "@/components/site/testimonials";
+import { TryReceptionist } from "@/components/site/try-receptionist";
 
 const MAILTO =
   "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
@@ -21,6 +22,7 @@ export default function Home() {
       <main id="top">
         <Hero />
         <Industries />
+        <TryReceptionist />
         <Services />
         <Testimonials />
         <RoiCalculator />
@@ -275,7 +277,7 @@ function About() {
         <FadeUp className="lg:col-span-7" delay={0.1}>
           <div className="space-y-6 max-w-[640px]">
             <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--text)]">
-              Kollaborate is a small Montreal shop. The stack we sell is the
+              Kollaborate is a small Montreal team. The stack we sell is the
               stack we built and run ourselves: voice agents answering live,
               review pipelines wired into POS systems, sites that load in
               under a second, Google profiles kept alive week to week.
@@ -285,20 +287,6 @@ function About() {
               invoice, one Slack channel. When something breaks, you text me.
               It gets fixed.
             </p>
-            <div className="pt-5 flex flex-wrap gap-8 text-[16px] font-mono tracking-wide text-[var(--muted)]">
-              <div>
-                <span className="text-[var(--text)] font-semibold text-[18px]">
-                  10 days
-                </span>{" "}
-                hello to live
-              </div>
-              <div>
-                <span className="text-[var(--text)] font-semibold text-[18px]">
-                  MTL
-                </span>{" "}
-                · OTT · Eastern ON
-              </div>
-            </div>
           </div>
         </FadeUp>
       </div>

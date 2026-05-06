@@ -35,7 +35,7 @@ const TRADE_PRESETS: { id: TradeId; label: string; preset: Inputs }[] = [
       callsPerWeek: 90,
       avgTicket: 75,
       missedPct: 15,
-      monthlyTickets: 380,
+      monthlyTickets: 220,
       currentReviewsPerMonth: 5,
       hasReceptionist: true,
     },
@@ -98,9 +98,10 @@ export function RoiCalculator() {
     const recoveredJobs = missedCalls * 0.3;
     const recoveredRevenue = recoveredJobs * inputs.avgTicket;
 
-    // Reviews lift: 15% response rate on auto-asks (conservative industry data)
+    // Reviews lift: 10% response rate on auto-asks (honest industry baseline,
+    // SMS-based ask programs typically land 8-12%).
     const ticketsPerYear = inputs.monthlyTickets * 12;
-    const newReviewsPerYear = ticketsPerYear * 0.15;
+    const newReviewsPerYear = ticketsPerYear * 0.1;
     const currentReviewsPerYear = inputs.currentReviewsPerMonth * 12;
     const reviewLift = Math.max(0, newReviewsPerYear - currentReviewsPerYear);
 
@@ -291,7 +292,7 @@ export function RoiCalculator() {
               </div>
               <p className="mt-4 text-[12px] sm:text-[13px] text-[var(--muted)] leading-[1.55] max-w-[640px]">
                 Math: missed calls recovered at a 30% close rate on inbound,
-                review uplift assumes 15% response on auto-ask, front-desk
+                review uplift assumes 10% response on auto-ask, front-desk
                 replacement assumes a $52k loaded annual seat. Conservative
                 across the board.
               </p>
@@ -437,12 +438,12 @@ function ReceptionistToggle({
           {
             v: true,
             label: "I have someone",
-            sub: "AI catches what they miss (overflow + after-hours)",
+            sub: "AI will catch what they miss (overflow + after-hours)",
           },
           {
             v: false,
             label: "Nobody, really",
-            sub: "AI replaces a $34k/yr front-desk seat",
+            sub: "AI would replace $34k/yr of front-desk costs",
           },
         ].map((opt) => {
           const selected = value === opt.v;
@@ -474,8 +475,8 @@ function ReceptionistToggle({
       </div>
       <p className="mt-3 text-[12px] text-[var(--muted)] leading-[1.5]">
         {value
-          ? "Math counts missed-call recovery and review uplift only. No staff cuts."
-          : "Math also counts the $34k/yr saved by not hiring a loaded front-desk seat."}
+          ? "Math will count missed-call recovery and review uplift only. No staff cuts."
+          : "Math will also count the $34k/yr you would save by not hiring a loaded front-desk seat."}
       </p>
     </div>
   );

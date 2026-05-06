@@ -3,46 +3,54 @@ import { FadeUp } from "@/components/site/fade-up";
 type Service = {
   eyebrow: string;
   title: string;
-  problem: string;
-  solution: string;
-  outcome: string;
+  bullets: string[];
 };
 
 const SERVICES: Service[] = [
   {
     eyebrow: "CALL HANDLING",
     title: "Phones answered every time.",
-    problem: "Missed calls cost you 30% of your inbound jobs.",
-    solution: "AI voice agent picks up after 3 rings, books appointments, takes after-hours calls in English or French.",
-    outcome: "9 out of 10 calls handled without a human.",
+    bullets: [
+      "30% of your inbound calls go to voicemail and never call back.",
+      "AI voice agent picks up after 3 rings, books the appointment, handles after-hours, English or French.",
+      "9 out of 10 calls handled without a human.",
+    ],
   },
   {
     eyebrow: "GOOGLE BUSINESS",
     title: "Your Google profile, run weekly.",
-    problem: "Profiles go stale, posts stop, ranking quietly slips.",
-    solution: "Weekly posts with real photos, categories tuned for local search, AI-search optimization for ChatGPT, Gemini and Perplexity.",
-    outcome: "The page 80% of locals see first, kept alive every week.",
+    bullets: [
+      "Most local profiles go stale within 60 days, and ranking quietly slips with them.",
+      "Weekly posts with real photos, categories tuned for local search, optimized so ChatGPT and Perplexity recommend you too.",
+      "The page 80% of locals see first, kept alive every week.",
+    ],
   },
   {
     eyebrow: "REVIEW AUTOMATION",
     title: "Every paid ticket asks for a review.",
-    problem: "Happy customers leave without ever being asked.",
-    solution: "Auto-text after every visit. 4 and 5 stars go to Google. 1 to 3 stars come to you privately first.",
-    outcome: "Steady review velocity. Bad reviews caught before they post.",
+    bullets: [
+      "Your happiest customers leave without ever being asked.",
+      "Auto-text after every visit. 4 and 5 stars go straight to Google. Lower ratings come to you privately first.",
+      "Steady review flow. Bad ones caught before they go public.",
+    ],
   },
   {
     eyebrow: "WEBSITE",
     title: "A site that loads under a second.",
-    problem: "Slow, generic templates lose traffic before it converts.",
-    solution: "Custom build for your industry, sub-second load, booking widget wired in. You own the code.",
-    outcome: "Live in 7 to 10 days. 95+ Lighthouse on every device.",
+    bullets: [
+      "Slow, generic templates lose visitors before they convert.",
+      "Custom build for your industry, sub-second load, booking wired in. You own the code.",
+      "Live in 7 to 10 days. 95+ Lighthouse on every device.",
+    ],
   },
   {
     eyebrow: "LEAD FOLLOW-UP",
     title: "Every lead replied to in 60 seconds.",
-    problem: "Web forms and DMs sit cold while leads go shop competitors.",
-    solution: "One inbox for web, email, IG, FB, TikTok. Auto-reply in under a minute. Real-human follow-up within two hours.",
-    outcome: "Speed-to-lead under a minute, on every channel.",
+    bullets: [
+      "Web forms and DMs go cold while leads shop your competitors.",
+      "One inbox for web, email, IG, FB, TikTok. Auto-reply under a minute. Real-human follow-up inside two hours.",
+      "Speed-to-lead under 60 seconds on every channel.",
+    ],
   },
 ];
 
@@ -60,11 +68,8 @@ export function Services() {
               What we run
             </span>
           </div>
-          <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[820px]">
-            Five services.
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
-              One team running them.
-            </span>
+          <h2 className="mt-6 font-display font-bold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[820px]">
+            Five services. One team running them.
           </h2>
         </FadeUp>
 
@@ -86,9 +91,18 @@ export function Services() {
                     {s.title}
                   </h3>
                   <ul className="mt-5 space-y-3 flex-1">
-                    <Bullet kind="problem" text={s.problem} />
-                    <Bullet kind="solution" text={s.solution} />
-                    <Bullet kind="outcome" text={s.outcome} />
+                    {s.bullets.map((text) => (
+                      <li
+                        key={text}
+                        className="flex items-start gap-2.5 text-[14px] sm:text-[15px] leading-[1.55] text-[var(--text)] font-medium"
+                      >
+                        <span
+                          aria-hidden
+                          className="mt-[8px] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]"
+                        />
+                        <span>{text}</span>
+                      </li>
+                    ))}
                   </ul>
                 </article>
               );
@@ -97,33 +111,5 @@ export function Services() {
         </FadeUp>
       </div>
     </section>
-  );
-}
-
-function Bullet({
-  kind,
-  text,
-}: {
-  kind: "problem" | "solution" | "outcome";
-  text: string;
-}) {
-  const config = {
-    problem: { label: "Problem", color: "text-[#a83a2a]", bg: "bg-[#a83a2a]/12" },
-    solution: { label: "Solution", color: "text-[var(--accent)]", bg: "bg-[var(--accent)]/12" },
-    outcome: { label: "Outcome", color: "text-[var(--accent)]", bg: "bg-[var(--accent-bright)]/35" },
-  }[kind];
-
-  return (
-    <li className="flex items-start gap-3">
-      <span
-        className={`mt-[3px] inline-flex shrink-0 items-center rounded-full px-2 py-0.5 font-mono text-[10px] tracking-[0.14em] font-bold ${config.color} ${config.bg}`}
-        style={{ minWidth: "76px", justifyContent: "center" }}
-      >
-        {config.label.toUpperCase()}
-      </span>
-      <span className="text-[14px] sm:text-[15px] leading-[1.5] text-[var(--text)] font-medium">
-        {text}
-      </span>
-    </li>
   );
 }
