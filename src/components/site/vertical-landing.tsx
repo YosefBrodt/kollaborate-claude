@@ -7,7 +7,7 @@ import { CallDemo } from "@/components/site/call-demo";
 import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
 import { DemoHero } from "@/components/site/demo-hero";
-import { Testimonials } from "@/components/site/testimonials";
+// import { Testimonials } from "@/components/site/testimonials"; // hidden until real screenshots / Google review proof
 import { RoiCalculator } from "@/components/site/roi-calculator";
 import { Comparison } from "@/components/site/comparison";
 import { GbpAudit } from "@/components/site/gbp-audit";
@@ -24,7 +24,7 @@ export function VerticalLanding({ config }: { config: VerticalConfig }) {
         <DemoHero />
         <VerticalPain config={config} />
         <Services />
-        <Testimonials />
+        {/* <Testimonials /> hidden until real screenshots / Google review proof */}
         <VerticalScenario config={config} />
         <RoiCalculator />
         <VerticalPricing />
@@ -68,7 +68,7 @@ function VerticalHero({ config }: { config: VerticalConfig }) {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(12,31,26,0.78) 0%, rgba(12,31,26,0.5) 40%, rgba(12,31,26,0.88) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.7) 100%)",
           }}
         />
       </div>
@@ -84,9 +84,9 @@ function VerticalHero({ config }: { config: VerticalConfig }) {
         </FadeUp>
 
         <FadeUp onView={false} delay={0.06} duration={0.7}>
-          <h1 className="mt-7 sm:mt-8 font-display font-semibold tracking-[-0.035em] leading-[1.0] text-[40px] sm:text-[60px] lg:text-[76px] max-w-[1100px]">
+          <h1 className="mt-7 sm:mt-8 font-display font-semibold tracking-[-0.035em] leading-[1.0] text-[40px] sm:text-[60px] lg:text-[76px] max-w-[1100px] text-white">
             {config.heroH1Top}
-            <span className="block mt-2 sm:mt-3 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
+            <span className="block mt-2 sm:mt-3 font-display font-semibold text-[var(--accent-bright)] tracking-[-0.025em]">
               {config.heroH1Italic}
             </span>
           </h1>
@@ -219,7 +219,7 @@ function VerticalPricing() {
             </div>
             <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[52px] lg:text-[60px]">
               One team, three ways
-              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)]">
+              <span className="block mt-2 font-display font-semibold text-[var(--accent)]">
                 to take it off your plate.
               </span>
             </h2>
@@ -261,7 +261,7 @@ function VerticalFinalCTA({ config }: { config: VerticalConfig }) {
           </span>
           <h2 className="mt-7 font-display font-semibold leading-[1] tracking-[-0.04em] text-[40px] sm:text-[60px] lg:text-[72px]">
             Stop losing money
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
+            <span className="block mt-2 font-display font-semibold text-[var(--accent-bright)] tracking-[-0.025em]">
               on the calls you can&apos;t catch.
             </span>
           </h2>

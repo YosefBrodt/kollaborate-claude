@@ -91,7 +91,7 @@ export function DemoHero() {
             </div>
             <h2 className="mt-6 font-display font-semibold leading-[0.98] tracking-[-0.035em] text-[40px] sm:text-[56px] lg:text-[68px]">
               Talk to the receptionist.
-              <span className="block mt-2 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
+              <span className="block mt-2 font-display font-semibold text-[var(--accent-bright)] tracking-[-0.025em]">
                 Right now.
               </span>
             </h2>
