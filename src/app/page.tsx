@@ -8,9 +8,7 @@ import { Booking } from "@/components/site/booking";
 import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
 import { RoiCalculator } from "@/components/site/roi-calculator";
-import { Comparison } from "@/components/site/comparison";
 import { GbpAudit } from "@/components/site/gbp-audit";
-import { DemoHero } from "@/components/site/demo-hero";
 import { Testimonials } from "@/components/site/testimonials";
 
 const MAILTO =
@@ -22,19 +20,16 @@ export default function Home() {
       <Header />
       <main id="top">
         <Hero />
-        <DemoHero />
         <Industries />
         <Services />
         <Testimonials />
         <RoiCalculator />
         <Pricing />
-        <Comparison />
         <Process />
         <About />
         <FAQSection />
-        <Booking />
         <GbpAudit />
-        <FinalCTA />
+        <Booking />
         <Footer />
       </main>
       <CallDemo />
@@ -156,10 +151,8 @@ function Hero() {
         <FadeUp onView={false} delay={0.32} duration={0.5}>
           <ul className="mt-7 sm:mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px] sm:text-[15px] text-[var(--text-inverse)]/75">
             {[
-              "30-day money-back",
-              "Month-to-month, cancel any time",
               "Live in 10 days",
-              "Direct line to the founder",
+              "Cancel any time",
             ].map((item, i) => (
               <li key={item} className="flex items-center gap-2.5">
                 {i > 0 && (
@@ -361,57 +354,6 @@ function FAQSection() {
   );
 }
 
-/* ---------- FINAL CTA ---------- */
-
-function FinalCTA() {
-  return (
-    <section className="relative bg-[var(--bg-dark)] text-[var(--text-inverse)] py-28 sm:py-36 overflow-hidden">
-      <div className="absolute inset-0 grain-dark pointer-events-none" />
-      <div
-        className="absolute inset-0 pointer-events-none ambient-drift"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 50% 50%, rgba(168,213,187,0.8) 0%, transparent 60%)",
-        }}
-      />
-      <div className="relative mx-auto max-w-5xl px-5 sm:px-8 text-center">
-        <FadeUp>
-          <span className="font-mono text-[13px] tracking-[0.18em] text-[var(--accent-bright)] font-semibold">
-            READY WHEN YOU ARE
-          </span>
-          <h2 className="mt-7 font-display font-semibold leading-[1] tracking-[-0.04em] text-[44px] sm:text-[64px] lg:text-[84px]">
-            Stop losing money
-            <span className="block mt-2 font-serif italic font-medium text-[var(--accent-bright)] tracking-[-0.01em]">
-              to missed calls.
-            </span>
-          </h2>
-          <p className="mt-8 mx-auto max-w-[620px] text-[18px] sm:text-[20px] leading-[1.55] text-[var(--text-inverse)]/85">
-            Fifteen minutes on a Zoom. We&apos;ll run our voice agent against
-            your actual intake questions live so you can judge it yourself.
-          </p>
-          <div className="mt-11 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
-            <Link
-              href="#book"
-              className="inline-flex h-16 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-10 text-[18px] font-semibold text-[var(--bg-dark)] shadow-[0_12px_44px_-12px_rgba(168,213,187,0.55)] transition-all hover:-translate-y-0.5 hover:bg-white"
-            >
-              Pick a time →
-            </Link>
-            <a
-              href={MAILTO}
-              className="inline-flex h-16 items-center justify-center gap-2 rounded-full border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] px-9 text-[17px] font-semibold text-[var(--text-inverse)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-bright)] hover:bg-white/[0.08]"
-            >
-              Or email me
-            </a>
-          </div>
-          <p className="mt-9 font-mono text-[13px] tracking-wider text-[var(--text-inverse)]/50 font-medium">
-            RESPONSE WITHIN 24H · USUALLY SAME DAY
-          </p>
-        </FadeUp>
-      </div>
-    </section>
-  );
-}
-
 /* ---------- FOOTER ---------- */
 
 function Footer() {
@@ -485,7 +427,7 @@ function Footer() {
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
               <li>
                 <Link
-                  href="#savings"
+                  href="#roi"
                   className="hover:text-[var(--accent-bright)] transition"
                 >
                   The math

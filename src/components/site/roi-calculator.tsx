@@ -389,7 +389,7 @@ function TradeChips({
   return (
     <div>
       <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--muted)] font-semibold">
-        PICK YOUR TRADE — AUTO-FILLS THE NUMBERS
+        PICK YOUR TRADE · AUTO-FILLS THE NUMBERS
       </div>
       <div className="mt-2 flex flex-wrap gap-1.5">
         {TRADE_PRESETS.map((t) => {

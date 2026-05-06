@@ -91,7 +91,7 @@ export function Booking() {
             <ul className="mt-9 space-y-4 max-w-[440px]">
               {[
                 "15 minutes, on Zoom, founder on the call",
-                "Evenings and Sundays — when you have time to actually talk",
+                "Evenings and Sundays, when you actually have time to talk",
                 "Voice agent runs against your actual intake live",
                 "No slides, no contract, no follow-up sequence",
                 "Walk if it isn't a fit, that is the whole point",
