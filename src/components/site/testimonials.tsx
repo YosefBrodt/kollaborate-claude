@@ -25,7 +25,7 @@ const TESTIMONIALS: Testimonial[] = [
     location: "Ottawa, ON",
     services: ["Website", "Review automation"],
     quote:
-      "Joseph rebuilt our site and wired up the review pipeline. Loads fast on a phone, and the review asks fire automatically after every visit now. Beats us trying to remember to ask people.",
+      "We used to forget to ask for reviews. Now they fire on their own after every table and we doubled our Google count in two months without lifting a finger.",
     avatarBg: "bg-[#f5b800]/25",
     avatarText: "text-[#8a6500]",
   },
@@ -36,7 +36,7 @@ const TESTIMONIALS: Testimonial[] = [
     location: "Montreal, QC",
     services: ["Website", "Google Business Profile"],
     quote:
-      "Joseph built our nonprofit website and set up our Google profile from scratch. Donors and volunteers can actually find us now, and the GBP makes us look like a real organization to people who never heard of us.",
+      "We were invisible online. Joseph built us a site and Google profile that finally make us look like a real organization. Donor inquiries went up the first month.",
     avatarBg: "bg-[var(--accent-bright)]/30",
     avatarText: "text-[var(--accent)]",
   },
@@ -47,7 +47,7 @@ const TESTIMONIALS: Testimonial[] = [
     location: "Eastern Ontario",
     services: ["Website", "Booking form"],
     quote:
-      "Joseph rebuilt our site with a booking form so customers can schedule deliveries online instead of calling. Loads instantly. Solid upgrade from what we had.",
+      "Customers can finally book deliveries without calling. Cut my phone time in half and the site loads in under a second on the truck.",
     avatarBg: "bg-[#1a73e8]/20",
     avatarText: "text-[#1a73e8]",
   },
@@ -70,7 +70,7 @@ export function Testimonials() {
         <FadeUp>
           <div className="flex items-center gap-3">
             <span className="h-px w-12 bg-[var(--accent-bright)]" />
-            <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
+            <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-bold">
               SITES I&apos;VE BUILT
             </span>
           </div>
@@ -101,7 +101,7 @@ export function Testimonials() {
                 ) : (
                   <div className="relative aspect-[16/10] bg-gradient-to-br from-[var(--bg-dark-2)] via-[var(--bg-dark)] to-[var(--bg-dark-2)] border-b border-[var(--border-on-dark)] grid place-items-center">
                     <div className="text-center">
-                      <div className="font-mono text-[10px] tracking-[0.18em] text-[var(--text-inverse)]/35 font-semibold">
+                      <div className="font-mono text-[10px] tracking-[0.18em] text-[var(--text-inverse)]/35 font-bold">
                         SCREENSHOT
                       </div>
                       <div className="mt-1 font-mono text-[10px] tracking-[0.14em] text-[var(--text-inverse)]/25">
@@ -130,18 +130,6 @@ export function Testimonials() {
                   <blockquote className="mt-5 text-[16px] sm:text-[17px] leading-[1.55] text-[var(--text-inverse)]/95 font-medium">
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
-
-                  {/* Services-delivered tags */}
-                  <div className="mt-5 flex flex-wrap gap-1.5">
-                    {t.services.map((s) => (
-                      <span
-                        key={s}
-                        className="inline-flex items-center rounded-full border border-[var(--accent-bright)]/30 bg-[var(--accent-bright)]/10 px-2 py-0.5 font-mono text-[10px] tracking-[0.1em] font-semibold text-[var(--accent-bright)]"
-                      >
-                        {s.toUpperCase()}
-                      </span>
-                    ))}
-                  </div>
 
                   {/* Identity row */}
                   <div className="mt-auto pt-6 border-t border-[var(--border-on-dark)] flex items-center gap-3">

@@ -9,7 +9,6 @@ type Tier = {
   features: string[];
   highlight?: boolean;
   ctaLabel: string;
-  emailSubject: string;
 };
 
 const TIERS: Tier[] = [
@@ -26,8 +25,7 @@ const TIERS: Tier[] = [
       "Monthly performance report",
       "Email + Slack support",
     ],
-    ctaLabel: "Start with Foundation",
-    emailSubject: "Kollaborate: Foundation tier ($749/mo)",
+    ctaLabel: "Book a call about Foundation",
   },
   {
     id: "fullstack",
@@ -40,12 +38,11 @@ const TIERS: Tier[] = [
       "AI voice agent answering 24/7 (under 2 rings)",
       "Lead follow-up across web, email, IG, FB, TikTok",
       "Multi-page custom website built for your industry",
-      "Show up in ChatGPT, Gemini & Perplexity (AI search visibility)",
+      "Show up in ChatGPT, Gemini & Perplexity",
       "Direct text/Slack line to me",
     ],
     highlight: true,
-    ctaLabel: "Start with Full Stack",
-    emailSubject: "Kollaborate: Full Stack tier ($1,499/mo)",
+    ctaLabel: "Book a call about Full Stack",
   },
   {
     id: "multi",
@@ -58,20 +55,25 @@ const TIERS: Tier[] = [
       "Multi-location voice agent with location routing",
       "Bilingual agents (EN/FR or EN/ES)",
       "Custom CRM, EMR, or POS integration",
-      "AI search visibility with monthly citation tracking report",
+      "Monthly AI citation tracking report",
       "Dedicated account lead, quarterly strategy review",
     ],
-    ctaLabel: "Talk about Multi-Location",
-    emailSubject: "Kollaborate: Multi-Location tier ($2,995/mo)",
+    ctaLabel: "Book a call about Multi-Location",
   },
 ];
+
+const DEFAULT_BOOKING_URL =
+  "https://calendly.com/joseph-kollaborate/kollaborate-discovery-call";
 
 function fmt(n: number) {
   return n.toLocaleString("en-US");
 }
 
-function buildMailto(subject: string) {
-  return `mailto:joseph@kollaborate.ca?subject=${encodeURIComponent(subject)}`;
+function buildBookingLink(tierId: string) {
+  const base =
+    process.env.NEXT_PUBLIC_BOOKING_URL || DEFAULT_BOOKING_URL;
+  const sep = base.includes("?") ? "&" : "?";
+  return `${base}${sep}utm_source=pricing&utm_content=${tierId}`;
 }
 
 export function PricingTiers() {
@@ -102,48 +104,12 @@ export function PricingTiers() {
         ))}
       </div>
 
-      {/* Add-on: AI search visibility */}
-      <div className="mt-14 max-w-3xl mx-auto rounded-2xl border border-[var(--accent)]/25 bg-[var(--card)] p-6 sm:p-8">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
-          <div className="max-w-[460px]">
-            <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent)] font-semibold">
-              ADD-ON · ANY TIER
-            </span>
-            <h4 className="mt-3 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.015em] text-[var(--text)] leading-[1.15]">
-              Show up in ChatGPT, Gemini &amp; Perplexity.
-            </h4>
-            <p className="mt-3 text-[15px] sm:text-[16px] leading-[1.55] text-[var(--muted)]">
-              Most local businesses are invisible when customers ask AI for a
-              recommendation. We fix that. Directory fan-out, FAQ schema,
-              citation tracking, monthly visibility report. Already included in
-              Full Stack and Multi-Location.
-            </p>
-          </div>
-          <div className="flex flex-col items-start sm:items-end gap-3 shrink-0">
-            <div className="flex items-baseline gap-1.5">
-              <span className="font-display text-[34px] font-semibold tracking-[-0.03em] leading-none text-[var(--text)]">
-                +$299
-              </span>
-              <span className="font-display text-[16px] text-[var(--muted)]">
-                /mo
-              </span>
-            </div>
-            <a
-              href={buildMailto("Kollaborate: add AI search visibility ($299/mo)")}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-full border-2 border-[var(--accent)] px-5 text-[14px] font-semibold text-[var(--accent)] transition-all hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-[var(--text-inverse)]"
-            >
-              Add to my plan →
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Custom / single-service footer */}
-      <div className="mt-10 text-center">
+      <div className="mt-12 text-center">
         <p className="text-[15px] sm:text-[16px] text-[var(--muted)] leading-[1.6]">
           Need just one piece, or a setup the tiers don&apos;t cover?{" "}
           <a
-            href={buildMailto("Kollaborate: custom or single-service quote")}
+            href="mailto:joseph@kollaborate.ca?subject=Kollaborate%3A%20custom%20or%20single-service%20quote"
             className="text-[var(--accent)] underline underline-offset-4 decoration-2 hover:text-[var(--accent-hover)] font-semibold"
           >
             Email me for a flat custom quote
@@ -156,18 +122,18 @@ export function PricingTiers() {
 }
 
 function TierCard({ tier }: { tier: Tier }) {
-  const { name, positioning, monthly, setup, features, highlight, ctaLabel, emailSubject } = tier;
+  const { id, name, positioning, monthly, setup, features, highlight, ctaLabel } = tier;
   return (
     <article
-      className={`relative flex flex-col rounded-2xl border p-7 sm:p-9 transition-all ${
+      className={`relative flex flex-col rounded-2xl border p-6 sm:p-7 transition-all ${
         highlight
-          ? "border-[var(--accent-bright)] bg-[var(--bg-dark)] text-[var(--text-inverse)] shadow-[0_24px_60px_-24px_rgba(12,31,26,0.45)] lg:scale-[1.03] lg:-mt-3 lg:mb-3 lg:py-11"
+          ? "border-[var(--accent-bright)] bg-[var(--bg-dark)] text-[var(--text-inverse)] shadow-[0_24px_60px_-24px_rgba(12,31,26,0.45)] lg:scale-[1.02] lg:-mt-2 lg:mb-2"
           : "border-[var(--border)] bg-[var(--card)] text-[var(--text)]"
       }`}
     >
       {highlight && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 rounded-full bg-[var(--accent-bright)] px-4 py-1.5 shadow-[0_8px_20px_-6px_rgba(168,213,187,0.6)]">
-          <span className="font-mono text-[11px] tracking-[0.18em] text-[var(--bg-dark)] font-semibold">
+          <span className="font-mono text-[11px] tracking-[0.18em] text-[var(--bg-dark)] font-bold">
             MOST POPULAR
           </span>
         </div>
@@ -176,14 +142,14 @@ function TierCard({ tier }: { tier: Tier }) {
       {/* Tier name + positioning */}
       <div>
         <h3
-          className={`font-display text-[28px] sm:text-[32px] font-semibold tracking-[-0.02em] ${
+          className={`font-display text-[24px] sm:text-[26px] font-bold tracking-[-0.02em] ${
             highlight ? "text-[var(--accent-bright)]" : "text-[var(--text)]"
           }`}
         >
           {name}
         </h3>
         <p
-          className={`mt-3 text-[15px] sm:text-[16px] leading-[1.5] ${
+          className={`mt-2 text-[14px] sm:text-[15px] leading-[1.5] ${
             highlight ? "text-[var(--text-inverse)]/75" : "text-[var(--muted)]"
           }`}
         >
@@ -192,17 +158,17 @@ function TierCard({ tier }: { tier: Tier }) {
       </div>
 
       {/* Price */}
-      <div className="mt-5 pb-5 border-b border-[var(--border)]/40 lg:border-[currentColor]/10">
+      <div className="mt-4 pb-4 border-b border-[var(--border)]/40 lg:border-[currentColor]/10">
         <div className="flex items-baseline gap-1.5">
           <span
-            className={`font-display text-[44px] sm:text-[52px] font-semibold tracking-[-0.04em] leading-none ${
+            className={`font-display text-[36px] sm:text-[42px] font-bold tracking-[-0.04em] leading-none ${
               highlight ? "text-[var(--accent-bright)]" : "text-[var(--text)]"
             }`}
           >
             ${fmt(monthly)}
           </span>
           <span
-            className={`font-display text-[18px] ${
+            className={`font-display text-[16px] ${
               highlight ? "text-[var(--text-inverse)]/65" : "text-[var(--muted)]"
             }`}
           >
@@ -210,7 +176,7 @@ function TierCard({ tier }: { tier: Tier }) {
           </span>
         </div>
         <p
-          className={`mt-3 font-mono text-[13px] tracking-wide ${
+          className={`mt-2 font-mono text-[12px] tracking-wide font-bold ${
             highlight ? "text-[var(--text-inverse)]/70" : "text-[var(--muted)]/85"
           }`}
         >
@@ -219,18 +185,18 @@ function TierCard({ tier }: { tier: Tier }) {
       </div>
 
       {/* Features */}
-      <ul className="mt-7 space-y-3.5 flex-1">
+      <ul className="mt-5 space-y-2.5 flex-1">
         {features.map((f, i) => {
           const isLead = i === 0 && f.includes("Everything in");
           return (
             <li
               key={f}
-              className={`flex items-start gap-3 leading-[1.5] ${
+              className={`flex items-start gap-2.5 leading-[1.45] ${
                 isLead
-                  ? `text-[14px] sm:text-[15px] font-mono tracking-wide font-semibold ${
+                  ? `text-[13px] sm:text-[14px] font-mono tracking-wide font-bold ${
                       highlight ? "text-[var(--accent-bright)]" : "text-[var(--accent)]"
-                    } pb-1`
-                  : `text-[15px] sm:text-[16px] font-medium ${
+                    } pb-0.5`
+                  : `text-[14px] sm:text-[15px] font-medium ${
                       highlight ? "text-[var(--text-inverse)]/95" : "text-[var(--text)]"
                     }`
               }`}
@@ -245,8 +211,10 @@ function TierCard({ tier }: { tier: Tier }) {
 
       {/* CTA */}
       <a
-        href={buildMailto(emailSubject)}
-        className={`mt-9 inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text-[15px] sm:text-[16px] font-semibold transition-all hover:-translate-y-0.5 ${
+        href={buildBookingLink(id)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full px-5 text-[14px] sm:text-[15px] font-bold transition-all hover:-translate-y-0.5 ${
           highlight
             ? "bg-[var(--accent-bright)] text-[var(--bg-dark)] hover:bg-white"
             : "border-2 border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--text-inverse)]"

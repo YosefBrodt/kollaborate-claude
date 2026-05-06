@@ -77,7 +77,7 @@ function VerticalHero({ config }: { config: VerticalConfig }) {
       <div className="relative h-full mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-12 sm:pt-32 sm:pb-16 flex flex-col justify-center">
         <FadeUp onView={false} duration={0.6}>
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-bright)]/40 bg-[var(--accent-bright)]/10 px-4 py-1.5">
-            <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent-bright)] font-semibold">
+            <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent-bright)] font-bold">
               {config.heroEyebrow}
             </span>
           </div>
@@ -169,7 +169,7 @@ function VerticalScenario({ config }: { config: VerticalConfig }) {
         <FadeUp>
           <div className="flex items-center gap-3">
             <span className="h-px w-12 bg-[var(--accent-bright)]" />
-            <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
+            <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-bold">
               WHAT THIS LOOKS LIKE
             </span>
           </div>
@@ -186,7 +186,7 @@ function VerticalScenario({ config }: { config: VerticalConfig }) {
           </FadeUp>
           <FadeUp className="lg:col-span-5" delay={0.12}>
             <div className="rounded-2xl border border-[var(--accent-bright)]/30 bg-white/[0.03] p-7 sm:p-8 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.5)]">
-              <div className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent-bright)] font-semibold">
+              <div className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent-bright)] font-bold">
                 {config.scenario.metricLabel.toUpperCase()}
               </div>
               <div className="mt-4 font-display text-[60px] sm:text-[72px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)] tabular-nums">
@@ -256,7 +256,7 @@ function VerticalFinalCTA({ config }: { config: VerticalConfig }) {
       />
       <div className="relative mx-auto max-w-5xl px-5 sm:px-8 text-center">
         <FadeUp>
-          <span className="font-mono text-[13px] tracking-[0.18em] text-[var(--accent-bright)] font-semibold">
+          <span className="font-mono text-[13px] tracking-[0.18em] text-[var(--accent-bright)] font-bold">
             BUILT FOR {config.industry.toUpperCase()}
           </span>
           <h2 className="mt-7 font-display font-semibold leading-[1] tracking-[-0.04em] text-[40px] sm:text-[60px] lg:text-[72px]">
@@ -312,7 +312,7 @@ function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-semibold">
+            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-bold">
               INDUSTRIES
             </div>
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
@@ -340,7 +340,7 @@ function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-semibold">
+            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-bold">
               COMPANY
             </div>
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
@@ -363,7 +363,7 @@ function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-semibold">
+            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-bold">
               CONTACT
             </div>
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
@@ -399,7 +399,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3">
       <span className="h-px w-12 bg-[var(--accent)]" />
-      <span className="font-mono text-[15px] tracking-[0.2em] font-semibold text-[var(--accent)]">
+      <span className="font-mono text-[15px] tracking-[0.2em] font-bold text-[var(--accent)]">
         {children}
       </span>
     </div>

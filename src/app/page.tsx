@@ -66,15 +66,7 @@ function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(12,31,26,0.72) 0%, rgba(12,31,26,0.42) 40%, rgba(12,31,26,0.85) 100%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 mix-blend-overlay opacity-40"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 12%, rgba(168,213,187,0.55) 0%, transparent 42%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.7) 100%)",
           }}
         />
       </div>
@@ -92,30 +84,14 @@ function Hero() {
 
         <FadeUp onView={false} delay={0.14} duration={0.6}>
           {/* Desktop: full sentence */}
-          <p className="hidden sm:block mt-10 max-w-[720px] text-[20px] leading-[1.55] text-[var(--text-inverse)]/85">
-            We pick up your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">phones</span>
-            , chase your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">reviews</span>
-            , build your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">site</span>
-            , run your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">Google profile</span>
-            , and reply to all your{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">leads</span>
-            .{" "}
-            <span className="text-[var(--text-inverse)]">
-              One team. One invoice. Starting at $750 a month.
-            </span>
+          <p className="hidden sm:block mt-10 max-w-[720px] text-[20px] leading-[1.55] text-white font-semibold">
+            We pick up your phones, chase your reviews, build your site, run
+            your Google profile, and reply to all your leads. Starting at $750
+            a month.
           </p>
           {/* Mobile: tightened version, more breathing room */}
-          <p className="sm:hidden mt-8 max-w-[420px] text-[17px] leading-[1.55] text-[var(--text-inverse)]/85">
-            <span className="font-semibold text-[var(--accent-bright)]">Phones</span>,{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">reviews</span>,{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">site</span>,{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">Google profile</span>,{" "}
-            <span className="font-semibold text-[var(--accent-bright)]">leads</span>.{" "}
-            <span className="text-[var(--text-inverse)]">One team. From $750/mo.</span>
+          <p className="sm:hidden mt-8 max-w-[420px] text-[17px] leading-[1.55] text-white font-semibold">
+            Phones, reviews, site, Google profile, leads. Starting at $750/mo.
           </p>
         </FadeUp>
 
@@ -186,7 +162,7 @@ function Industries() {
         <FadeUp>
           <div className="flex items-center gap-3">
             <span className="h-px w-12 bg-[var(--accent-bright)]" />
-            <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
+            <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-bold">
               PICK YOURS
             </span>
           </div>
@@ -210,7 +186,7 @@ function Industries() {
                     {tile.sub}
                   </div>
                   {tile.href && (
-                    <div className="mt-3 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+                    <div className="mt-3 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-bold">
                       SEE PAGE →
                     </div>
                   )}
@@ -373,7 +349,7 @@ function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-semibold">
+            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-bold">
               SERVICES
             </div>
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
@@ -421,7 +397,7 @@ function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-semibold">
+            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-bold">
               COMPANY
             </div>
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
@@ -453,7 +429,7 @@ function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-semibold">
+            <div className="font-mono text-[12px] tracking-[0.14em] text-[var(--text-inverse)]/50 font-bold">
               CONTACT
             </div>
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
@@ -500,7 +476,7 @@ function SectionLabel({
         }`}
       />
       <span
-        className={`font-mono text-[15px] tracking-[0.2em] font-semibold ${
+        className={`font-mono text-[15px] tracking-[0.2em] font-bold ${
           onDark ? "text-[var(--accent-bright)]" : "text-[var(--accent)]"
         }`}
       >

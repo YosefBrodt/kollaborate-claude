@@ -118,7 +118,7 @@ export function Process() {
                           <h3 className="font-display text-[24px] sm:text-[28px] font-semibold tracking-[-0.02em] text-[var(--text)]">
                             {step.title}
                           </h3>
-                          <span className="font-mono text-[14px] tracking-[0.14em] text-[var(--accent)] font-semibold">
+                          <span className="font-mono text-[14px] tracking-[0.14em] text-[var(--accent)] font-bold">
                             {step.time.toUpperCase()}
                           </span>
                         </div>
@@ -158,7 +158,7 @@ function ProcessCard({
           : "border-[var(--border)] hover:border-[var(--accent)]/40 hover:-translate-y-0.5"
       }`}
     >
-      <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--muted)] font-semibold">
+      <span className="font-mono text-[13px] tracking-[0.14em] text-[var(--muted)] font-bold">
         {step.time.toUpperCase()}
       </span>
       <h3 className="mt-4 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.02em] leading-[1.2] text-[var(--text)]">
@@ -168,7 +168,7 @@ function ProcessCard({
         {step.short}
       </p>
       <span
-        className={`mt-6 inline-flex items-center gap-2 font-mono text-[12px] tracking-[0.14em] font-semibold transition-colors ${
+        className={`mt-6 inline-flex items-center gap-2 font-mono text-[12px] tracking-[0.14em] font-bold transition-colors ${
           open ? "text-[var(--accent)]" : "text-[var(--muted)]/70 group-hover:text-[var(--accent)]"
         }`}
       >
@@ -204,7 +204,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3">
       <span className="h-px w-12 bg-[var(--accent)]" />
-      <span className="font-mono text-[15px] tracking-[0.2em] font-semibold text-[var(--accent)]">
+      <span className="font-mono text-[15px] tracking-[0.2em] font-bold text-[var(--accent)]">
         {children}
       </span>
     </div>

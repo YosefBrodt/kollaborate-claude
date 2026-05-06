@@ -71,7 +71,7 @@ export function GbpAudit() {
           <FadeUp className="lg:col-span-6">
             <div className="flex items-center gap-3">
               <span className="h-px w-12 bg-[var(--accent)]" />
-              <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent)] font-semibold">
+              <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent)] font-bold">
                 NOT READY TO BOOK?
               </span>
             </div>
@@ -138,7 +138,7 @@ export function GbpAudit() {
               ) : (
                 <>
                   <div>
-                    <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent)] font-semibold">
+                    <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent)] font-bold">
                       FREE · NO CREDIT CARD
                     </span>
                     <h3 className="mt-4 font-display text-[26px] sm:text-[30px] font-semibold tracking-[-0.02em] text-[var(--text)]">
@@ -242,7 +242,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block font-mono text-[11px] tracking-[0.16em] text-[var(--muted)] font-semibold mb-2">
+      <span className="block font-mono text-[11px] tracking-[0.16em] text-[var(--muted)] font-bold mb-2">
         {label.toUpperCase()}
         {required && <span className="text-[var(--accent)]"> *</span>}
       </span>

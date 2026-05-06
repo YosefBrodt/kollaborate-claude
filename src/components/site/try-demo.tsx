@@ -104,7 +104,7 @@ export function TryDemo() {
           <FadeUp className="lg:col-span-6">
             <div className="flex items-center gap-3">
               <span className="h-px w-12 bg-[var(--accent-bright)]" />
-              <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
+              <span className="font-mono text-[15px] tracking-[0.2em] text-[var(--accent-bright)] font-bold">
                 TRY IT BEFORE YOU BUY IT
               </span>
             </div>
@@ -126,7 +126,7 @@ export function TryDemo() {
                   href={`tel:${phoneTel}`}
                   className="group flex flex-col rounded-2xl border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] hover:border-[var(--accent-bright)] hover:bg-white/[0.08] px-5 py-5 transition-all hover:-translate-y-0.5"
                 >
-                  <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+                  <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-bold">
                     CALL THE DEMO LINE
                   </span>
                   <span className="mt-3 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.015em] text-[var(--text-inverse)] tabular-nums">
@@ -141,7 +141,7 @@ export function TryDemo() {
                   href="#book"
                   className="group flex flex-col rounded-2xl border-2 border-[var(--accent-bright)]/40 bg-white/[0.04] hover:border-[var(--accent-bright)] hover:bg-white/[0.08] px-5 py-5 transition-all hover:-translate-y-0.5"
                 >
-                  <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+                  <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-bold">
                     HEAR IT ON THE CALL
                   </span>
                   <span className="mt-3 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.015em] text-[var(--text-inverse)]">
@@ -197,7 +197,7 @@ function BrowserDemoButton({
   if (!vapiConfigured) {
     return (
       <div className="flex flex-col rounded-2xl border-2 border-[var(--accent-bright)]/20 bg-white/[0.02] px-5 py-5 opacity-75">
-        <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-semibold">
+        <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-bold">
           BROWSER DEMO
         </span>
         <span className="mt-3 font-display text-[18px] sm:text-[20px] font-semibold tracking-[-0.01em] text-[var(--text-inverse)]/70">
@@ -217,7 +217,7 @@ function BrowserDemoButton({
         onClick={onStop}
         className="group flex flex-col rounded-2xl border-2 border-[var(--accent-bright)] bg-[var(--accent-bright)]/15 px-5 py-5 transition-all hover:bg-[var(--accent-bright)]/25"
       >
-        <span className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+        <span className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-bold">
           <span className="inline-block h-2 w-2 rounded-full bg-red-400 animate-pulse" />
           ON CALL · {fmt(seconds)}
         </span>
@@ -234,7 +234,7 @@ function BrowserDemoButton({
   if (status === "connecting") {
     return (
       <div className="flex flex-col rounded-2xl border-2 border-[var(--accent-bright)]/60 bg-[var(--accent-bright)]/10 px-5 py-5">
-        <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-semibold">
+        <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-bold">
           BROWSER DEMO
         </span>
         <span className="mt-3 font-display text-[22px] font-semibold tracking-[-0.015em] text-[var(--text-inverse)]">
@@ -253,7 +253,7 @@ function BrowserDemoButton({
       onClick={onStart}
       className="group flex flex-col rounded-2xl bg-[var(--accent-bright)] hover:bg-white px-5 py-5 text-left transition-all hover:-translate-y-0.5 shadow-[0_12px_40px_-12px_rgba(168,213,187,0.5)]"
     >
-      <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--bg-dark)] font-semibold">
+      <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--bg-dark)] font-bold">
         BROWSER DEMO
       </span>
       <span className="mt-3 font-display text-[22px] sm:text-[24px] font-semibold tracking-[-0.015em] text-[var(--bg-dark)]">
@@ -279,7 +279,7 @@ function PhoneMock() {
 
           {/* Live call header */}
           <div className="mt-12 text-center">
-            <div className="text-[12px] font-mono tracking-[0.18em] text-[var(--accent-bright)]/85 font-semibold">
+            <div className="text-[12px] font-mono tracking-[0.18em] text-[var(--accent-bright)]/85 font-bold">
               KOLLABORATE · LIVE CALL
             </div>
             <div className="mt-3 font-display text-[28px] font-semibold tracking-[-0.02em] text-[var(--text-inverse)]">

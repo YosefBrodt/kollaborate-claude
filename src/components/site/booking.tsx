@@ -75,7 +75,7 @@ export function Booking() {
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[var(--accent)]" />
-              <span className="font-mono text-[13px] tracking-[0.18em] font-semibold text-[var(--accent)]">
+              <span className="font-mono text-[13px] tracking-[0.18em] font-bold text-[var(--accent)]">
                 Book a 15-minute call
               </span>
             </div>
@@ -187,7 +187,7 @@ function BookingSkeleton() {
     <div className="absolute inset-0 grid place-items-center">
       <div className="flex flex-col items-center gap-4 text-center px-6">
         <span className="inline-block h-8 w-8 rounded-full border-2 border-[var(--accent)]/20 border-t-[var(--accent)] animate-spin" />
-        <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--muted)] font-semibold">
+        <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--muted)] font-bold">
           LOADING CALENDAR
         </span>
       </div>
@@ -198,7 +198,7 @@ function BookingSkeleton() {
 function BookingFallback() {
   return (
     <div className="p-10 sm:p-14 h-full min-h-[640px] flex flex-col justify-center">
-      <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--muted)] font-semibold">
+      <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--muted)] font-bold">
         DIRECT CONTACT
       </span>
       <h3 className="mt-5 font-display font-semibold tracking-[-0.02em] leading-[1.1] text-[28px] sm:text-[32px]">

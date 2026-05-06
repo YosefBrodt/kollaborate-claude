@@ -179,7 +179,7 @@ function ComparisonRow({ row, isFirst }: { row: Row; isFirst: boolean }) {
       } ${highlight ? "bg-[var(--accent-bright)]/10" : ""}`}
     >
       <div className="px-6 py-5 lg:py-6">
-        <div className="font-mono text-[11px] tracking-[0.18em] text-[var(--muted)] font-semibold lg:hidden">
+        <div className="font-mono text-[11px] tracking-[0.18em] text-[var(--muted)] font-bold lg:hidden">
           DIMENSION
         </div>
         <div className="mt-1 lg:mt-0 font-display text-[16px] sm:text-[17px] font-semibold tracking-[-0.01em] text-[var(--text)]">
@@ -204,7 +204,7 @@ function Cell({
 }) {
   return (
     <div className="px-6 py-5 lg:py-6">
-      <div className="font-mono text-[11px] tracking-[0.18em] text-[var(--muted)] font-semibold lg:hidden">
+      <div className="font-mono text-[11px] tracking-[0.18em] text-[var(--muted)] font-bold lg:hidden">
         {label.toUpperCase()}
       </div>
       <div
@@ -224,7 +224,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3">
       <span className="h-px w-12 bg-[var(--accent)]" />
-      <span className="font-mono text-[15px] tracking-[0.2em] font-semibold text-[var(--accent)]">
+      <span className="font-mono text-[15px] tracking-[0.2em] font-bold text-[var(--accent)]">
         {children}
       </span>
     </div>

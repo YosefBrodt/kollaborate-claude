@@ -20,22 +20,22 @@ const TRADE_PRESETS: { id: TradeId; label: string; preset: Inputs }[] = [
     id: "hvac",
     label: "HVAC + Trades",
     preset: {
-      callsPerWeek: 80,
-      avgTicket: 480,
-      missedPct: 30,
-      monthlyTickets: 180,
+      callsPerWeek: 55,
+      avgTicket: 380,
+      missedPct: 25,
+      monthlyTickets: 95,
       currentReviewsPerMonth: 3,
-      hasReceptionist: false,
+      hasReceptionist: true,
     },
   },
   {
     id: "restaurant",
     label: "Restaurant",
     preset: {
-      callsPerWeek: 130,
-      avgTicket: 85,
-      missedPct: 18,
-      monthlyTickets: 600,
+      callsPerWeek: 90,
+      avgTicket: 75,
+      missedPct: 15,
+      monthlyTickets: 380,
       currentReviewsPerMonth: 5,
       hasReceptionist: true,
     },
@@ -44,10 +44,10 @@ const TRADE_PRESETS: { id: TradeId; label: string; preset: Inputs }[] = [
     id: "salon",
     label: "Salon + Spa",
     preset: {
-      callsPerWeek: 65,
-      avgTicket: 130,
-      missedPct: 22,
-      monthlyTickets: 320,
+      callsPerWeek: 45,
+      avgTicket: 110,
+      missedPct: 18,
+      monthlyTickets: 180,
       currentReviewsPerMonth: 4,
       hasReceptionist: true,
     },
@@ -56,10 +56,10 @@ const TRADE_PRESETS: { id: TradeId; label: string; preset: Inputs }[] = [
     id: "dental",
     label: "Dental + Med",
     preset: {
-      callsPerWeek: 55,
-      avgTicket: 300,
-      missedPct: 18,
-      monthlyTickets: 240,
+      callsPerWeek: 50,
+      avgTicket: 280,
+      missedPct: 15,
+      monthlyTickets: 160,
       currentReviewsPerMonth: 2,
       hasReceptionist: true,
     },
@@ -98,9 +98,9 @@ export function RoiCalculator() {
     const recoveredJobs = missedCalls * 0.3;
     const recoveredRevenue = recoveredJobs * inputs.avgTicket;
 
-    // Reviews lift: 22% response rate on auto-asks
+    // Reviews lift: 15% response rate on auto-asks (conservative industry data)
     const ticketsPerYear = inputs.monthlyTickets * 12;
-    const newReviewsPerYear = ticketsPerYear * 0.22;
+    const newReviewsPerYear = ticketsPerYear * 0.15;
     const currentReviewsPerYear = inputs.currentReviewsPerMonth * 12;
     const reviewLift = Math.max(0, newReviewsPerYear - currentReviewsPerYear);
 
@@ -159,7 +159,7 @@ export function RoiCalculator() {
             {/* Inputs */}
             <div className="lg:col-span-5">
               <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6">
-                <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--muted)] font-semibold">
+                <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--muted)] font-bold">
                   YOUR BUSINESS
                 </span>
                 <div className="mt-5 space-y-4">
@@ -223,7 +223,7 @@ export function RoiCalculator() {
               <div className="rounded-2xl bg-[var(--bg-dark)] text-[var(--text-inverse)] p-6 sm:p-7 border border-[var(--accent-bright)]/30 shadow-[0_28px_70px_-28px_rgba(12,31,26,0.5)] relative overflow-hidden">
                 <div className="absolute inset-0 grain-dark pointer-events-none" />
                 <div className="relative z-10">
-                  <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent-bright)] font-semibold">
+                  <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent-bright)] font-bold">
                     YOUR ANNUAL UPSIDE
                   </span>
                   <motion.div
@@ -273,7 +273,7 @@ export function RoiCalculator() {
 
                   <div className="mt-6 pt-5 border-t border-[var(--border-on-dark)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
-                      <div className="font-mono text-[11px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-semibold">
+                      <div className="font-mono text-[11px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-bold">
                         ROI VS FULL STACK ($1,499 / MO)
                       </div>
                       <div className="mt-1 font-display text-[26px] sm:text-[30px] font-semibold tracking-[-0.025em] text-[var(--accent-bright)]">
@@ -291,7 +291,7 @@ export function RoiCalculator() {
               </div>
               <p className="mt-4 text-[12px] sm:text-[13px] text-[var(--muted)] leading-[1.55] max-w-[640px]">
                 Math: missed calls recovered at a 30% close rate on inbound,
-                review uplift assumes 22% response on auto-ask, front-desk
+                review uplift assumes 15% response on auto-ask, front-desk
                 replacement assumes a $52k loaded annual seat. Conservative
                 across the board.
               </p>
@@ -388,7 +388,7 @@ function TradeChips({
 }) {
   return (
     <div>
-      <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--muted)] font-semibold">
+      <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--muted)] font-bold">
         PICK YOUR TRADE · AUTO-FILLS THE NUMBERS
       </div>
       <div className="mt-2 flex flex-wrap gap-1.5">
@@ -428,21 +428,21 @@ function ReceptionistToggle({
   onChange: (v: boolean) => void;
 }) {
   return (
-    <div className="rounded-xl border border-[var(--accent-bright)]/50 bg-[var(--accent-bright)]/15 p-3.5">
-      <span className="font-mono text-[10px] tracking-[0.16em] text-[var(--accent)] font-semibold">
+    <div className="rounded-xl border border-[var(--accent-bright)]/50 bg-[var(--accent-bright)]/15 p-4">
+      <span className="font-mono text-[13px] sm:text-[14px] tracking-[0.14em] text-[var(--accent)] font-bold">
         WHO ANSWERS YOUR PHONE RIGHT NOW?
       </span>
-      <div className="mt-2.5 grid grid-cols-2 gap-2">
+      <div className="mt-3 grid grid-cols-2 gap-2">
         {[
-          {
-            v: false,
-            label: "Nobody",
-            sub: "AI becomes the front desk",
-          },
           {
             v: true,
             label: "I have someone",
-            sub: "AI as overflow + after-hours",
+            sub: "AI catches what they miss (overflow + after-hours)",
+          },
+          {
+            v: false,
+            label: "Nobody, really",
+            sub: "AI replaces a $34k/yr front-desk seat",
           },
         ].map((opt) => {
           const selected = value === opt.v;
@@ -452,18 +452,18 @@ function ReceptionistToggle({
               type="button"
               onClick={() => onChange(opt.v)}
               aria-pressed={selected}
-              className={`text-left rounded-lg px-3.5 py-2.5 transition-all cursor-pointer ${
+              className={`text-left rounded-lg px-3.5 py-3 transition-all cursor-pointer ${
                 selected
                   ? "bg-[var(--accent)] text-[var(--text-inverse)] shadow-[0_4px_14px_-4px_rgba(34,69,56,0.35)]"
                   : "bg-[var(--card)] text-[var(--text)] hover:bg-white"
               }`}
             >
-              <div className="font-display text-[15px] font-semibold tracking-[-0.01em]">
+              <div className="font-display text-[16px] font-bold tracking-[-0.01em]">
                 {opt.label}
               </div>
               <div
-                className={`mt-0.5 text-[11px] leading-[1.35] ${
-                  selected ? "text-[var(--text-inverse)]/75" : "text-[var(--muted)]"
+                className={`mt-1 text-[12px] leading-[1.4] ${
+                  selected ? "text-[var(--text-inverse)]/80" : "text-[var(--muted)]"
                 }`}
               >
                 {opt.sub}
@@ -472,10 +472,10 @@ function ReceptionistToggle({
           );
         })}
       </div>
-      <p className="mt-2.5 text-[11px] text-[var(--muted)] leading-[1.5]">
+      <p className="mt-3 text-[12px] text-[var(--muted)] leading-[1.5]">
         {value
-          ? "Math counts only missed-call recovery and reviews. No staff cuts."
-          : "Math also counts replacing a $34k/yr front-desk seat."}
+          ? "Math counts missed-call recovery and review uplift only. No staff cuts."
+          : "Math also counts the $34k/yr saved by not hiring a loaded front-desk seat."}
       </p>
     </div>
   );
@@ -492,7 +492,7 @@ function Stat({
 }) {
   return (
     <div className="rounded-xl border border-[var(--border-on-dark)] bg-white/[0.04] p-4">
-      <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-semibold">
+      <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-bold">
         {label.toUpperCase()}
       </div>
       <div className="mt-2 font-display text-[20px] sm:text-[22px] font-semibold tracking-[-0.02em] text-[var(--text-inverse)] tabular-nums">
@@ -509,7 +509,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3">
       <span className="h-px w-12 bg-[var(--accent)]" />
-      <span className="font-mono text-[15px] tracking-[0.2em] font-semibold text-[var(--accent)]">
+      <span className="font-mono text-[15px] tracking-[0.2em] font-bold text-[var(--accent)]">
         {children}
       </span>
     </div>

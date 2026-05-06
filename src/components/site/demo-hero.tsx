@@ -85,7 +85,7 @@ export function DemoHero() {
           <FadeUp className="lg:col-span-7">
             <div className="flex items-center gap-3">
               <span className="h-px w-12 bg-[var(--accent-bright)]" />
-              <span className="font-mono text-[14px] tracking-[0.2em] text-[var(--accent-bright)] font-semibold">
+              <span className="font-mono text-[14px] tracking-[0.2em] text-[var(--accent-bright)] font-bold">
                 STOP READING. TRY IT.
               </span>
             </div>
@@ -244,7 +244,7 @@ function PhoneTeaser({
 
           {/* Header */}
           <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-2 text-[12px] font-mono tracking-[0.18em] text-[var(--accent-bright)]/85 font-semibold">
+            <div className="inline-flex items-center gap-2 text-[12px] font-mono tracking-[0.18em] text-[var(--accent-bright)]/85 font-bold">
               <span className="inline-flex h-1.5 w-1.5 rounded-full bg-[var(--accent-bright)] animate-beacon-pulse" />
               KOLLABORATE · {stateLabel}
             </div>
