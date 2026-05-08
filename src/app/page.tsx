@@ -8,7 +8,6 @@ import { Booking } from "@/components/site/booking";
 import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
 import { RoiCalculator } from "@/components/site/roi-calculator";
-import { GbpAudit } from "@/components/site/gbp-audit";
 // import { Testimonials } from "@/components/site/testimonials"; // hidden until real screenshots / Google review proof
 import { TryReceptionist } from "@/components/site/try-receptionist";
 
@@ -21,16 +20,15 @@ export default function Home() {
       <Header />
       <main id="top">
         <Hero />
-        <Industries />
         <TryReceptionist />
+        <Industries />
         <Services />
         {/* <Testimonials /> hidden until real screenshots / Google review proof */}
         <RoiCalculator />
-        <Pricing />
         <Process />
+        <Pricing />
         <About />
         <FAQSection />
-        <GbpAudit />
         <Booking />
         <Footer />
       </main>
@@ -152,7 +150,7 @@ function Hero() {
 /* ---------- INDUSTRIES (separated) ---------- */
 
 function Industries() {
-  const tiles: { name: string; sub: string; href?: string }[] = [
+  const tiles: { name: string; sub: string; href: string }[] = [
     { name: "HVAC + Trades", sub: "HVAC, plumbing, electrical, roofing", href: "/hvac" },
     { name: "Restaurants", sub: "Front-of-house and reservations", href: "/restaurants" },
     { name: "Salons + Spas", sub: "Color, lash, brows, med-spa", href: "/salons" },
@@ -178,37 +176,23 @@ function Industries() {
         </FadeUp>
         <FadeUp delay={0.08}>
           <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {tiles.map((tile) => {
-              const inner = (
-                <>
-                  <div className="font-display text-[19px] sm:text-[20px] font-semibold tracking-[-0.01em] text-[var(--text-inverse)]">
-                    {tile.name}
-                  </div>
-                  <div className="mt-2 text-[14px] leading-[1.5] text-[var(--text-inverse)]/70">
-                    {tile.sub}
-                  </div>
-                  {tile.href && (
-                    <div className="mt-3 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-bold">
-                      SEE PAGE →
-                    </div>
-                  )}
-                </>
-              );
-              const className =
-                "block h-full rounded-xl border border-[var(--accent-bright)]/30 bg-white/[0.04] px-5 py-5 backdrop-blur-sm transition-all" +
-                (tile.href
-                  ? " hover:bg-white/[0.08] hover:border-[var(--accent-bright)]/60 hover:-translate-y-0.5 cursor-pointer"
-                  : "");
-              return tile.href ? (
-                <Link key={tile.name} href={tile.href} className={className}>
-                  {inner}
-                </Link>
-              ) : (
-                <div key={tile.name} className={className}>
-                  {inner}
+            {tiles.map((tile) => (
+              <Link
+                key={tile.name}
+                href={tile.href}
+                className="block h-full rounded-xl border border-[var(--accent-bright)]/30 bg-white/[0.04] px-5 py-5 backdrop-blur-sm transition-all hover:bg-white/[0.08] hover:border-[var(--accent-bright)]/60 hover:-translate-y-0.5 cursor-pointer"
+              >
+                <div className="font-display text-[19px] sm:text-[20px] font-semibold tracking-[-0.01em] text-[var(--text-inverse)]">
+                  {tile.name}
                 </div>
-              );
-            })}
+                <div className="mt-2 text-[14px] leading-[1.5] text-[var(--text-inverse)]/70">
+                  {tile.sub}
+                </div>
+                <div className="mt-3 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-bold">
+                  SEE PAGE →
+                </div>
+              </Link>
+            ))}
           </div>
           <p className="mt-9 max-w-[720px] text-[17px] sm:text-[18px] leading-[1.6] text-[var(--text-inverse)]/75">
             Don&apos;t see your exact vertical? If your business runs on phone
@@ -237,7 +221,7 @@ function Pricing() {
             </div>
             <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px]">
               One team, three ways
-              <span className="block mt-2 font-display font-semibold text-[var(--accent)]">
+              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)] tracking-[-0.015em]">
                 to take it off your plate.
               </span>
             </h2>
@@ -275,7 +259,7 @@ function About() {
           </h2>
         </FadeUp>
         <FadeUp className="lg:col-span-7" delay={0.1}>
-          <div className="space-y-6 max-w-[640px]">
+          <div className="space-y-7 max-w-[640px]">
             <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--text)]">
               Kollaborate is a small Montreal team. The stack we sell is the
               stack we built and run ourselves: voice agents answering live,
@@ -284,9 +268,13 @@ function About() {
             </p>
             <p className="text-[19px] sm:text-[21px] leading-[1.65] text-[var(--muted)]">
               Every account has a direct line to me. One point of contact, one
-              invoice, one Slack channel. When something breaks, you text me.
-              It gets fixed.
+              invoice, one Slack channel.
             </p>
+            <blockquote className="border-l-2 border-[var(--accent)] pl-6 py-1">
+              <p className="font-serif italic font-medium tracking-[-0.01em] text-[26px] sm:text-[30px] leading-[1.3] text-[var(--accent)]">
+                When something breaks, you text me. It gets fixed.
+              </p>
+            </blockquote>
           </div>
         </FadeUp>
       </div>
@@ -343,42 +331,42 @@ function Footer() {
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
               <li>
                 <Link
-                  href="#services"
+                  href="/#svc-call"
                   className="hover:text-[var(--accent-bright)] transition"
                 >
-                  Call handling
+                  AI Receptionist
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#services"
+                  href="/#svc-reviews"
                   className="hover:text-[var(--accent-bright)] transition"
                 >
-                  Reviews
+                  Reviews & Reputation
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#services"
+                  href="/#svc-web"
                   className="hover:text-[var(--accent-bright)] transition"
                 >
-                  Website
+                  Website Build
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#services"
+                  href="/#svc-gbp"
                   className="hover:text-[var(--accent-bright)] transition"
                 >
-                  Google profile
+                  Google Business Profile
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#services"
+                  href="/#svc-leads"
                   className="hover:text-[var(--accent-bright)] transition"
                 >
-                  Lead follow-up
+                  Lead Response
                 </Link>
               </li>
             </ul>
@@ -391,7 +379,7 @@ function Footer() {
             <ul className="mt-5 space-y-2.5 text-[15px] text-[var(--text-inverse)]/80">
               <li>
                 <Link
-                  href="#roi"
+                  href="/#math"
                   className="hover:text-[var(--accent-bright)] transition"
                 >
                   The math

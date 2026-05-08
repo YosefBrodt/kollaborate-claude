@@ -12,7 +12,7 @@ type FormData = {
 
 type Status = "idle" | "submitting" | "ok" | "error";
 
-export function GbpAudit() {
+export function GbpAudit({ embedded = false }: { embedded?: boolean } = {}) {
   const [form, setForm] = useState<FormData>({
     name: "",
     business: "",
@@ -64,10 +64,8 @@ export function GbpAudit() {
     setStatus("ok");
   }
 
-  return (
-    <section className="bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+  const grid = (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <FadeUp className="lg:col-span-6">
             <div className="flex items-center gap-3">
               <span className="h-px w-12 bg-[var(--accent)]" />
@@ -217,8 +215,16 @@ export function GbpAudit() {
               )}
             </form>
           </FadeUp>
-        </div>
-      </div>
+    </div>
+  );
+
+  if (embedded) {
+    return grid;
+  }
+
+  return (
+    <section className="bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)]">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">{grid}</div>
     </section>
   );
 }

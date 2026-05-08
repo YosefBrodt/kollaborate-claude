@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { GbpAudit } from "@/components/site/gbp-audit";
 
 const MAILTO =
   "mailto:joseph@kollaborate.ca?subject=Kollaborate%20demo%20request";
@@ -156,6 +157,28 @@ export function Booking() {
             </div>
           </div>
         </div>
+
+        <details className="group mt-20 sm:mt-24 border-t border-[var(--border)] pt-12">
+          <summary className="cursor-pointer list-none flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 group-open:mb-10">
+            <div>
+              <span className="font-mono text-[12px] tracking-[0.18em] font-bold text-[var(--accent)]">
+                NOT READY TO TALK YET?
+              </span>
+              <h3 className="mt-3 font-display font-semibold tracking-[-0.02em] leading-[1.15] text-[26px] sm:text-[32px] max-w-[640px] text-[var(--text)]">
+                Get a free Google + AI search audit instead.
+              </h3>
+              <p className="mt-3 max-w-[560px] text-[16px] leading-[1.6] text-[var(--muted)]">
+                One-page report in your inbox within 24 hours. No sales sequence.
+              </p>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-2 text-[14px] font-semibold text-[var(--accent)]">
+              <span className="group-open:hidden">Show the audit form</span>
+              <span className="hidden group-open:inline">Hide</span>
+              <span aria-hidden className="transition-transform group-open:rotate-180">↓</span>
+            </span>
+          </summary>
+          <GbpAudit embedded />
+        </details>
       </div>
     </section>
   );

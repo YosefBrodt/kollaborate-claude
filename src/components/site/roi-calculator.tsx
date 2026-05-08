@@ -139,7 +139,7 @@ export function RoiCalculator() {
 
   return (
     <section
-      id="roi"
+      id="math"
       className="relative bg-[var(--bg)] py-16 sm:py-20 border-b border-[var(--border)]"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">

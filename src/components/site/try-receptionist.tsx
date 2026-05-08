@@ -70,7 +70,7 @@ export function TryReceptionist() {
     `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
   return (
-    <section className="relative bg-[var(--bg-dark-2)] text-[var(--text-inverse)] py-16 sm:py-20 border-b border-[var(--border-on-dark)] overflow-hidden">
+    <section id="demo" className="relative bg-[var(--bg-dark-2)] text-[var(--text-inverse)] py-16 sm:py-20 border-b border-[var(--border-on-dark)] overflow-hidden scroll-mt-20">
       <div className="absolute inset-0 grain-dark pointer-events-none" />
       <div
         aria-hidden

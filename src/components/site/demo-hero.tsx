@@ -273,7 +273,7 @@ function PhoneTeaser({
             </div>
           </div>
 
-          {/* Animated voice waveform — always moving */}
+          {/* Animated voice waveform, always moving */}
           <div className="absolute inset-x-0 bottom-12 px-7 flex items-center justify-center gap-[3px] h-16">
             {Array.from({ length: 32 }).map((_, i) => {
               const variants = [0.7, 1.0, 0.85, 1.15, 0.95, 1.05, 0.8];

@@ -1,6 +1,7 @@
 import { FadeUp } from "@/components/site/fade-up";
 
 type Service = {
+  id: string;
   eyebrow: string;
   title: string;
   stat: string;
@@ -10,6 +11,7 @@ type Service = {
 
 const SERVICES: Service[] = [
   {
+    id: "svc-call",
     eyebrow: "Call handling",
     title: "Phones answered every time.",
     stat: "9/10",
@@ -20,6 +22,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
+    id: "svc-gbp",
     eyebrow: "Google Business",
     title: "Your Google profile, run weekly.",
     stat: "80%",
@@ -30,6 +33,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
+    id: "svc-reviews",
     eyebrow: "Review automation",
     title: "Every paid ticket asks for a review.",
     stat: "100%",
@@ -40,6 +44,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
+    id: "svc-web",
     eyebrow: "Website",
     title: "A site that loads under a second.",
     stat: "<1s",
@@ -50,6 +55,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
+    id: "svc-leads",
     eyebrow: "Lead follow-up",
     title: "Every lead replied to in 60 seconds.",
     stat: "<60s",
@@ -88,8 +94,9 @@ export function Services() {
               const span = i < 3 ? "lg:col-span-2" : "lg:col-span-3";
               return (
                 <article
-                  key={s.eyebrow}
-                  className={`${span} flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 transition-all hover:border-[var(--accent)]/40 hover:-translate-y-0.5`}
+                  key={s.id}
+                  id={s.id}
+                  className={`${span} scroll-mt-24 flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 transition-all hover:border-[var(--accent)]/40 hover:-translate-y-0.5`}
                 >
                   <span className="text-[14px] tracking-[0.02em] text-[var(--accent)] font-semibold">
                     {s.eyebrow}

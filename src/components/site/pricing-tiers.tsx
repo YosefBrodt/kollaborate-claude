@@ -17,7 +17,7 @@ const TIERS: Tier[] = [
     name: "Foundation",
     positioning: "For solo operators getting their digital presence in order.",
     monthly: 749,
-    setup: "$499 setup",
+    setup: "+ $499 one-time setup",
     features: [
       "Reviews pipeline (auto-ask after every paid ticket)",
       "Google Business profile, actively run",
@@ -32,7 +32,7 @@ const TIERS: Tier[] = [
     name: "Full Stack",
     positioning: "The whole front-desk replaced. What most clients pick.",
     monthly: 1499,
-    setup: "$1,999 setup",
+    setup: "+ $1,999 one-time setup",
     features: [
       "Everything in Foundation, plus:",
       "AI voice agent answering 24/7 (under 2 rings)",
@@ -49,7 +49,7 @@ const TIERS: Tier[] = [
     name: "Multi-Location",
     positioning: "For 2+ locations, franchises, or businesses needing custom fit.",
     monthly: 2995,
-    setup: "Custom setup, scoped flat",
+    setup: "+ Custom setup, scoped flat",
     features: [
       "Everything in Full Stack, plus:",
       "Multi-location voice agent with location routing",
@@ -173,11 +173,11 @@ function TierCard({ tier }: { tier: Tier }) {
           </span>
         </div>
         <p
-          className={`mt-2 font-mono text-[12px] tracking-wide font-bold ${
-            highlight ? "text-[var(--text-inverse)]/70" : "text-[var(--muted)]/85"
+          className={`mt-3 text-[15px] sm:text-[16px] font-semibold leading-[1.4] ${
+            highlight ? "text-[var(--text-inverse)]/85" : "text-[var(--text)]/85"
           }`}
         >
-          {setup.toUpperCase()}
+          {setup}
         </p>
       </div>
 
