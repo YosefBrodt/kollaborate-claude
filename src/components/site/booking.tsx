@@ -24,7 +24,7 @@ function withCalendlyTheme(baseUrl: string): string {
     hide_gdpr_banner: "1",
     primary_color: "224538",
     text_color: "0F0F0F",
-    background_color: "F8F1DB",
+    background_color: "FDFBF4",
   });
   const sep = baseUrl.includes("?") ? "&" : "?";
   return `${baseUrl}${sep}${params.toString()}`;
@@ -33,9 +33,10 @@ function withCalendlyTheme(baseUrl: string): string {
 export function Booking() {
   const rawUrl = process.env.NEXT_PUBLIC_BOOKING_URL || DEFAULT_BOOKING_URL;
   const provider = detectProvider(rawUrl);
-  const url =
-    provider === "calendly" ? withCalendlyTheme(rawUrl) : rawUrl;
-  const [widgetLoaded, setWidgetLoaded] = useState(false);
+  const url = provider === "calendly" ? withCalendlyTheme(rawUrl) : rawUrl;
+  const [widgetState, setWidgetState] = useState<"loading" | "loaded" | "failed">(
+    "loading"
+  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,16 +54,18 @@ export function Booking() {
         return;
       const data = e.data as { event?: string } | undefined;
       if (data?.event && data.event.indexOf("calendly.") === 0) {
-        setWidgetLoaded(true);
+        setWidgetState("loaded");
       }
     }
     window.addEventListener("message", onMessage);
 
-    const fallback = window.setTimeout(() => setWidgetLoaded(true), 4000);
+    const failTimer = window.setTimeout(() => {
+      setWidgetState((prev) => (prev === "loaded" ? prev : "failed"));
+    }, 6000);
 
     return () => {
       window.removeEventListener("message", onMessage);
-      window.clearTimeout(fallback);
+      window.clearTimeout(failTimer);
     };
   }, [provider, url]);
 
@@ -75,27 +78,28 @@ export function Booking() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-[var(--accent)]" />
-              <span className="font-mono text-[13px] tracking-[0.18em] font-bold text-[var(--accent)]">
-                Book a 15-minute call
+              <span className="h-px w-12 bg-[var(--accent)]" />
+              <span className="font-mono text-[15px] tracking-[0.2em] font-bold text-[var(--accent)]">
+                BOOK A 15-MIN CALL
               </span>
             </div>
-            <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] max-w-[480px] text-[var(--text)]">
-              Pick a time. I show up live.
+            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[480px] text-[var(--text)]">
+              One call.
+              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)] tracking-[-0.015em]">
+                One yes or no.
+              </span>
             </h2>
-            <p className="mt-7 text-[17px] sm:text-[18px] leading-[1.6] text-[var(--muted)] max-w-[440px]">
-              Fifteen minutes on Zoom. We run the voice agent against your
-              actual intake questions live. If it is not the right fit, you
-              walk. No pressure, no follow-up sequence.
+            <p className="mt-7 text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)] max-w-[460px]">
+              We pull your numbers live on the call: missed-call rate, GBP
+              signal, current site speed. If we cannot beat what you have, we
+              tell you on the call.
             </p>
 
             <ul className="mt-9 space-y-4 max-w-[440px]">
               {[
-                "15 minutes, on Zoom, founder on the call",
-                "Evenings and Sundays, when you actually have time to talk",
-                "Voice agent runs against your actual intake live",
-                "No slides, no contract, no follow-up sequence",
-                "Walk if it isn't a fit, that is the whole point",
+                "No deck. No pitch.",
+                "Real numbers from your business.",
+                "Direct line to the founder, not a BDR.",
               ].map((item) => (
                 <li
                   key={item}
@@ -127,11 +131,11 @@ export function Booking() {
             >
               {provider === "cal" && url && (
                 <>
-                  {!widgetLoaded && <BookingSkeleton />}
+                  {widgetState === "loading" && <BookingSkeleton />}
                   <iframe
                     title="Book a 15-minute call with Joseph"
                     src={url}
-                    onLoad={() => setWidgetLoaded(true)}
+                    onLoad={() => setWidgetState("loaded")}
                     className="block w-full"
                     style={{ height: 720, border: 0 }}
                     loading="lazy"
@@ -142,14 +146,17 @@ export function Booking() {
 
               {provider === "calendly" && url && (
                 <>
-                  {!widgetLoaded && <BookingSkeleton />}
-                  <div
-                    className={`calendly-inline-widget transition-opacity duration-300 ${
-                      widgetLoaded ? "opacity-100" : "opacity-0"
-                    }`}
-                    data-url={url}
-                    style={{ minWidth: 320, height: 720 }}
-                  />
+                  {widgetState === "loading" && <BookingSkeleton />}
+                  {widgetState === "failed" && <BookingFallback />}
+                  {widgetState !== "failed" && (
+                    <div
+                      className={`calendly-inline-widget transition-opacity duration-300 ${
+                        widgetState === "loaded" ? "opacity-100" : "opacity-0"
+                      }`}
+                      data-url={url}
+                      style={{ minWidth: 320, height: 720 }}
+                    />
+                  )}
                 </>
               )}
 
@@ -221,16 +228,15 @@ function BookingSkeleton() {
 function BookingFallback() {
   return (
     <div className="p-10 sm:p-14 h-full min-h-[640px] flex flex-col justify-center">
-      <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--muted)] font-bold">
+      <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--accent)] font-bold">
         DIRECT CONTACT
       </span>
       <h3 className="mt-5 font-display font-semibold tracking-[-0.02em] leading-[1.1] text-[28px] sm:text-[32px]">
         Email me to grab a slot.
       </h3>
       <p className="mt-5 text-[16px] sm:text-[17px] leading-[1.6] text-[var(--muted)] max-w-[460px]">
-        Send a line with two or three windows that work for you inside the
-        availability shown. I confirm same day with a Zoom link and a
-        15-minute hold.
+        Send a line with two or three windows that work for you. I confirm the
+        same day with a Zoom link and a 15-minute hold.
       </p>
       <a
         href={MAILTO}

@@ -5,69 +5,16 @@ import { motion } from "framer-motion";
 import { FadeUp } from "@/components/site/fade-up";
 
 type Inputs = {
-  callsPerWeek: number;
+  callsPerMonth: number;
   avgTicket: number;
   missedPct: number;
-  monthlyTickets: number;
-  currentReviewsPerMonth: number;
-  hasReceptionist: boolean;
 };
 
-type TradeId = "hvac" | "restaurant" | "salon" | "dental";
-
-const TRADE_PRESETS: { id: TradeId; label: string; preset: Inputs }[] = [
-  {
-    id: "hvac",
-    label: "HVAC + Trades",
-    preset: {
-      callsPerWeek: 55,
-      avgTicket: 380,
-      missedPct: 25,
-      monthlyTickets: 95,
-      currentReviewsPerMonth: 3,
-      hasReceptionist: true,
-    },
-  },
-  {
-    id: "restaurant",
-    label: "Restaurant",
-    preset: {
-      callsPerWeek: 90,
-      avgTicket: 75,
-      missedPct: 15,
-      monthlyTickets: 220,
-      currentReviewsPerMonth: 5,
-      hasReceptionist: true,
-    },
-  },
-  {
-    id: "salon",
-    label: "Salon + Spa",
-    preset: {
-      callsPerWeek: 45,
-      avgTicket: 110,
-      missedPct: 18,
-      monthlyTickets: 180,
-      currentReviewsPerMonth: 4,
-      hasReceptionist: true,
-    },
-  },
-  {
-    id: "dental",
-    label: "Dental + Med",
-    preset: {
-      callsPerWeek: 50,
-      avgTicket: 280,
-      missedPct: 15,
-      monthlyTickets: 160,
-      currentReviewsPerMonth: 2,
-      hasReceptionist: true,
-    },
-  },
-];
-
-// Default state = HVAC preset (cold-email primary target).
-const DEFAULTS: Inputs = TRADE_PRESETS[0].preset;
+const DEFAULTS: Inputs = {
+  callsPerMonth: 120,
+  avgTicket: 280,
+  missedPct: 28,
+};
 
 function fmt(n: number) {
   return n.toLocaleString("en-US", { maximumFractionDigits: 0 });
@@ -77,228 +24,138 @@ function fmtMoney(n: number) {
   return "$" + fmt(Math.round(n));
 }
 
+const PICKUP_RATE = 0.85;
+const CLOSE_RATE = 0.3;
+
 export function RoiCalculator() {
   const [inputs, setInputs] = useState<Inputs>(DEFAULTS);
-  // Currently-selected trade chip. null when the visitor has manually tweaked
-  // a slider, so the chips visually de-select to signal "Custom."
-  const [tradeId, setTradeId] = useState<TradeId | null>("hvac");
-
-  function applyPreset(id: TradeId) {
-    const trade = TRADE_PRESETS.find((t) => t.id === id);
-    if (!trade) return;
-    setInputs(trade.preset);
-    setTradeId(id);
-  }
 
   const out = useMemo(() => {
-    // Lost calls = missed_pct of (calls_per_week * 52)
-    const callsPerYear = inputs.callsPerWeek * 52;
-    const missedCalls = callsPerYear * (inputs.missedPct / 100);
-    // Industry-standard close rate on a recovered inbound call: ~30%
-    const recoveredJobs = missedCalls * 0.3;
-    const recoveredRevenue = recoveredJobs * inputs.avgTicket;
-
-    // Reviews lift: 10% response rate on auto-asks (honest industry baseline,
-    // SMS-based ask programs typically land 8-12%).
-    const ticketsPerYear = inputs.monthlyTickets * 12;
-    const newReviewsPerYear = ticketsPerYear * 0.1;
-    const currentReviewsPerYear = inputs.currentReviewsPerMonth * 12;
-    const reviewLift = Math.max(0, newReviewsPerYear - currentReviewsPerYear);
-
-    // Front-desk replacement (typical loaded cost minus our Full Stack)
-    // Conservative: $52,000/yr loaded - $18,000/yr (us) = $34k savings
-    // If they already have staff, we don't claim this; overflow / co-receptionist mode.
-    const frontDeskSavings = inputs.hasReceptionist ? 0 : 34000;
-
-    const totalGain = recoveredRevenue + frontDeskSavings;
-    // Compare to Full Stack annual cost ($1,499 * 12 = $17,988)
-    const ourAnnualCost = 17988;
-    const netReturn = totalGain - ourAnnualCost;
-    const roiMultiple = totalGain / ourAnnualCost;
+    const missedPerMonth = inputs.callsPerMonth * (inputs.missedPct / 100);
+    const recoveredPerMonth = missedPerMonth * PICKUP_RATE;
+    const recoveredJobsPerMonth = recoveredPerMonth * CLOSE_RATE;
+    const recoveredRevenuePerYear = recoveredJobsPerMonth * inputs.avgTicket * 12;
+    const monthlyRevenue = (recoveredRevenuePerYear / 12);
+    const fullStackAnnual = 17988;
+    const payback = recoveredRevenuePerYear / fullStackAnnual;
 
     return {
-      missedCalls,
-      recoveredJobs,
-      recoveredRevenue,
-      newReviewsPerYear,
-      reviewLift,
-      frontDeskSavings,
-      totalGain,
-      ourAnnualCost,
-      netReturn,
-      roiMultiple,
+      missedPerMonth,
+      recoveredPerMonth,
+      recoveredJobsPerMonth,
+      recoveredRevenuePerYear,
+      monthlyRevenue,
+      payback,
     };
   }, [inputs]);
 
   function update<K extends keyof Inputs>(key: K, value: Inputs[K]) {
     setInputs((prev) => ({ ...prev, [key]: value }));
-    // Manual tweak -> drop trade selection so the visitor knows they're now in
-    // custom territory.
-    setTradeId(null);
   }
 
   return (
     <section
       id="math"
-      className="relative bg-[var(--bg)] py-16 sm:py-20 border-b border-[var(--border)]"
+      className="relative bg-[var(--bg-cream)] py-20 sm:py-24 border-b border-[var(--border)]"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <FadeUp>
-          <SectionLabel>The math</SectionLabel>
-          <h2 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[32px] sm:text-[40px] lg:text-[44px] max-w-[960px]">
-            Run your own numbers. See what each missed call is costing you.
-          </h2>
-          <p className="mt-5 max-w-[720px] text-[17px] sm:text-[18px] leading-[1.55] text-[var(--muted)]">
-            Drag the inputs to match your business. The numbers update live.
-            Math uses standard local-service close rates and review response
-            data, not made-up multipliers.
-          </p>
-        </FadeUp>
-
-        <FadeUp delay={0.1}>
-          <div className="mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-            {/* Inputs */}
-            <div className="lg:col-span-5">
-              <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6">
-                <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--muted)] font-bold">
-                  YOUR BUSINESS
-                </span>
-                <div className="mt-5 space-y-4">
-                  <TradeChips tradeId={tradeId} onPick={applyPreset} />
-                  <ReceptionistToggle
-                    value={inputs.hasReceptionist}
-                    onChange={(v) => update("hasReceptionist", v)}
-                  />
-                  <Slider
-                    label="Calls received per week"
-                    value={inputs.callsPerWeek}
-                    min={10}
-                    max={300}
-                    step={5}
-                    onChange={(v) => update("callsPerWeek", v)}
-                    suffix="calls"
-                  />
-                  <Slider
-                    label="Average job or ticket value"
-                    value={inputs.avgTicket}
-                    min={50}
-                    max={3000}
-                    step={10}
-                    onChange={(v) => update("avgTicket", v)}
-                    prefix="$"
-                  />
-                  <Slider
-                    label="Estimated calls you miss"
-                    value={inputs.missedPct}
-                    min={0}
-                    max={60}
-                    step={1}
-                    onChange={(v) => update("missedPct", v)}
-                    suffix="%"
-                    helper="If you don't know, 30% is the local-service average."
-                  />
-                  <Slider
-                    label="Paid tickets per month"
-                    value={inputs.monthlyTickets}
-                    min={20}
-                    max={3000}
-                    step={10}
-                    onChange={(v) => update("monthlyTickets", v)}
-                    suffix="tickets"
-                  />
-                  <Slider
-                    label="Google reviews you get per month, today"
-                    value={inputs.currentReviewsPerMonth}
-                    min={0}
-                    max={50}
-                    step={1}
-                    onChange={(v) => update("currentReviewsPerMonth", v)}
-                    suffix="reviews"
-                  />
-                </div>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <FadeUp className="lg:col-span-5">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-12 bg-[var(--accent)]" />
+              <span className="font-mono text-[15px] tracking-[0.2em] font-bold text-[var(--accent)]">
+                THE MATH
+              </span>
             </div>
+            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px]">
+              What missed calls
+              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)] tracking-[-0.015em]">
+                actually cost you.
+              </span>
+            </h2>
+            <p className="mt-7 max-w-[480px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)]">
+              Drag the sliders. The number on the right is the revenue we
+              recover for a typical client at this volume. Gross, before our fee.
+            </p>
 
-            {/* Output */}
-            <div className="lg:col-span-7">
-              <div className="rounded-2xl bg-[var(--bg-dark)] text-[var(--text-inverse)] p-6 sm:p-7 border border-[var(--accent-bright)]/30 shadow-[0_28px_70px_-28px_rgba(12,31,26,0.5)] relative overflow-hidden">
-                <div className="absolute inset-0 grain-dark pointer-events-none" />
-                <div className="relative z-10">
-                  <span className="font-mono text-[12px] tracking-[0.18em] text-[var(--accent-bright)] font-bold">
-                    YOUR ANNUAL UPSIDE
-                  </span>
-                  <motion.div
-                    key={Math.round(out.totalGain / 100)}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="mt-3 flex items-baseline gap-2"
-                  >
-                    <span className="font-display text-[40px] sm:text-[52px] lg:text-[60px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent-bright)]">
-                      {fmtMoney(out.totalGain)}
-                    </span>
-                    <span className="font-display text-[20px] sm:text-[24px] text-[var(--text-inverse)]/65">
-                      /yr
-                    </span>
-                  </motion.div>
-                  <p className="mt-4 text-[15px] sm:text-[16px] leading-[1.55] text-[var(--text-inverse)]/85 max-w-[520px]">
-                    What this stack puts back into your business each year,
-                    based on the inputs you just set. Net of what you pay us.
-                  </p>
-
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <Stat
-                      label="Missed calls recovered"
-                      value={fmt(out.recoveredJobs) + " jobs/yr"}
-                      sub={fmtMoney(out.recoveredRevenue) + " in revenue"}
-                    />
-                    {inputs.hasReceptionist ? (
-                      <Stat
-                        label="Co-receptionist mode"
-                        value="Overflow + after-hours"
-                        sub="Augments your existing staff"
-                      />
-                    ) : (
-                      <Stat
-                        label="Front-desk replaced"
-                        value={fmtMoney(out.frontDeskSavings)}
-                        sub="vs hiring a loaded seat"
-                      />
-                    )}
-                    <Stat
-                      label="New Google reviews"
-                      value={"+" + fmt(out.reviewLift) + "/yr"}
-                      sub={"vs " + fmt(inputs.currentReviewsPerMonth * 12) + " today"}
-                    />
-                  </div>
-
-                  <div className="mt-6 pt-5 border-t border-[var(--border-on-dark)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div>
-                      <div className="font-mono text-[11px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-bold">
-                        ROI VS FULL STACK ($1,499 / MO)
-                      </div>
-                      <div className="mt-1 font-display text-[26px] sm:text-[30px] font-semibold tracking-[-0.025em] text-[var(--accent-bright)]">
-                        {out.roiMultiple.toFixed(1)}x return
-                      </div>
-                    </div>
-                    <a
-                      href="#pricing"
-                      className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--accent-bright)] px-6 text-[15px] font-semibold text-[var(--bg-dark)] transition-all hover:-translate-y-0.5 hover:bg-white"
-                    >
-                      Pick a plan that captures this →
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-4 text-[12px] sm:text-[13px] text-[var(--muted)] leading-[1.55] max-w-[640px]">
-                Math: missed calls recovered at a 30% close rate on inbound,
-                review uplift assumes 10% response on auto-ask, front-desk
-                replacement assumes a $52k loaded annual seat. Conservative
-                across the board.
+            <div className="mt-9 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6">
+              <span className="font-mono text-[12px] tracking-[0.16em] text-[var(--accent)] font-bold">
+                WHY 85%?
+              </span>
+              <p className="mt-2 text-[14px] sm:text-[15px] leading-[1.6] text-[var(--muted)]">
+                That is our average pickup rate on missed calls across live
+                clients. The other 15% are wrong-numbers, robocalls, and
+                language-mismatches we route to a human.
               </p>
             </div>
-          </div>
-        </FadeUp>
+          </FadeUp>
+
+          <FadeUp className="lg:col-span-7" delay={0.1}>
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-8 shadow-[0_24px_70px_-32px_rgba(20,40,30,0.25)]">
+              <div className="space-y-7">
+                <Slider
+                  label="Inbound calls / month"
+                  value={inputs.callsPerMonth}
+                  min={20}
+                  max={800}
+                  step={5}
+                  onChange={(v) => update("callsPerMonth", v)}
+                  suffix="calls"
+                />
+                <Slider
+                  label="Average ticket value"
+                  value={inputs.avgTicket}
+                  min={50}
+                  max={2000}
+                  step={10}
+                  onChange={(v) => update("avgTicket", v)}
+                  prefix="$"
+                />
+                <Slider
+                  label="% missed today"
+                  value={inputs.missedPct}
+                  min={0}
+                  max={60}
+                  step={1}
+                  onChange={(v) => update("missedPct", v)}
+                  suffix="%"
+                />
+              </div>
+
+              <div className="mt-8 pt-7 border-t border-[var(--border)]">
+                <div className="grid grid-cols-2 gap-y-2 font-mono text-[12px] sm:text-[13px] tracking-[0.14em] text-[var(--muted)]">
+                  <span>YOU MISS</span>
+                  <span className="text-right text-[var(--text)] font-semibold">
+                    ≈ {fmt(out.missedPerMonth)} calls / mo
+                  </span>
+                  <span>WE RECOVER</span>
+                  <span className="text-right text-[var(--text)] font-semibold">
+                    ≈ {fmt(out.recoveredPerMonth)} calls / mo
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-7">
+                <div className="font-mono text-[11px] sm:text-[12px] tracking-[0.16em] text-[var(--muted)] font-bold">
+                  RECOVERED REVENUE / YEAR
+                </div>
+                <motion.div
+                  key={Math.round(out.recoveredRevenuePerYear / 100)}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.22 }}
+                  className="mt-2 font-display text-[44px] sm:text-[60px] lg:text-[68px] font-semibold tracking-[-0.04em] leading-none text-[var(--accent)] tabular-nums"
+                >
+                  {fmtMoney(out.recoveredRevenuePerYear)}
+                </motion.div>
+                <p className="mt-3 text-[14px] sm:text-[15px] text-[var(--muted)]">
+                  {fmtMoney(out.monthlyRevenue)} / mo · pays for Full Stack{" "}
+                  {out.payback.toFixed(1)}x over.
+                </p>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
       </div>
     </section>
   );
@@ -313,7 +170,6 @@ function Slider({
   onChange,
   prefix,
   suffix,
-  helper,
 }: {
   label: string;
   value: number;
@@ -323,19 +179,18 @@ function Slider({
   onChange: (v: number) => void;
   prefix?: string;
   suffix?: string;
-  helper?: string;
 }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <label className="text-[14px] sm:text-[15px] font-medium text-[var(--text)]">
+        <label className="text-[15px] sm:text-[16px] font-semibold text-[var(--text)]">
           {label}
         </label>
-        <span className="font-display text-[20px] sm:text-[22px] font-semibold tracking-[-0.02em] text-[var(--accent)] tabular-nums">
+        <span className="font-mono text-[14px] sm:text-[15px] font-bold text-[var(--text)] tabular-nums">
           {prefix}
           {fmt(value)}
           {suffix && (
-            <span className="ml-1 text-[13px] text-[var(--muted)] font-mono">
+            <span className="ml-1.5 text-[12px] text-[var(--muted)]">
               {suffix}
             </span>
           )}
@@ -348,7 +203,7 @@ function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-2 w-full h-2 cursor-pointer appearance-none bg-[var(--border)] rounded-full
+        className="mt-3 w-full h-2 cursor-pointer appearance-none bg-[var(--border)] rounded-full
           [&::-webkit-slider-thumb]:appearance-none
           [&::-webkit-slider-thumb]:h-5
           [&::-webkit-slider-thumb]:w-5
@@ -371,148 +226,6 @@ function Slider({
           }%, var(--border) ${((value - min) / (max - min)) * 100}%)`,
         }}
       />
-      {helper && (
-        <p className="mt-1.5 text-[12px] text-[var(--muted)] leading-[1.4]">
-          {helper}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function TradeChips({
-  tradeId,
-  onPick,
-}: {
-  tradeId: TradeId | null;
-  onPick: (id: TradeId) => void;
-}) {
-  return (
-    <div>
-      <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--muted)] font-bold">
-        PICK YOUR TRADE · AUTO-FILLS THE NUMBERS
-      </div>
-      <div className="mt-2 flex flex-wrap gap-1.5">
-        {TRADE_PRESETS.map((t) => {
-          const active = t.id === tradeId;
-          return (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => onPick(t.id)}
-              aria-pressed={active}
-              className={`rounded-full px-3 py-1.5 text-[12px] font-semibold tracking-tight transition-all cursor-pointer ${
-                active
-                  ? "bg-[var(--accent)] text-[var(--text-inverse)] shadow-[0_4px_14px_-4px_rgba(34,69,56,0.35)]"
-                  : "bg-[var(--bg)] text-[var(--muted)] border border-[var(--border)] hover:border-[var(--accent)]/50 hover:text-[var(--text)]"
-              }`}
-            >
-              {t.label}
-            </button>
-          );
-        })}
-        {tradeId === null && (
-          <span className="inline-flex items-center rounded-full px-3 py-1.5 text-[12px] font-semibold tracking-tight bg-[var(--accent-bright)]/15 text-[var(--accent)] border border-[var(--accent)]/40">
-            Custom
-          </span>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function ReceptionistToggle({
-  value,
-  onChange,
-}: {
-  value: boolean;
-  onChange: (v: boolean) => void;
-}) {
-  return (
-    <div className="rounded-xl border border-[var(--accent-bright)]/50 bg-[var(--accent-bright)]/15 p-4">
-      <span className="font-mono text-[13px] sm:text-[14px] tracking-[0.14em] text-[var(--accent)] font-bold">
-        WHO ANSWERS YOUR PHONE RIGHT NOW?
-      </span>
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        {[
-          {
-            v: true,
-            label: "I have someone",
-            sub: "AI will catch what they miss (overflow + after-hours)",
-          },
-          {
-            v: false,
-            label: "Nobody, really",
-            sub: "AI would replace $34k/yr of front-desk costs",
-          },
-        ].map((opt) => {
-          const selected = value === opt.v;
-          return (
-            <button
-              key={String(opt.v)}
-              type="button"
-              onClick={() => onChange(opt.v)}
-              aria-pressed={selected}
-              className={`text-left rounded-lg px-3.5 py-3 transition-all cursor-pointer ${
-                selected
-                  ? "bg-[var(--accent)] text-[var(--text-inverse)] shadow-[0_4px_14px_-4px_rgba(34,69,56,0.35)]"
-                  : "bg-[var(--card)] text-[var(--text)] hover:bg-white"
-              }`}
-            >
-              <div className="font-display text-[16px] font-bold tracking-[-0.01em]">
-                {opt.label}
-              </div>
-              <div
-                className={`mt-1 text-[12px] leading-[1.4] ${
-                  selected ? "text-[var(--text-inverse)]/80" : "text-[var(--muted)]"
-                }`}
-              >
-                {opt.sub}
-              </div>
-            </button>
-          );
-        })}
-      </div>
-      <p className="mt-3 text-[12px] text-[var(--muted)] leading-[1.5]">
-        {value
-          ? "Math will count missed-call recovery and review uplift only. No staff cuts."
-          : "Math will also count the $34k/yr you would save by not hiring a loaded front-desk seat."}
-      </p>
-    </div>
-  );
-}
-
-function Stat({
-  label,
-  value,
-  sub,
-}: {
-  label: string;
-  value: string;
-  sub: string;
-}) {
-  return (
-    <div className="rounded-xl border border-[var(--border-on-dark)] bg-white/[0.04] p-4">
-      <div className="font-mono text-[10px] tracking-[0.16em] text-[var(--text-inverse)]/55 font-bold">
-        {label.toUpperCase()}
-      </div>
-      <div className="mt-2 font-display text-[20px] sm:text-[22px] font-semibold tracking-[-0.02em] text-[var(--text-inverse)] tabular-nums">
-        {value}
-      </div>
-      <div className="mt-0.5 text-[12px] text-[var(--text-inverse)]/55 font-mono tracking-wide">
-        {sub}
-      </div>
-    </div>
-  );
-}
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="h-px w-12 bg-[var(--accent)]" />
-      <span className="font-mono text-[15px] tracking-[0.2em] font-bold text-[var(--accent)]">
-        {children}
-      </span>
     </div>
   );
 }

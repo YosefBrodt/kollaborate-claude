@@ -189,7 +189,7 @@ function Industries() {
                   {tile.sub}
                 </div>
                 <div className="mt-3 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-bright)] font-bold">
-                  SEE PAGE →
+                  SEE PLAYBOOK →
                 </div>
               </Link>
             ))}
@@ -391,6 +391,14 @@ function Footer() {
                   className="hover:text-[var(--accent-bright)] transition"
                 >
                   Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#process"
+                  className="hover:text-[var(--accent-bright)] transition"
+                >
+                  Process
                 </Link>
               </li>
               <li>

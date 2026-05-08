@@ -69,107 +69,223 @@ export function TryReceptionist() {
   const fmt = (s: number) =>
     `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
+  const stateLabel =
+    status === "active"
+      ? "ON CALL"
+      : status === "connecting"
+      ? "DIALING"
+      : status === "ended"
+      ? "ENDED"
+      : status === "unconfigured"
+      ? "UNAVAILABLE"
+      : "STANDBY";
+
   return (
-    <section id="demo" className="relative bg-[var(--bg-dark-2)] text-[var(--text-inverse)] py-16 sm:py-20 border-b border-[var(--border-on-dark)] overflow-hidden scroll-mt-20">
-      <div className="absolute inset-0 grain-dark pointer-events-none" />
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 80% 30%, rgba(168,213,187,0.12) 0%, transparent 55%)",
-        }}
-      />
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    <section
+      id="demo"
+      className="relative bg-[var(--bg)] py-20 sm:py-24 border-b border-[var(--border)] scroll-mt-20"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <FadeUp className="lg:col-span-6">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-12 bg-[var(--accent-bright)]" />
-              <span className="font-mono text-[14px] tracking-[0.18em] text-[var(--accent-bright)] font-bold">
-                HEAR IT FOR YOURSELF
+            <span className="block h-px w-12 bg-[var(--accent)]" />
+            <h2 className="mt-6 font-display font-semibold leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[44px] lg:text-[52px] max-w-[560px]">
+              Hear what an answered call
+              <span className="block mt-2 font-serif italic font-medium text-[var(--accent)] tracking-[-0.015em]">
+                actually sounds like.
               </span>
-            </div>
-            <h2 className="mt-5 font-display font-bold leading-[1.05] tracking-[-0.025em] text-[34px] sm:text-[42px] lg:text-[48px] max-w-[560px]">
-              Talk to the AI receptionist right now.
             </h2>
-            <p className="mt-5 max-w-[520px] text-[17px] sm:text-[18px] leading-[1.6] text-[var(--text-inverse)]/75">
-              No signup, no demo gate. Click the button, ask whatever you would
-              ask if you were calling a real business. It books the
-              appointment, answers pricing, escalates when it has to.
+            <p className="mt-7 max-w-[520px] text-[18px] sm:text-[19px] leading-[1.6] text-[var(--muted)]">
+              This is the same voice agent we put on a real plumbing line in
+              Verdun last month. It answers in under 2 rings, books the job, and
+              texts the customer a confirmation. All without paging anyone.
             </p>
+
+            <div className="mt-9 flex flex-col sm:flex-row gap-3">
+              <DemoButton
+                status={status}
+                seconds={seconds}
+                fmt={fmt}
+                onStart={start}
+                onStop={stop}
+              />
+              <a
+                href="#services"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-full border-2 border-[var(--accent)] bg-transparent px-7 text-[15px] sm:text-[16px] font-semibold text-[var(--accent)] transition-all hover:-translate-y-0.5 hover:bg-[var(--accent)] hover:text-[var(--text-inverse)]"
+              >
+                See what else we run
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+
+            <p className="mt-5 font-mono text-[12px] tracking-[0.14em] text-[var(--muted)] font-bold">
+              EN / FR · 24/7 · ROUTES TO A HUMAN IF ASKED
+            </p>
+
+            {PHONE_NUMBER && (
+              <p className="mt-3 text-[14px] text-[var(--muted)]">
+                Or call{" "}
+                <a
+                  href={`tel:${PHONE_NUMBER}`}
+                  className="text-[var(--accent)] underline underline-offset-4 decoration-2 font-semibold hover:text-[var(--accent-hover)]"
+                >
+                  {PHONE_NUMBER}
+                </a>{" "}
+                from your phone.
+              </p>
+            )}
           </FadeUp>
 
           <FadeUp className="lg:col-span-6" delay={0.1}>
-            <div className="rounded-2xl border border-[var(--accent-bright)]/30 bg-white/[0.04] p-6 sm:p-8 backdrop-blur-sm">
-              {/* Web call button */}
-              {status === "idle" && (
-                <button
-                  type="button"
-                  onClick={start}
-                  className="group flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--accent-bright)] px-6 py-5 text-[var(--bg-dark)] font-bold text-[18px] transition-all hover:-translate-y-0.5 hover:bg-white"
-                >
-                  Talk to it through your browser
-                  <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
-                </button>
-              )}
-
-              {status === "connecting" && (
-                <div className="flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--accent-bright)]/30 border border-[var(--accent-bright)]/50 px-6 py-5 text-[var(--text-inverse)] font-bold text-[18px]">
-                  <span className="inline-block h-3 w-3 animate-pulse rounded-full bg-[var(--accent-bright)]" />
-                  Connecting...
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-7 shadow-[0_24px_70px_-32px_rgba(20,40,30,0.2)]">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span
+                    aria-hidden
+                    className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[var(--accent)] text-[var(--text-inverse)] font-display text-[15px] font-bold"
+                  >
+                    K
+                  </span>
+                  <div>
+                    <div className="font-display text-[15px] sm:text-[16px] font-semibold tracking-[-0.01em] text-[var(--text)]">
+                      Bell Plumbing, main line
+                    </div>
+                    <div className="font-mono text-[11px] tracking-[0.14em] text-[var(--muted)]">
+                      {status === "active" ? `LIVE · ${fmt(seconds)}` : "IDLE"}
+                    </div>
+                  </div>
                 </div>
-              )}
+                <span className="inline-flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] tracking-[0.16em] font-bold text-[var(--muted)]">
+                  <span
+                    className={`inline-block h-1.5 w-1.5 rounded-full ${
+                      status === "active"
+                        ? "bg-[var(--accent)] animate-beacon-pulse"
+                        : "bg-[var(--muted)]/50"
+                    }`}
+                  />
+                  {stateLabel}
+                </span>
+              </div>
 
-              {status === "active" && (
-                <button
-                  type="button"
-                  onClick={stop}
-                  className="flex w-full items-center justify-center gap-3 rounded-xl bg-red-500 hover:bg-red-600 px-6 py-5 text-white font-bold text-[18px] transition-all"
-                >
-                  <span className="inline-block h-3 w-3 animate-pulse rounded-full bg-white" />
-                  <span className="font-mono tabular-nums">{fmt(seconds)}</span>
-                  End call
-                </button>
-              )}
+              <div className="mt-5 rounded-xl bg-[var(--bg)] border border-[var(--border)] px-5 py-7 sm:py-9 text-center">
+                <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--muted)] font-bold">
+                  SIMULATED CALL
+                </span>
+                <p className="mt-3 text-[14px] sm:text-[15px] leading-[1.55] text-[var(--text)] max-w-[300px] mx-auto">
+                  {status === "active" ? (
+                    <>
+                      You are on with the agent. Talk like a real customer
+                      booking a job.
+                    </>
+                  ) : status === "connecting" ? (
+                    <>Connecting your mic to the agent.</>
+                  ) : status === "ended" ? (
+                    <>Call ended. Press start to run it again.</>
+                  ) : status === "unconfigured" ? (
+                    <>
+                      Demo not yet configured. Email{" "}
+                      <a
+                        href="mailto:joseph@kollaborate.ca"
+                        className="text-[var(--accent)] underline underline-offset-2 font-semibold"
+                      >
+                        joseph@kollaborate.ca
+                      </a>{" "}
+                      to hear it live.
+                    </>
+                  ) : (
+                    <>
+                      Press <strong>Start the call</strong> to watch a real
+                      booking happen end to end.
+                    </>
+                  )}
+                </p>
+              </div>
 
-              {status === "ended" && (
-                <div className="flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--accent-bright)]/20 border border-[var(--accent-bright)]/40 px-6 py-5 text-[var(--text-inverse)] font-bold text-[18px]">
-                  Thanks for trying.
-                </div>
-              )}
-
-              {status === "unconfigured" && (
-                <div className="rounded-xl bg-white/[0.04] border border-[var(--border-on-dark)] px-6 py-5 text-[var(--text-inverse)]/70 text-[14px] text-center">
-                  Demo not yet configured. Email{" "}
-                  <a href="mailto:joseph@kollaborate.ca" className="text-[var(--accent-bright)] underline underline-offset-4 font-bold">
-                    joseph@kollaborate.ca
-                  </a>{" "}
-                  to hear it live.
-                </div>
-              )}
-
-              {/* Phone call option */}
-              {PHONE_NUMBER ? (
-                <a
-                  href={`tel:${PHONE_NUMBER}`}
-                  className="mt-3 flex w-full items-center justify-center gap-3 rounded-xl border-2 border-[var(--accent-bright)]/40 bg-transparent px-6 py-5 text-[var(--text-inverse)] font-bold text-[16px] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-bright)] hover:bg-white/[0.05]"
-                >
-                  Or call {PHONE_NUMBER} from your phone
-                </a>
-              ) : (
-                <div className="mt-3 rounded-xl border border-dashed border-[var(--border-on-dark)] bg-transparent px-6 py-4 text-[var(--text-inverse)]/55 text-[13px] text-center font-mono tracking-wide">
-                  PHONE LINE COMING SOON
-                </div>
-              )}
-
-              <p className="mt-4 text-[12px] text-[var(--text-inverse)]/55 leading-[1.5] text-center">
-                Mic permission required for the browser call. No data is
-                stored. The agent is the same one we deploy for clients.
-              </p>
+              <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3">
+                <Stat label="rings to answer" value="< 2" />
+                <Stat label="humans paged" value="0" />
+                <Stat label="until SMS confirm" value="30s" />
+              </div>
             </div>
           </FadeUp>
         </div>
       </div>
     </section>
+  );
+}
+
+function DemoButton({
+  status,
+  seconds,
+  fmt,
+  onStart,
+  onStop,
+}: {
+  status: Status;
+  seconds: number;
+  fmt: (s: number) => string;
+  onStart: () => void;
+  onStop: () => void;
+}) {
+  if (status === "active") {
+    return (
+      <button
+        type="button"
+        onClick={onStop}
+        className="inline-flex h-14 items-center justify-center gap-3 rounded-full bg-red-600 px-8 text-[16px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-red-700"
+      >
+        <span className="inline-block h-2.5 w-2.5 rounded-full bg-white animate-pulse" />
+        End call · <span className="font-mono tabular-nums">{fmt(seconds)}</span>
+      </button>
+    );
+  }
+  if (status === "connecting") {
+    return (
+      <span className="inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[var(--accent)] px-8 text-[16px] font-semibold text-[var(--text-inverse)]">
+        <span className="inline-block h-2.5 w-2.5 rounded-full bg-[var(--accent-bright)] animate-pulse" />
+        Connecting...
+      </span>
+    );
+  }
+  if (status === "ended") {
+    return (
+      <span className="inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[var(--accent-bright)]/30 border border-[var(--accent-bright)] px-8 text-[16px] font-semibold text-[var(--accent)]">
+        Thanks for trying.
+      </span>
+    );
+  }
+  if (status === "unconfigured") {
+    return (
+      <a
+        href="#book"
+        className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-8 text-[16px] font-semibold text-[var(--text-inverse)] animate-breathe-pulse transition-all hover:-translate-y-0.5 hover:bg-[var(--accent-hover)]"
+      >
+        Hear it on the call
+        <span aria-hidden>→</span>
+      </a>
+    );
+  }
+  return (
+    <button
+      type="button"
+      onClick={onStart}
+      className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-8 text-[16px] font-semibold text-[var(--text-inverse)] animate-breathe-pulse transition-all hover:-translate-y-0.5 hover:bg-[var(--accent-hover)]"
+    >
+      Start the call
+      <span aria-hidden>→</span>
+    </button>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-3">
+      <div className="font-display text-[18px] sm:text-[20px] font-bold tracking-[-0.02em] text-[var(--text)] tabular-nums">
+        {value}
+      </div>
+      <div className="mt-0.5 text-[11px] sm:text-[12px] leading-[1.3] text-[var(--muted)]">
+        {label}
+      </div>
+    </div>
   );
 }
